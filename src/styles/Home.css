@@ -1,0 +1,142 @@
+.hero-section {
+    position: relative;
+    height: 650px;
+    background-image: linear-gradient(rgba(0, 50, 0, 0.6), rgba(0, 50, 0, 0.4)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 6rem; /* Increased for floating stats */
+}
+
+.hero-content {
+    max-width: 900px;
+    padding: 0 20px;
+    margin-top: -80px;
+    animation: fadeIn 1s ease-out;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+.cta-btn {
+    background-color: var(--primary-green);
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.cta-btn:hover {
+    background-color: #15803d; /* Darker green */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(22, 101, 52, 0.4);
+}
+
+/* Stats Overlay */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+    right: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.stat-box {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-8px);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    background-color: #dcfce7; /* Light green bg */
+    color: #166534;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #064e3b;
+    margin-bottom: 0.25rem;
+}
+
+.stat-text {
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .stats-container {
+        position: relative;
+        bottom: 0;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .hero-section {
+        height: auto;
+        min-height: 500px;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-box {
+        width: 45%;
+    }
+}

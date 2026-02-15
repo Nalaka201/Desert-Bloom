@@ -1,0 +1,199 @@
+/* ========================================
+   NAVBAR — Modern Full-Width Layout
+   ======================================== */
+
+.navbar {
+    background-color: #065F46;
+    color: white;
+    padding: 0.75rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 2.5rem;
+}
+
+/* ---- Brand / Logo ---- */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+}
+
+.brand-logo-container {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s;
+}
+
+.brand-logo-container:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.brand-logo-img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* ---- Navigation Links ---- */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.25s ease;
+    padding: 6px 0;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #34d399;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ---- Right Actions ---- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+/* ---- Language Switcher ---- */
+.lang-switcher {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    opacity: 0.65;
+}
+
+.lang-btn:hover {
+    opacity: 1;
+}
+
+.lang-btn.active {
+    background-color: #34d399;
+    color: #065F46;
+    opacity: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ---- Icon Buttons ---- */
+.icon-btn {
+    color: white;
+    font-size: 1.1rem;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon-svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+    vertical-align: middle;
+}
+
+/* ---- Badges ---- */
+.notification-badge,
+.notification-badge-number {
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    min-width: 16px;
+    height: 16px;
+    background-color: #fbbf24;
+    border-radius: 50%;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #065F46;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0 3px;
+    border: 2px solid #065F46;
+}
+
+/* ---- Profile Avatar ---- */
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    transition: background 0.25s;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+}
+
+.profile-avatar:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
