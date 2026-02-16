@@ -37,6 +37,23 @@ const Register = () => {
             zip: ''
         };
 
+        // Store this user's profile in a centralized map indexed by NIC
+        // This allows login to retrieve the correct profile later
+        let allProfiles = {};
+        const existingProfiles = localStorage.getItem('all_farmer_profiles');
+        if (existingProfiles) {
+            try {
+                allProfiles = JSON.parse(existingProfiles);
+            } catch (error) {
+                console.error('Error parsing profiles:', error);
+            }
+        }
+
+        // Add/update this farmer's profile
+        allProfiles[nic] = profileData;
+        localStorage.setItem('all_farmer_profiles', JSON.stringify(allProfiles));
+
+        // Also set as current profile for immediate use
         localStorage.setItem('user_nic', nic);
         localStorage.setItem('farmer_profile', JSON.stringify(profileData));
 

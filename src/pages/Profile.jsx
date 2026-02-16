@@ -18,9 +18,33 @@ const Profile = () => {
     });
 
     useEffect(() => {
-        const savedProfile = localStorage.getItem('farmer_profile');
-        if (savedProfile) {
-            setProfile(JSON.parse(savedProfile));
+        // Get the logged-in user's NIC
+        const userNic = localStorage.getItem('user_nic');
+
+        if (userNic && userNic !== 'guest') {
+            // Try to load this specific user's profile from the centralized storage
+            const allProfiles = localStorage.getItem('all_farmer_profiles');
+            if (allProfiles) {
+                try {
+                    const profilesMap = JSON.parse(allProfiles);
+                    if (profilesMap[userNic]) {
+                        setProfile(profilesMap[userNic]);
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Error loading profile:', error);
+                }
+            }
+
+            // Fallback: check for farmer_profile in localStorage
+            const savedProfile = localStorage.getItem('farmer_profile');
+            if (savedProfile) {
+                try {
+                    setProfile(JSON.parse(savedProfile));
+                } catch (error) {
+                    console.error('Error parsing profile:', error);
+                }
+            }
         }
     }, []);
 

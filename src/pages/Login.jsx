@@ -16,8 +16,26 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        
+        // Store the logged-in user's NIC
         localStorage.setItem('user_nic', nic || 'guest');
         localStorage.setItem('access_token', 'dummy-token');
+        
+        // Try to load existing farmer profile data based on NIC
+        // Check if this user has registered before
+        const allProfiles = localStorage.getItem('all_farmer_profiles');
+        if (allProfiles) {
+            try {
+                const profilesMap = JSON.parse(allProfiles);
+                if (profilesMap[nic]) {
+                    // User has a registered profile, load it
+                    localStorage.setItem('farmer_profile', JSON.stringify(profilesMap[nic]));
+                }
+            } catch (error) {
+                console.error('Error loading farmer profile:', error);
+            }
+        }
+        
         navigate('/home');
     };
 
