@@ -2,8 +2,9 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
+import { CardIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
 import '../styles/Auth.css';
-import farm from '../assets/farm.png';
+import farmer from '../assets/farmer.png';
 import homeimg from '../assets/homeimg.jpg';
 import plant from '../assets/plant.png';
 
@@ -16,11 +17,11 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        
+
         // Store the logged-in user's NIC
         localStorage.setItem('user_nic', nic || 'guest');
         localStorage.setItem('access_token', 'dummy-token');
-        
+
         // Try to load existing farmer profile data based on NIC
         // Check if this user has registered before
         const allProfiles = localStorage.getItem('all_farmer_profiles');
@@ -35,7 +36,7 @@ const Login = () => {
                 console.error('Error loading farmer profile:', error);
             }
         }
-        
+
         navigate('/home');
     };
 
@@ -50,14 +51,14 @@ const Login = () => {
                 <div className="auth-panel-branding">
                     <div className="auth-logo-top">
                         <div className="auth-logo-icon">
-                            <img src={plant} alt="Desert Bloom Logo" className="logo-img" />
+                            <img src={plant} alt="Aswenna.lk Logo" className="logo-img" />
                         </div>
-                        <span className="auth-brand-name">Desert Bloom</span>
+                        <span className="auth-brand-name">Aswenna.lk</span>
                     </div>
 
                     <div className="auth-branding-main">
                         <img
-                            src={farm}
+                            src={farmer}
                             alt="Farmer Illustration"
                             className="auth-farmer-img-premium"
                         />
@@ -78,7 +79,9 @@ const Login = () => {
 
                         <form className="auth-form-refined" onSubmit={handleLogin}>
                             <div className="auth-input-group-premium">
-                                <span className="auth-input-icon-colored">👤</span>
+                                <span className="auth-input-icon-colored">
+                                    <CardIcon size={20} />
+                                </span>
                                 <input
                                     type="text"
                                     placeholder={t('auth.nic')}
@@ -90,7 +93,9 @@ const Login = () => {
                             </div>
 
                             <div className="auth-input-group-premium">
-                                <span className="auth-input-icon-colored">🔐</span>
+                                <span className="auth-input-icon-colored">
+                                    <LockIcon size={20} />
+                                </span>
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     placeholder={t('auth.password')}
@@ -103,7 +108,7 @@ const Login = () => {
                                     className="auth-eye-icon-refined"
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
-                                    {showPassword ? '👁️' : '🙈'}
+                                    {showPassword ? <EyeIcon size={20} /> : <EyeOffIcon size={20} />}
                                 </span>
                             </div>
 
@@ -114,8 +119,13 @@ const Login = () => {
                                 <Link to="/forgot-password" title={t('auth.forgot')} className="auth-link-forgot">{t('auth.forgot')}</Link>
                             </div>
 
-                            <button type="submit" className="auth-btn-premium">
-                                <span className="btn-icon">➔</span> <span>{t('auth.login_btn')}</span>
+                            <button type="submit" className="auth-btn-premium" id="login-submit-btn">
+                                <span>{t('auth.login_btn')}</span>
+                                <span className="btn-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                </span>
                             </button>
                         </form>
                     </div>

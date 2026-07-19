@@ -15,13 +15,13 @@ const LanguageSwitcher = ({ className = '' }) => {
                 className={`lang-btn ${i18n.language === 'en' ? 'active' : ''}`}
                 onClick={() => changeLanguage('en')}
             >
-                EN
+                English
             </button>
             <button
                 className={`lang-btn ${i18n.language === 'si' ? 'active' : ''}`}
                 onClick={() => changeLanguage('si')}
             >
-                සිං
+                සිංහල
             </button>
         </div>
     );

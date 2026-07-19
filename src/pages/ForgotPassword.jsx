@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
+import { LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
 import '../styles/Auth.css'; // Use shared premium styles
 import farm from '../assets/farm.png';
 import plant from '../assets/plant.png';
@@ -207,7 +208,9 @@ const ForgotPassword = () => {
                                     <div>
                                         <label className="auth-input-label-premium">New Password</label>
                                         <div className="auth-input-group-premium">
-                                            <span className="auth-input-icon-colored">🔒</span>
+                                            <span className="auth-input-icon-colored">
+                                                <LockIcon size={20} />
+                                            </span>
                                             <input
                                                 type={showNewPass ? 'text' : 'password'}
                                                 className="auth-input-refined"
@@ -215,14 +218,16 @@ const ForgotPassword = () => {
                                                 required
                                             />
                                             <span className="auth-eye-icon-refined" onClick={() => setShowNewPass(!showNewPass)}>
-                                                {showNewPass ? '🙈' : '👁️'}
+                                                {showNewPass ? <EyeIcon size={20} /> : <EyeOffIcon size={20} />}
                                             </span>
                                         </div>
                                     </div>
                                     <div>
                                         <label className="auth-input-label-premium">Confirm Password</label>
                                         <div className="auth-input-group-premium">
-                                            <span className="auth-input-icon-colored">🔐</span>
+                                            <span className="auth-input-icon-colored">
+                                                <LockIcon size={20} />
+                                            </span>
                                             <input
                                                 type={showConfirmPass ? 'text' : 'password'}
                                                 className="auth-input-refined"
@@ -230,7 +235,7 @@ const ForgotPassword = () => {
                                                 required
                                             />
                                             <span className="auth-eye-icon-refined" onClick={() => setShowConfirmPass(!showConfirmPass)}>
-                                                {showConfirmPass ? '🙈' : '👁️'}
+                                                {showConfirmPass ? <EyeIcon size={20} /> : <EyeOffIcon size={20} />}
                                             </span>
                                         </div>
                                     </div>

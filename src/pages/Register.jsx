@@ -2,8 +2,10 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
+import { UserIcon, CardIcon, PhoneIcon, MailIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
 import '../styles/Auth.css';
 import farm from '../assets/farm.png';
+import farmer from '../assets/farmer.png';
 import plant from '../assets/plant.png';
 
 const Register = () => {
@@ -78,7 +80,9 @@ const Register = () => {
 
                         <form className="auth-form-refined" onSubmit={handleRegister}>
                             <div className="auth-input-group-premium">
-                                <span className="auth-input-icon-colored">👤</span>
+                                <span className="auth-input-icon-colored">
+                                    <UserIcon size={20} />
+                                </span>
                                 <input
                                     type="text"
                                     placeholder={t('auth.fullname')}
@@ -90,7 +94,9 @@ const Register = () => {
                             </div>
 
                             <div className="auth-input-group-premium">
-                                <span className="auth-input-icon-colored">🪪</span>
+                                <span className="auth-input-icon-colored">
+                                    <CardIcon size={20} />
+                                </span>
                                 <input
                                     type="text"
                                     placeholder={t('auth.nic')}
@@ -102,7 +108,9 @@ const Register = () => {
                             </div>
 
                             <div className="auth-input-group-premium">
-                                <span className="auth-input-icon-colored">📞</span>
+                                <span className="auth-input-icon-colored">
+                                    <PhoneIcon size={20} />
+                                </span>
                                 <input
                                     type="text"
                                     placeholder={t('auth.phone')}
@@ -113,7 +121,9 @@ const Register = () => {
                             </div>
 
                             <div className="auth-input-group-premium">
-                                <span className="auth-input-icon-colored">📧</span>
+                                <span className="auth-input-icon-colored">
+                                    <MailIcon size={20} />
+                                </span>
                                 <input
                                     type="email"
                                     placeholder={t('auth.email')}
@@ -124,7 +134,9 @@ const Register = () => {
                             </div>
 
                             <div className="auth-input-group-premium">
-                                <span className="auth-input-icon-colored">🔐</span>
+                                <span className="auth-input-icon-colored">
+                                    <LockIcon size={20} />
+                                </span>
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     placeholder={t('auth.password')}
@@ -137,12 +149,14 @@ const Register = () => {
                                     className="auth-eye-icon-refined"
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
-                                    {showPassword ? '👁️' : '🙈'}
+                                    {showPassword ? <EyeIcon size={20} /> : <EyeOffIcon size={20} />}
                                 </span>
                             </div>
 
                             <div className="auth-input-group-premium">
-                                <span className="auth-input-icon-colored">🔐</span>
+                                <span className="auth-input-icon-colored">
+                                    <LockIcon size={20} />
+                                </span>
                                 <input
                                     type={showConfirmPassword ? "text" : "password"}
                                     placeholder={t('auth.confirm_pass')}
@@ -155,7 +169,7 @@ const Register = () => {
                                     className="auth-eye-icon-refined"
                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                 >
-                                    {showConfirmPassword ? '👁️' : '🙈'}
+                                    {showConfirmPassword ? <EyeIcon size={20} /> : <EyeOffIcon size={20} />}
                                 </span>
                             </div>
 
@@ -166,7 +180,12 @@ const Register = () => {
                             </div>
 
                             <button type="submit" className="auth-btn-premium">
-                                <span className="btn-icon">➔</span> <span>{t('auth.create_account')}</span>
+                                <span>{t('auth.create_account')}</span>
+                                <span className="btn-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                </span>
                             </button>
                         </form>
                     </div>
@@ -176,14 +195,14 @@ const Register = () => {
                 <div className="auth-panel-branding">
                     <div className="auth-logo-top">
                         <div className="auth-logo-icon">
-                            <img src={plant} alt="Desert Bloom Logo" className="logo-img" />
+                            <img src={plant} alt="Aswenna.lk Logo" className="logo-img" />
                         </div>
-                        <span className="auth-brand-name">Desert Bloom</span>
+                        <span className="auth-brand-name">Aswenna.lk</span>
                     </div>
 
                     <div className="auth-branding-main">
                         <img
-                            src={farm}
+                            src={farmer}
                             alt="Farmer Illustration"
                             className="auth-farmer-img-premium"
                         />
