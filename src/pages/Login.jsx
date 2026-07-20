@@ -5,7 +5,6 @@ import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { CardIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
 import '../styles/Auth.css';
 import farmer from '../assets/farmer.png';
-import homeimg from '../assets/homeimg.jpg';
 import plant from '../assets/plant.png';
 
 const Login = () => {
@@ -57,11 +56,7 @@ const Login = () => {
                     </div>
 
                     <div className="auth-branding-main">
-                        <img
-                            src={farmer}
-                            alt="Farmer Illustration"
-                            className="auth-farmer-img-premium"
-                        />
+                        <img src={farmer} alt="Farmer Illustration" className="auth-farmer-img-premium" />
                     </div>
 
                     <p className="auth-tagline-bottom">
@@ -82,12 +77,7 @@ const Login = () => {
                                 <span className="auth-input-icon-colored">
                                     <CardIcon size={20} />
                                 </span>
-                                <input
-                                    type="text"
-                                    placeholder={t('auth.nic')}
-                                    className="auth-input-refined"
-                                    value={nic}
-                                    onChange={(e) => setNic(e.target.value)}
+                                <input type="text" placeholder={t('auth.nic')} className="auth-input-refined" value={nic} onChange={(e) => setNic(e.target.value)}
                                     required
                                 />
                             </div>

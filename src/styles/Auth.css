@@ -265,7 +265,7 @@
     border: none;
     padding: 0.75rem 0;
     flex: 1;
-    font-size: 0.95rem;
+    font-size: 0.88rem !important;
     font-weight: 400;
     outline: none;
     color: var(--deep-blue);
@@ -276,7 +276,7 @@
 .auth-input-refined::placeholder {
     color: #9ca3af;
     font-weight: 400;
-    font-size: 0.95rem;
+    font-size: 0.88rem !important;
     font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
 }
 
@@ -501,8 +501,9 @@
     line-height: 1.6;
 }
 
-.lang-si .auth-input-refined {
-    font-size: 1rem;
+.lang-si .auth-input-refined,
+.lang-si .auth-input-refined::placeholder {
+    font-size: 0.88rem;
 }
 
 .lang-si .auth-tagline-bottom {
@@ -511,7 +512,7 @@
 }
 
 .lang-si .auth-btn-premium {
-    font-size: 1.15rem;
+    font-size: 0.78rem;
 }
 
 .lang-si .auth-brand-name {

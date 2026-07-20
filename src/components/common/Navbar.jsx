@@ -34,7 +34,7 @@ const Navbar = () => {
           <div className="brand-logo-container">
             <img src="/src/assets/plant.png" alt="Desert Bloom" className="brand-logo-img" />
           </div>
-          <span>Desert Bloom</span>
+          <span>Aswenna.lk</span>
         </Link>
 
         <ul className="nav-links">
