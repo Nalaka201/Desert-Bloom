@@ -4,8 +4,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
 import '../styles/Auth.css'; // Use shared premium styles
-import farm from '../assets/farm.png';
-import plant from '../assets/plant.png';
+
 
 const countries = [
     { code: 'LK', name: 'Sri Lanka', dial: '+94', flag: 'https://flagcdn.com/w40/lk.png' },

@@ -6,6 +6,7 @@ import { CardIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Ic
 import '../styles/Auth.css';
 import farmer from '../assets/farmer.png';
 import plant from '../assets/plant.png';
+import logo from '../assets/logo.png';
 
 const Login = () => {
     const { t, i18n } = useTranslation();
@@ -50,7 +51,7 @@ const Login = () => {
                 <div className="auth-panel-branding">
                     <div className="auth-logo-top">
                         <div className="auth-logo-icon">
-                            <img src={plant} alt="Aswenna.lk Logo" className="logo-img" />
+                            <img src={logo} alt="Aswenna.lk Logo" className="logo-img" />
                         </div>
                         <span className="auth-brand-name">Aswenna.lk</span>
                     </div>

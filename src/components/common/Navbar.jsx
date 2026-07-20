@@ -32,7 +32,7 @@ const Navbar = () => {
       <div className="navbar-content">
         <Link to="/home" className="brand" style={{ textDecoration: 'none', color: 'inherit' }}>
           <div className="brand-logo-container">
-            <img src="/src/assets/plant.png" alt="Desert Bloom" className="brand-logo-img" />
+            <img src="/src/assets/logo.png" alt="Desert Bloom" className="brand-logo-img" />
           </div>
           <span>Aswenna.lk</span>
         </Link>

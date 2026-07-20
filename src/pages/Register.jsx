@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { UserIcon, CardIcon, PhoneIcon, MailIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
 import '../styles/Auth.css';
-import farm from '../assets/farm.png';
 import farmer from '../assets/farmer.png';
-import plant from '../assets/plant.png';
+import logo from '../assets/logo.png';
 
 const Register = () => {
     const { t, i18n } = useTranslation();
@@ -195,17 +194,13 @@ const Register = () => {
                 <div className="auth-panel-branding">
                     <div className="auth-logo-top">
                         <div className="auth-logo-icon">
-                            <img src={plant} alt="Aswenna.lk Logo" className="logo-img" />
+                            <img src={logo} alt="Aswenna.lk Logo" className="logo-img" />
                         </div>
                         <span className="auth-brand-name">Aswenna.lk</span>
                     </div>
 
                     <div className="auth-branding-main">
-                        <img
-                            src={farmer}
-                            alt="Farmer Illustration"
-                            className="auth-farmer-img-premium"
-                        />
+                        <img src={farmer} alt="Farmer Illustration" className="auth-farmer-img-premium" />
                     </div>
 
                     <p className="auth-tagline-bottom">
