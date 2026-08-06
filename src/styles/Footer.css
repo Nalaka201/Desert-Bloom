@@ -14,14 +14,14 @@
 
 .footer-content {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.4fr;
     gap: 3rem;
     padding-bottom: 3.5rem;
 }
 
 .footer-brand h3 {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 800;
     margin-bottom: 1rem;
     color: #ffffff;
@@ -58,6 +58,7 @@
     font-weight: 700;
     font-size: 0.85rem;
     transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
 .social-icon:hover {
@@ -89,11 +90,60 @@
     transition: all 0.25s ease;
     display: inline-flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .footer-links a:hover {
     color: #34d399;
     transform: translateX(4px);
+}
+
+/* Farmer Helpline Styling */
+.farmer-helpline-col .helpline-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    border-radius: 20px;
+    padding: 1.25rem 1.5rem;
+}
+
+.helpline-number {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.75rem;
+}
+
+.phone-icon {
+    font-size: 1.4rem;
+    background: rgba(16, 185, 129, 0.2);
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #34d399;
+}
+
+.helpline-number strong {
+    font-size: 1.2rem;
+    color: #ffffff;
+    display: block;
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+}
+
+.helpline-sub {
+    font-size: 0.75rem;
+    color: #34d399;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.helpline-desc {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
 }
 
 .bottom-bar {
@@ -123,6 +173,10 @@
     }
 
     .social-icons {
+        justify-content: center;
+    }
+
+    .helpline-number {
         justify-content: center;
     }
 }
