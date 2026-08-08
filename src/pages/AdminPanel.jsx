@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { suppliers as initialSuppliers } from '../data/suppliers';
 import api from '../services/api';
 import '../styles/Admin.css';
@@ -353,22 +354,25 @@ const AdminPanel = () => {
                             `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Management`
                         }
                     </h1>
-                    {managingSeedsFor ? (
-                        <div style={{ display: 'flex', gap: '10px' }}>
-                            <button onClick={() => addSeed(managingSeedsFor)} className="add-btn" style={{ padding: '8px 16px', borderRadius: '8px', background: '#166534', color: 'white', border: 'none', cursor: 'pointer' }}>
-                                + Add New Seed
-                            </button>
-                            <button onClick={() => setManagingSeedsFor(null)} style={{ padding: '8px 16px', borderRadius: '8px', background: '#64748b', color: 'white', border: 'none', cursor: 'pointer' }}>
-                                Back to Suppliers
-                            </button>
-                        </div>
-                    ) : (
-                        activeTab !== 'dashboard' && activeTab !== 'content' && (
-                            <button onClick={() => setShowAddModal(true)} className="add-btn" style={{ padding: '8px 16px', borderRadius: '8px', background: '#166534', color: 'white', border: 'none', cursor: 'pointer' }}>
-                                + Add New {activeTab.slice(0, -1)}
-                            </button>
-                        )
-                    )}
+                    <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                        <LanguageSwitcher />
+                        {managingSeedsFor ? (
+                            <div style={{ display: 'flex', gap: '10px' }}>
+                                <button onClick={() => addSeed(managingSeedsFor)} className="add-btn" style={{ padding: '8px 16px', borderRadius: '8px', background: '#166534', color: 'white', border: 'none', cursor: 'pointer' }}>
+                                    + Add New Seed
+                                </button>
+                                <button onClick={() => setManagingSeedsFor(null)} style={{ padding: '8px 16px', borderRadius: '8px', background: '#64748b', color: 'white', border: 'none', cursor: 'pointer' }}>
+                                    Back to Suppliers
+                                </button>
+                            </div>
+                        ) : (
+                            activeTab !== 'dashboard' && activeTab !== 'content' && (
+                                <button onClick={() => setShowAddModal(true)} className="add-btn" style={{ padding: '8px 16px', borderRadius: '8px', background: '#166534', color: 'white', border: 'none', cursor: 'pointer' }}>
+                                    + Add New {activeTab.slice(0, -1)}
+                                </button>
+                            )
+                        )}
+                    </div>
                 </header>
 
                 {activeTab === 'dashboard' && (

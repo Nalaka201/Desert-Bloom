@@ -4,13 +4,23 @@
         "about": "About",
         "company": "Company",
         "contact": "Contact",
-        "history": "History"
+        "history": "History",
+        "suppliers": "Suppliers"
     },
     "hero": {
+        "badge": "PLATFORM FOR PROFESSIONAL FARMERS",
         "title_part1": "Plant with Confidence,",
         "title_part2": "Harvest with Pride",
         "subtitle": "Premium seeds and expert suppliers for your farm's success.",
-        "cta": "Explore Suppliers"
+        "cta": "Explore Suppliers",
+        "why_us": "Why Aswenna.lk",
+        "iso_seeds": "ISO Certified Seeds",
+        "island_dispatch": "Island-wide Dispatch",
+        "direct_rates": "Direct Supplier Rates",
+        "germination_title": "95.4% Germination",
+        "germination_sub": "Government Certified Seeds",
+        "yala_title": "Yala Season Active",
+        "yala_sub": "Direct Supply Network"
     },
     "stats": {
         "companies": "Seed Companies",
@@ -99,14 +109,36 @@
         "email_placeholder": "Email Address"
     },
     "features": {
-        "title": "Why Choose Desert Bloom?",
-        "subtitle": "Your success is our priority",
-        "f1_title": "Quality Guaranteed",
-        "f1_desc": "Every seed is tested and certified to ensure high germination rates and disease resistance.",
-        "f2_title": "Fast Delivery",
-        "f2_desc": "Island-wide delivery within 24-48 hours to ensure you never miss a planting season.",
-        "f3_title": "Expert Support",
-        "f3_desc": "Get advice from our agronomists on crop selection and farming techniques."
+        "badge": "WHY CHOOSE ASWENNA.LK",
+        "title": "Built Specifically for Sri Lankan Farmers",
+        "subtitle": "Empowering your farm with trusted inputs, guaranteed seed vitality, and expert guidance every step of the way.",
+        "f1_badge": "100% CERTIFIED",
+        "f1_title": "High Germination Guaranteed",
+        "f1_desc": "Every seed packet is tested in government-approved laboratories for over 95% germination rate and disease resistance.",
+        "f2_badge": "24-48 HR EXPRESS",
+        "f2_title": "Island-Wide Farm Delivery",
+        "f2_desc": "Rapid delivery straight to your farm gate across all 25 districts, ensuring you never miss optimal planting conditions.",
+        "f3_badge": "DIRECT ADVICE",
+        "f3_title": "Agronomist Hotline Support",
+        "f3_desc": "Free expert consultation on crop selection, soil matching, and seasonal pest management from certified agricultural officers.",
+        "f4_badge": "DIRECT RATES",
+        "f4_title": "Supplier Direct Wholesale Rates",
+        "f4_desc": "No middleman markups! Get direct factory rates and flexible cash-on-delivery options for maximum profitability."
+    },
+    "supplier_section": {
+        "badge": "CERTIFIED SEED NETWORK",
+        "title": "Top Seed Companies & Partners",
+        "subtitle": "Connect directly with island-wide certified seed producers for high-yielding, premium harvests",
+        "search": "Search suppliers by name, district...",
+        "all": "All Categories",
+        "veg": "Vegetable Seeds",
+        "rice": "Paddy & Grains",
+        "fruit": "Fruit Seeds",
+        "top_rated": "Top Rated",
+        "gov_cert": "Gov Certified",
+        "verified": "Verified",
+        "seeds": "Seeds Available",
+        "see_details": "View Products & Details"
     },
     "testimonials": {
         "title": "Success Stories",
@@ -298,5 +330,29 @@
         "order_seeds": "Order Seeds",
         "view_reports": "Order History",
         "manage_profile": "Profile"
+    },
+    "suppliers_page": {
+        "title": "Our Trusted Suppliers",
+        "subtitle": "Connect with Sri Lanka's top seed companies and agricultural partners. Quality guaranteed for a better harvest."
+    },
+    "company_page": {
+        "title": "Our Partner Companies",
+        "subtitle": "We collaborate with the best seed producers in Sri Lanka to ensure your farming success."
+    },
+    "admin_register": {
+        "title": "Admin Registration",
+        "subtitle": "Create a new administrator account",
+        "username": "Username",
+        "email": "Email Address",
+        "password": "Password",
+        "confirm_pass": "Confirm Password",
+        "sec_key": "Admin Security Key",
+        "submit_btn": "Create Admin Account",
+        "have_account": "Already have an admin account?",
+        "login_link": "Sign In",
+        "pass_mismatch": "Passwords do not match",
+        "invalid_key": "Invalid Admin Security Key (Try: ADMIN123)",
+        "user_exists": "Username already exists",
+        "success_msg": "Admin account created successfully!"
     }
 }

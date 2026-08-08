@@ -40,7 +40,7 @@ const Navbar = () => {
         <ul className="nav-links">
           <li><Link to="/home" className="nav-link">{t('nav.home')}</Link></li>
           <li><Link to="/about" className="nav-link">{t('nav.about')}</Link></li>
-          <li><Link to="/suppliers" className="nav-link">Suppliers</Link></li>
+          <li><Link to="/suppliers" className="nav-link">{t('nav.suppliers')}</Link></li>
           <li><Link to="/contact" className="nav-link">{t('nav.contact')}</Link></li>
           <li><Link to="/history" className="nav-link">{t('nav.history')}</Link></li>
         </ul>

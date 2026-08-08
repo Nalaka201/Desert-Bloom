@@ -29,9 +29,9 @@ const SupplierSection = () => {
     });
 
     const getStatusLabel = (rating) => {
-        if (rating >= 4.8) return 'Top Rated';
-        if (rating >= 4.6) return 'Gov Certified';
-        return 'Verified';
+        if (rating >= 4.8) return t('supplier_section.top_rated');
+        if (rating >= 4.6) return t('supplier_section.gov_cert');
+        return t('supplier_section.verified');
     };
 
     const getBadgeClass = (rating) => {
@@ -46,11 +46,11 @@ const SupplierSection = () => {
             {/* Header Block */}
             <div className="supplier-header-block">
                 <div className="section-badge">
-                    <span className="live-dot"></span> CERTIFIED SEED NETWORK
+                    <span className="live-dot"></span> {t('supplier_section.badge')}
                 </div>
-                <h2 className="section-title-center">Top Seed Companies &amp; Partners</h2>
+                <h2 className="section-title-center">{t('supplier_section.title')}</h2>
                 <p className="section-subtitle">
-                    Connect directly with island-wide certified seed producers for high-yielding, premium harvests
+                    {t('supplier_section.subtitle')}
                 </p>
             </div>
 
@@ -65,7 +65,7 @@ const SupplierSection = () => {
                     </span>
                     <input
                         type="text"
-                        placeholder="Search by company name or district (e.g. Colombo, Anuradhapura)..."
+                        placeholder={t('supplier_section.search')}
                         className="search-input"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -78,17 +78,17 @@ const SupplierSection = () => {
                 <div className="filter-chips-wrapper">
                     <div className="filter-chips">
                         <button className={`chip ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>
-                            <span className="chip-icon">🌱</span> All Categories
+                            <span className="chip-icon">🌱</span> {t('supplier_section.all')}
                         </button>
                         <button className={`chip ${filter === 'veg' ? 'active' : ''}`} onClick={() => setFilter('veg')}>
-                            <span className="chip-icon">🥦</span> Vegetables
+                            <span className="chip-icon">🥦</span> {t('supplier_section.veg')}
                         </button>
                         <button className={`chip ${filter === 'fruit' ? 'active' : ''}`} onClick={() => setFilter('fruit')}>
-                            <span className="chip-icon">🍊</span> Fruits
+                            <span className="chip-icon">🍊</span> {t('supplier_section.fruit')}
                         </button>
                     </div>
                     <span className="supplier-count-badge">
-                        Showing <strong>{filteredSuppliers.length}</strong> Trusted Suppliers
+                        Showing <strong>{filteredSuppliers.length}</strong> {t('supplier_section.verified')}
                     </span>
                 </div>
             </div>
@@ -148,14 +148,14 @@ const SupplierSection = () => {
                                             <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                                             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                                         </svg>
-                                        <span className="info-label">{sup.reviews} Reviews</span>
+                                        <span className="info-label">{sup.reviews} {t('supplier_details.reviews')}</span>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Explore Button only */}
                             <button className="detail-btn" onClick={() => handleDetailsClick(sup.id)}>
-                                <span>Explore Seeds &amp; Order</span>
+                                <span>{t('supplier_section.see_details')}</span>
                                 <svg className="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>

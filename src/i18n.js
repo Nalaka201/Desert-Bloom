@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import enTranslations from './locales/en.json';
 import siTranslations from './locales/si.json';
+import taTranslations from './locales/ta.json';
 
 i18n
     .use(LanguageDetector)
@@ -10,7 +11,8 @@ i18n
     .init({
         resources: {
             en: { translation: enTranslations },
-            si: { translation: siTranslations }
+            si: { translation: siTranslations },
+            ta: { translation: taTranslations }
         },
         fallbackLng: 'en',
         interpolation: {

@@ -116,21 +116,21 @@ const Home = () => {
                     <div className="hero-content-left">
                         <div className="hero-top-badge">
                             <span className="live-status-pulse"></span>
-                            <span className="badge-text">PLATFORM FOR PROFESSIONAL FARMERS</span>
+                            <span className="badge-text">{t('hero.badge')}</span>
                         </div>
 
                         <h1 className="hero-title">
-                            Plant with Confidence,<br />
-                            <span className="gradient-text-emerald">Harvest with Pride</span>
+                            {t('hero.title_part1')}<br />
+                            <span className="gradient-text-emerald">{t('hero.title_part2')}</span>
                         </h1>
 
                         <p className="hero-subtitle">
-                            Premium seeds and expert suppliers for your farm's success.
+                            {t('hero.subtitle')}
                         </p>
 
                         <div className="hero-actions-group">
                             <a href="#suppliers" className="primary-cta-btn">
-                                <span>Explore Suppliers</span>
+                                <span>{t('hero.cta')}</span>
                                 <svg className="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -141,7 +141,7 @@ const Home = () => {
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                     <polyline points="9 12 11 14 15 10"></polyline>
                                 </svg>
-                                <span>Why Aswenna.lk</span>
+                                <span>{t('hero.why_us')}</span>
                             </a>
                         </div>
 
@@ -151,7 +151,7 @@ const Home = () => {
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
-                                <span>ISO Certified Seeds</span>
+                                <span>{t('hero.iso_seeds')}</span>
                             </div>
                             <div className="pill-item">
                                 <svg className="pill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -160,13 +160,13 @@ const Home = () => {
                                     <circle cx="5.5" cy="18.5" r="2.5"></circle>
                                     <circle cx="18.5" cy="18.5" r="2.5"></circle>
                                 </svg>
-                                <span>Island-wide Dispatch</span>
+                                <span>{t('hero.island_dispatch')}</span>
                             </div>
                             <div className="pill-item">
                                 <svg className="pill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                                 </svg>
-                                <span>Direct Supplier Rates</span>
+                                <span>{t('hero.direct_rates')}</span>
                             </div>
                         </div>
                     </div>
@@ -182,16 +182,16 @@ const Home = () => {
                             <div className="floating-card-badge top-badge">
                                 <div className="badge-icon-bg">🌱</div>
                                 <div>
-                                    <div className="badge-title">95.4% Germination</div>
-                                    <div className="badge-sub">Government Certified Seeds</div>
+                                    <div className="badge-title">{t('hero.germination_title')}</div>
+                                    <div className="badge-sub">{t('hero.germination_sub')}</div>
                                 </div>
                             </div>
 
                             <div className="floating-card-badge bottom-badge">
                                 <div className="badge-icon-bg">🚜</div>
                                 <div>
-                                    <div className="badge-title">Yala Season Active</div>
-                                    <div className="badge-sub">Direct Supply Network</div>
+                                    <div className="badge-title">{t('hero.yala_title')}</div>
+                                    <div className="badge-sub">{t('hero.yala_sub')}</div>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +215,7 @@ const Home = () => {
                         </div>
                         <div className="stat-details">
                             <div className="stat-number">6+</div>
-                            <div className="stat-text">Seed Companies</div>
+                            <div className="stat-text">{t('stats.companies')}</div>
                         </div>
                     </div>
 
@@ -230,7 +230,7 @@ const Home = () => {
                         </div>
                         <div className="stat-details">
                             <div className="stat-number">1000+</div>
-                            <div className="stat-text">Quality Seeds</div>
+                            <div className="stat-text">{t('stats.seeds')}</div>
                         </div>
                     </div>
 
@@ -245,7 +245,7 @@ const Home = () => {
                         </div>
                         <div className="stat-details">
                             <div className="stat-number">100+</div>
-                            <div className="stat-text">Happy Farmers</div>
+                            <div className="stat-text">{t('stats.farmers')}</div>
                         </div>
                     </div>
 
@@ -258,7 +258,7 @@ const Home = () => {
                         </div>
                         <div className="stat-details">
                             <div className="stat-number">90%</div>
-                            <div className="stat-text">Success Rate</div>
+                            <div className="stat-text">{t('stats.rate')}</div>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import '../styles/AdminLogin.css';
 import plant from '../assets/plant.png';
 
@@ -41,6 +42,7 @@ const AdminLogin = () => {
 
     return (
         <div className="admin-login-page">
+            <LanguageSwitcher className="auth-page-switcher" />
             {/* Decorative background elements */}
             <div className="admin-login-bg-pattern"></div>
 

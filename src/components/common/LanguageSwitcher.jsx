@@ -23,6 +23,12 @@ const LanguageSwitcher = ({ className = '' }) => {
             >
                 සිංහල
             </button>
+            <button
+                className={`lang-btn ${i18n.language === 'ta' ? 'active' : ''}`}
+                onClick={() => changeLanguage('ta')}
+            >
+                தமிழ்
+            </button>
         </div>
     );
 };
