@@ -33,8 +33,8 @@ const LanguageSwitcher = ({ className = '' }) => {
 
     return (
         <div className={`lang-switcher-dropdown-container ${className}`} ref={dropdownRef}>
-            <button 
-                className="lang-switcher-trigger" 
+            <button
+                className="lang-switcher-trigger"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}
             >
@@ -48,7 +48,7 @@ const LanguageSwitcher = ({ className = '' }) => {
                     <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
             </button>
-            
+
             {isOpen && (
                 <div className="lang-dropdown-menu">
                     {languages.map((lang) => (
