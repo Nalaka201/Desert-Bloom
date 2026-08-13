@@ -637,6 +637,14 @@
     letter-spacing: -0.3px;
 }
 
+.lang-ta .auth-card-register .auth-title-large {
+    white-space: nowrap !important;
+    display: block !important;
+    font-size: 1.4rem !important;
+    text-overflow: ellipsis;
+    letter-spacing: -0.5px;
+}
+
 .lang-ta .auth-subtitle-refined {
     -webkit-line-clamp: 2;
     font-size: 0.8rem !important;
@@ -694,6 +702,10 @@
     padding: 2.5rem 1.4rem;
 }
 
+.lang-ta .auth-card-register .auth-panel-form {
+    padding: 1rem 1.4rem;
+}
+
 .lang-ta .auth-card-login .auth-form-card-premium,
 .lang-ta .auth-form-card-premium {
     max-width: 460px;
@@ -710,95 +722,72 @@
 }
 
 /* Register Specific Compact Styling - Premium Refinement */
-.auth-card-register .auth-panel-form {
-    padding: 1rem 2rem;
-    justify-content: center;
+.auth-card-register {
+    height: auto !important;
+    min-height: 680px !important;
+    max-height: 750px !important;
+    max-width: 1100px !important;
 }
 
-.auth-card-register .auth-title-large {
-    font-size: 2.4rem;
-    margin-bottom: 0.5rem;
-    color: var(--deep-blue);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.auth-card-register .auth-panel-branding {
+    justify-content: center !important;
 }
 
-.auth-card-register .auth-subtitle-refined {
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    color: #555;
-    font-weight: 500;
+.auth-card-register .auth-logo-top {
+    position: absolute;
+    top: 2.5rem;
+    left: 0;
+    right: 0;
 }
 
-.auth-card-register .auth-input-group-premium {
-    padding: 0.7rem 1.4rem;
-    border-radius: 20px;
-    background: #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    margin-bottom: 0.1rem;
-    transition: all 0.3s ease;
+.auth-card-register .auth-branding-main {
+    margin-top: 2rem;
 }
 
-.auth-card-register .auth-input-group-premium:focus-within {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(22, 101, 52, 0.15);
-    border-color: #166534;
-}
-
-.auth-card-register .auth-input-refined {
-    padding: 0;
-    height: 100%;
-    font-size: 1.15rem;
-    color: #333;
-}
-
-.auth-card-register .auth-input-icon-colored {
-    font-size: 1.5rem;
-    opacity: 0.8;
+.auth-card-register .auth-tagline-bottom {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
 
 .auth-card-register .auth-form-refined {
-    gap: 0.9rem;
+    gap: 0.75rem;
 }
 
-.auth-card-register .auth-btn-premium {
-    padding: 1rem;
-    margin-top: 0.8rem;
-    font-size: 1.25rem;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #166534 0%, #15803d 100%);
-    box-shadow: 0 8px 20px -5px rgba(22, 101, 52, 0.4);
-    letter-spacing: 0.5px;
-}
-
-.auth-card-register .auth-btn-premium:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px -5px rgba(22, 101, 52, 0.5);
-}
-
-/* ─── Login Specific Styling ────────────────────────────── */
+/* ─── Login & Register Common Overrides ────────────────────────────── */
 .auth-card-login .auth-panel-form {
     padding: 2.5rem 2rem;
     justify-content: center;
 }
 
-.auth-card-login .auth-form-card-premium {
+.auth-card-register .auth-panel-form {
+    padding: 1rem 2rem;
+    justify-content: center;
+}
+
+.auth-card-login .auth-form-card-premium,
+.auth-card-register .auth-form-card-premium {
     max-width: 420px;
 }
 
-.auth-card-login .auth-title-large {
+.auth-card-login .auth-title-large,
+.auth-card-register .auth-title-large {
     font-size: 1.95rem;
     color: var(--deep-blue);
     margin-bottom: 0.3rem;
 }
 
-.auth-card-login .auth-subtitle-refined {
+.auth-card-login .auth-subtitle-refined,
+.auth-card-register .auth-subtitle-refined {
     margin-bottom: 1.5rem;
     text-align: center !important;
     width: 100%;
 }
 
-.auth-card-login .auth-input-group-premium {
+.auth-card-login .auth-input-group-premium,
+.auth-card-register .auth-input-group-premium {
     height: var(--input-height);
     padding: 0 1.2rem;
     border-radius: var(--radius-input);
@@ -809,7 +798,8 @@
     z-index: 1;
 }
 
-.auth-card-login .auth-input-group-premium:focus-within {
+.auth-card-login .auth-input-group-premium:focus-within,
+.auth-card-register .auth-input-group-premium:focus-within {
     border-color: var(--green-primary);
     background: #ffffff;
     transform: translateY(-1px);
@@ -820,12 +810,14 @@
 
 /* General premium input group - base rule above, no duplicate needed */
 
-.auth-card-login .auth-input-refined {
+.auth-card-login .auth-input-refined,
+.auth-card-register .auth-input-refined {
     font-size: 0.925rem;
     color: #1f2937;
 }
 
-.auth-card-login .auth-extras-refined {
+.auth-card-login .auth-extras-refined,
+.auth-card-register .auth-extras-refined {
     margin-top: 0.3rem;
     margin-bottom: 0;
     display: flex;
@@ -836,13 +828,15 @@
     gap: 0.5rem;
 }
 
-.auth-card-login .auth-link-forgot {
+.auth-card-login .auth-link-forgot,
+.auth-card-register .auth-link-forgot {
     font-size: 0.875rem !important;
     font-weight: 600;
     color: var(--green-primary);
 }
 
-.auth-card-login .auth-btn-premium {
+.auth-card-login .auth-btn-premium,
+.auth-card-register .auth-btn-premium {
     margin-top: 1.4rem;
     height: var(--input-height);
     padding: 0;
@@ -853,7 +847,8 @@
     box-shadow: 0 8px 20px -4px rgba(22, 101, 52, 0.35);
 }
 
-.auth-card-login .auth-btn-premium:hover {
+.auth-card-login .auth-btn-premium:hover,
+.auth-card-register .auth-btn-premium:hover {
     transform: translateY(-2px);
     box-shadow: 0 14px 28px -4px rgba(22, 101, 52, 0.45);
 }
