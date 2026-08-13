@@ -1,0 +1,190 @@
+.pdf-container {
+    width: 210mm;
+    background: white;
+    color: #333;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+.pdf-page {
+    height: 297mm;
+    padding: 20mm;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.pdf-header {
+    background-color: #e5e7eb;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    background: #065f46;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-titles h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #064e3b;
+    font-weight: 800;
+}
+
+.header-titles p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #4b5563;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #111827;
+}
+
+.details-box {
+    border: 1px solid #333;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.details-box h3,
+.farmer-details h3,
+.order-items-section h3,
+.payment-details-section h3,
+.terms-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 800;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 5px;
+}
+
+.details-box p,
+.farmer-details p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.pdf-table th,
+.pdf-table td {
+    border: 1px solid #9ca3af;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.pdf-table th {
+    background: #f3f4f6;
+    font-weight: 800;
+}
+
+.payment-details-section {
+    margin-top: 2rem;
+}
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 0.95rem;
+}
+
+.payment-row.final {
+    font-weight: 900;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+    margin-top: 5px;
+}
+
+.payment-note {
+    background: #e5e7eb;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+.pdf-footer {
+    position: absolute;
+    bottom: 20mm;
+    left: 20mm;
+    right: 20mm;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
+}
+
+.pdf-footer p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-align: center;
+}
+
+/* Page 2 Styles */
+.pdf-terms {
+    padding-left: 1.5rem;
+}
+
+.pdf-terms li {
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+}
+
+.legal-disclaimer {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+.signature-area {
+    margin-top: 4rem;
+}
+
+.sig-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}
+
+.sig-block {
+    width: 45%;
+}
+
+.sig-line {
+    border-bottom: 0;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.sig-block p {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+}

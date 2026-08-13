@@ -1,0 +1,256 @@
+/* ========================================
+   HIGH-END GLASS NAVBAR STYLING
+   ======================================== */
+
+.navbar {
+    background: rgba(2, 20, 13, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: white;
+    padding: 0.85rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 2.5rem;
+}
+
+/* ---- Brand / Logo ---- */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: -0.3px;
+    flex-shrink: 0;
+}
+
+.brand span {
+    background: #ffffff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-logo-container {
+    width: 40px;
+    height: 40px;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
+}
+
+.brand-logo-container:hover {
+    background: rgba(16, 185, 129, 0.35);
+    transform: scale(1.05);
+}
+
+.brand-logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+/* ---- Navigation Links ---- */
+.nav-links {
+    display: flex;
+    gap: 2.2rem;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.nav-link {
+    color: #94a3b8;
+    transition: all 0.25s ease;
+    padding: 6px 0;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background: linear-gradient(90deg, #34d399, #10b981);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ---- Right Actions ---- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* ---- Language Switcher Dropdown ---- */
+.lang-switcher-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-switcher-trigger {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
+}
+
+.lang-switcher-trigger:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.lang-label {
+    margin: 0 6px;
+}
+
+.lang-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    min-width: 140px;
+    z-index: 1000;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+.lang-dropdown-item {
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    text-align: left;
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
+}
+
+.lang-dropdown-item:hover {
+    background-color: #f1f5f9;
+    color: #166534;
+}
+
+.lang-dropdown-item.active {
+    background-color: #f0fdf4;
+    color: #166534;
+    font-weight: 700;
+    border-left: 3px solid #166534;
+}
+
+/* ---- Icon Buttons ---- */
+.icon-btn {
+    color: #e2e8f0;
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 12px;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(52, 211, 153, 0.4);
+    color: white;
+}
+
+.nav-icon-svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    vertical-align: middle;
+}
+
+/* ---- Bright Yellow Circle Badges (Notification & Cart) ---- */
+.notification-badge,
+.notification-badge-number {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    background-color: #fbbf24;
+    border-radius: 50%;
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: #064e3b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0 4px;
+    border: 2px solid #02140d;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* ---- Profile Avatar ---- */
+.profile-avatar {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: 2px solid rgba(52, 211, 153, 0.4);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+    border-color: #34d399;
+}

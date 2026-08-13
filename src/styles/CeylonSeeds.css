@@ -1,0 +1,457 @@
+:root {
+    --primary-green: #065f46;
+    --secondary-green: #059669;
+    --light-green: #d1fae5;
+    --accent-green: #10b981;
+    --bg-page: #f0fdf4;
+    --text-dark: #111827;
+    --text-gray: #4b5563;
+    --white: #ffffff;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --radius: 12px;
+}
+
+.supplier-details-page {
+    background-color: var(--bg-page);
+    min-height: 100vh;
+    padding-top: 2rem;
+}
+
+.ceylon-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+}
+
+/* Supplier Profile Card */
+.supplier-profile-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+}
+
+.profile-header {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.profile-logo-wrapper {
+    width: 120px;
+    height: 120px;
+    background-color: #ecfdf5;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.profile-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.profile-main-info {
+    flex: 1;
+}
+
+.supplier-name-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.rating-location {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.p-rating {
+    color: #f59e0b;
+    font-weight: 700;
+}
+
+.p-location {
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+.p-description {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn-contact-primary {
+    background-color: #064e3b;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-contact-primary:hover {
+    background-color: #065f46;
+}
+
+.btn-call-secondary {
+    background-color: white;
+    color: #064e3b;
+    border: 2px solid #064e3b;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* About Section */
+.about-section {
+    margin-bottom: 2rem;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #065f46;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid #059669;
+    display: inline-block;
+    padding-bottom: 4px;
+}
+
+.about-text {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Stats Badges */
+.stats-badges {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.badge-item {
+    background-color: #f0fdf4;
+    border: 2px solid #86efac;
+    padding: 1.25rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.badge-value {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #065f46;
+    margin-bottom: 4px;
+}
+
+.badge-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #059669;
+}
+
+/* Certifications */
+.certifications-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cert-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.cert-pills {
+    display: flex;
+    gap: 1rem;
+}
+
+.p-pill {
+    background: white;
+    border: 2px solid #d1d5db;
+    padding: 0.4rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #065f46;
+}
+
+/* Seeds Section */
+.seeds-section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+}
+
+.seeds-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    border-bottom: 3px solid #10b981;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 8px;
+}
+
+.seeds-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 2rem;
+}
+
+.filter-chips-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.filter-chip {
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid #d1d5db;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-gray);
+    transition: all 0.2s;
+}
+
+.filter-chip.active {
+    background-color: #dcfce7;
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.search-bar-rounded {
+    display: flex;
+    align-items: center;
+    background: #f3f4f6;
+    border-radius: 50px;
+    padding: 0.25rem 0.25rem 0.25rem 1rem;
+    flex: 1;
+    max-width: 400px;
+    border: 1px solid #e5e7eb;
+}
+
+.search-icon {
+    margin-right: 0.5rem;
+}
+
+.search-bar-rounded input {
+    border: none;
+    background: transparent;
+    flex: 1;
+    padding: 0.5rem 0;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.search-btn-inner {
+    background-color: #dcfce7;
+    color: #065f46;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Seeds Grid */
+.seeds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
+}
+
+.seed-product-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    transition: transform 0.2s;
+    border: 1px solid #f3f4f6;
+}
+
+.seed-product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image-wrapper {
+    position: relative;
+    height: 180px;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+}
+
+.category-icon-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.product-details {
+    padding: 1.5rem;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    font-weight: 600;
+}
+
+.reviews-text {
+    font-weight: 500;
+}
+
+.rating-small {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.price-stock-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.price-tag {
+    display: flex;
+    flex-direction: column;
+}
+
+.rs {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #065f46;
+}
+
+.per {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+.stock-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #059669;
+    background: #ecfdf5;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid #10b981;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    background-color: #065f46;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #064e3b;
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .rating-location {
+        justify-content: center;
+    }
+
+    .stats-badges {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .seeds-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar-rounded {
+        max-width: 100%;
+    }
+}

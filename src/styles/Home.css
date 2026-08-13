@@ -1,0 +1,485 @@
+/* ========================================
+   HIGH-END LUXURY AGRITECH HERO & HOME STYLING
+   ======================================== */
+
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, #02140d 0%, #062c1e 50%, #031c13 100%);
+    padding-top: 5rem;
+    padding-bottom: 9rem;
+    color: white;
+    overflow: hidden;
+}
+
+/* Ambient Glow Mesh */
+.hero-mesh-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 15% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(52, 211, 153, 0.12) 0%, transparent 45%);
+    pointer-events: none;
+}
+
+.hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.hero-glow-1 {
+    width: 450px;
+    height: 450px;
+    top: -100px;
+    left: -100px;
+    background: rgba(16, 185, 129, 0.18);
+}
+
+.hero-glow-2 {
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    right: -100px;
+    background: rgba(5, 150, 105, 0.15);
+}
+
+.hero-grid-container {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Left Content Column */
+.hero-top-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 8px 18px;
+    border-radius: 50px;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.badge-text {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #4ade80;
+}
+
+.live-status-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: neonPulse 1.8s infinite;
+}
+
+@keyframes neonPulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.6rem;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.gradient-text-emerald {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    line-height: 1.65;
+    margin-bottom: 2.25rem;
+    max-width: 580px;
+    font-weight: 400;
+}
+
+.hero-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.primary-cta-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 1.15rem 2.6rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 16px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    box-shadow: 0 12px 30px -6px rgba(16, 185, 129, 0.45), 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.primary-cta-btn:hover {
+    background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 35px -6px rgba(16, 185, 129, 0.6);
+}
+
+.primary-cta-btn:hover .cta-icon {
+    transform: translateX(6px);
+}
+
+.secondary-cta-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e2e8f0;
+    padding: 1.15rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+}
+
+.shield-check-icon {
+    width: 18px;
+    height: 18px;
+    color: #34d399;
+}
+
+.secondary-cta-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.hero-feature-pills {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.pill-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+.pill-svg {
+    width: 18px;
+    height: 18px;
+    color: #34d399;
+}
+
+/* Right Visual Column */
+.hero-visual-right {
+    position: relative;
+}
+
+.glass-visual-card {
+    position: relative;
+    border-radius: 30px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5), 0 0 40px rgba(16, 185, 129, 0.15);
+}
+
+.visual-image-wrapper {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    height: 440px;
+}
+
+.hero-visual-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.7s ease;
+}
+
+.glass-visual-card:hover .hero-visual-img {
+    transform: scale(1.04);
+}
+
+.image-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(2, 20, 13, 0.85) 100%);
+}
+
+.floating-card-badge {
+    position: absolute;
+    background: rgba(6, 30, 22, 0.92);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    backdrop-filter: blur(16px);
+    padding: 12px 18px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+    z-index: 5;
+    animation: floatBadge 4s ease-in-out infinite alternate;
+}
+
+.top-badge {
+    top: 30px;
+    left: -20px;
+}
+
+.bottom-badge {
+    bottom: 30px;
+    right: -20px;
+    animation-delay: 2s;
+}
+
+@keyframes floatBadge {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
+}
+
+.badge-icon-bg {
+    width: 40px;
+    height: 40px;
+    background: rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.badge-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #ffffff;
+}
+
+.badge-sub {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+/* ========================================
+   DARK GLASS FLOATING STATS BAR
+   ======================================== */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.stat-box {
+    background: rgba(6, 30, 22, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    padding: 1.6rem 1.4rem;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-box:hover {
+    transform: translateY(-6px);
+    border-color: #34d399;
+    box-shadow: 0 25px 45px -10px rgba(16, 185, 129, 0.25);
+    background: rgba(8, 42, 30, 0.98);
+}
+
+.stat-icon-wrapper {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.3) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #34d399;
+    flex-shrink: 0;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.stat-icon-wrapper svg {
+    width: 26px;
+    height: 26px;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.stat-text {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+/* ========================================
+   HIGH-TECH AGRITECH TELEMETRY HUB
+   ======================================== */
+.agri-telemetry-section {
+    margin-top: 3.5rem;
+    margin-bottom: 4rem;
+}
+
+.telemetry-bar {
+    background: #0f172a;
+    border-radius: 20px;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #1e293b;
+    color: white;
+}
+
+.telemetry-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.telemetry-indicator {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+
+.telemetry-indicator.live {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.telemetry-indicator.highlight {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.telemetry-info strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #f8fafc;
+    margin-bottom: 2px;
+}
+
+.telemetry-info span {
+    font-size: 0.82rem;
+    color: #94a3b8;
+}
+
+.telemetry-divider {
+    width: 1px;
+    height: 32px;
+    background: #334155;
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 1100px) {
+    .hero-grid-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    .hero-visual-right {
+        max-width: 550px;
+        margin: 0 auto;
+    }
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 3rem;
+        padding-bottom: 5rem;
+    }
+    .hero-title {
+        font-size: 2.4rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .primary-cta-btn, .secondary-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    .telemetry-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .telemetry-divider {
+        display: none;
+    }
+}
