@@ -126,68 +126,13 @@ const TestimonialSection = () => {
                             <button type="submit" className="newsletter-btn">
                                 Subscribe
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"/>
-                                    <polyline points="12 5 19 12 12 19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                    <polyline points="12 5 19 12 12 19" />
                                 </svg>
                             </button>
                         </div>
                         <p className="newsletter-privacy">🔒 No spam. Unsubscribe anytime. Free forever.</p>
                     </form>
-                </div>
-            </div>
-
-            {/* ── Farmer CTA Trust Banner ── */}
-            <div className="farmer-trust-banner">
-                <div className="trust-banner-bg-glow" />
-
-                <div className="trust-banner-top-label">
-                    <span className="trust-live-dot" />
-                    <span>JOIN SRI LANKA'S LARGEST FARMER NETWORK</span>
-                </div>
-
-                <div className="trust-banner-main">
-                    <div className="trust-icon-box">
-                        <span>🌾</span>
-                    </div>
-                    <div className="trust-text-block">
-                        <h3 className="trust-banner-heading">Are you a Farmer or<br /><span className="trust-heading-accent">Seed Producer?</span></h3>
-                        <p className="trust-banner-sub">Join over 10,000+ happy farmers across Sri Lanka who are boosting their yields with verified, ISO-certified seed suppliers and free agronomist support.</p>
-                    </div>
-                </div>
-
-                <div className="trust-stats-row">
-                    <div className="trust-stat-pill">
-                        <span className="tsp-number">10,000+</span>
-                        <span className="tsp-label">Registered Farmers</span>
-                    </div>
-                    <div className="trust-stat-divider" />
-                    <div className="trust-stat-pill">
-                        <span className="tsp-number">98%</span>
-                        <span className="tsp-label">Germination Rate</span>
-                    </div>
-                    <div className="trust-stat-divider" />
-                    <div className="trust-stat-pill">
-                        <span className="tsp-number">24h</span>
-                        <span className="tsp-label">Island-wide Delivery</span>
-                    </div>
-                    <div className="trust-stat-divider" />
-                    <div className="trust-stat-pill">
-                        <span className="tsp-number">Free</span>
-                        <span className="tsp-label">Agronomist Support</span>
-                    </div>
-                </div>
-
-                <div className="trust-cta-row">
-                    <a href="#suppliers" className="trust-primary-btn">
-                        <span>Find Seeds Now</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </a>
-                    <a href="/register" className="trust-secondary-btn">
-                        Register as Farmer
-                    </a>
                 </div>
             </div>
         </section>

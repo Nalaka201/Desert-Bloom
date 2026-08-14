@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import FeatureSection from '../components/home/FeatureSection';
+import HowItWorks from '../components/about/HowItWorks';
+import ImpactStats from '../components/about/ImpactStats';
 import TestimonialSection from '../components/home/TestimonialSection';
 import Footer from '../components/common/Footer';
 import '../styles/About.css';
@@ -44,7 +45,8 @@ const About = () => {
                 </div>
             </section>
 
-            <FeatureSection />
+            <HowItWorks />
+            <ImpactStats />
             <TestimonialSection />
             <Footer />
         </div>
