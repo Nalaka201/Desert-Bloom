@@ -1,79 +1,164 @@
 .about-hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1920&auto=format&fit=crop');
+    background-image: linear-gradient(rgba(10, 20, 15, 0.75), rgba(10, 20, 15, 0.75)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1920&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
-    height: 400px;
+    min-height: 200px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
+    padding: 2rem;
+    gap: 20px;
 }
 
 .about-hero h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: 800;
+    line-height: 1.15;
+    max-width: 700px;
+}
+
+.about-hero-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 600px;
+    line-height: 1.6;
 }
 
 .about-content-section {
-    padding: 6rem 0;
+    padding: 7rem 0;
+    background: #f7faf8;
 }
 
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 60px;
     align-items: center;
 }
 
-.about-image {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+.section-label {
+    display: inline-block;
+    color: var(--primary-green);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
 }
 
 .about-text h2 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
+    font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 18px;
+}
+
+.about-text h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-green);
+    border-radius: 2px;
 }
 
 .about-text p {
     color: var(--text-gray);
-    line-height: 1.8;
+    line-height: 1.85;
     margin-bottom: 1.5rem;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+}
+
+.about-image-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px -15px rgba(15, 46, 29, 0.35);
+}
+
+.about-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(15, 46, 29, 0.35) 100%);
+    pointer-events: none;
+}
+
+.about-image {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-image-wrapper:hover .about-image {
+    transform: scale(1.05);
 }
 
 .mission-vision {
-    background-color: white;
-    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--dark-green) 0%, #0a1f14 100%);
+    padding: 7rem 0;
 }
 
 .mv-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
 }
 
 .mv-card {
-    padding: 3rem;
-    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 3.5rem 2.5rem;
     border-radius: var(--radius-lg);
-    transition: transform 0.3s;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
 
 .mv-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.07);
     border-color: var(--primary-green);
 }
 
+.mv-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 50%;
+    font-size: 1.6rem;
+    color: var(--primary-green);
+    margin-bottom: 1.5rem;
+}
+
 .mv-card h3 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--dark-green);
+    color: #ffffff;
+}
+
+.mv-card p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    font-size: 1rem;
+    max-width: 380px;
 }
 
 @media (max-width: 768px) {
@@ -85,5 +170,14 @@
 
     .about-hero h1 {
         font-size: 2.5rem;
+    }
+
+    .about-image {
+        height: 320px;
+    }
+
+    .mission-vision,
+    .about-content-section {
+        padding: 4rem 0;
     }
 }
