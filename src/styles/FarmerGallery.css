@@ -1,0 +1,211 @@
+.farmer-gallery-section {
+    padding: 6rem 1.5rem;
+    text-align: center;
+    background: var(--cream);
+    position: relative;
+}
+
+.gallery-header {
+    margin-bottom: 4rem;
+}
+
+.gallery-title {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.gallery-subtitle {
+    font-family: var(--font-family);
+    color: var(--text-dark);
+    opacity: 0.8;
+    max-width: 60ch;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.gallery-card {
+    text-align: left;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    border: 1px dashed var(--ledger-line);
+    box-shadow: 0 10px 30px -10px rgba(20, 42, 34, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 40px -15px rgba(20, 42, 34, 0.15);
+}
+
+.gallery-image-wrapper {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 260px;
+    margin-bottom: 1.25rem;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-card:hover .gallery-image {
+    transform: scale(1.08);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem 1rem;
+    background: linear-gradient(to top, rgba(20, 42, 34, 0.9), transparent);
+    display: flex;
+    justify-content: flex-start;
+}
+
+.location-pin {
+    color: var(--gold-soft);
+    font-size: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background: rgba(20, 42, 34, 0.6);
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(201, 154, 46, 0.3);
+    backdrop-filter: blur(4px);
+}
+
+.gallery-info {
+    padding: 0 0.5rem;
+}
+
+.gallery-name {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+}
+
+.gallery-role {
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    color: var(--terracotta);
+    font-weight: 500;
+}
+
+.cta-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: -5rem;
+}
+
+.cta-box {
+    background: linear-gradient(135deg, var(--forest-dark) 0%, var(--dark-green) 100%);
+    border: 1px dashed var(--gold);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 3rem;
+    color: white;
+    box-shadow: 0 20px 40px -10px rgba(20, 42, 34, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    gap: 2rem;
+}
+
+.cta-box::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed rgba(201, 154, 46, 0.2);
+    border-radius: var(--radius-md);
+    pointer-events: none;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.cta-box h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.cta-box p {
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+    color: var(--gold-soft);
+}
+
+.cta-button {
+    background: var(--gold);
+    color: var(--forest-dark);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.85rem 2rem;
+    border-radius: 30px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    position: relative;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+    background: var(--gold-soft);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+    }
+
+    .cta-box p {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}

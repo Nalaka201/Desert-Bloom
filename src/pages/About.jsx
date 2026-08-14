@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FaBullseye, FaSeedling } from 'react-icons/fa';
 import HowItWorks from '../components/about/HowItWorks';
 import ImpactStats from '../components/about/ImpactStats';
-import TestimonialSection from '../components/home/TestimonialSection';
+import FarmerGallery from '../components/about/FarmerGallery';
 import Footer from '../components/common/Footer';
 import '../styles/About.css';
 
@@ -58,7 +58,7 @@ const About = () => {
 
             <HowItWorks />
             <ImpactStats />
-            <TestimonialSection />
+            <FarmerGallery />
             <Footer />
         </div>
     );

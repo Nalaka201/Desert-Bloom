@@ -1,17 +1,31 @@
 .how-it-works {
-    padding: 80px 0;
+    padding: 6rem 0;
     text-align: center;
+    background: var(--cream);
+    position: relative;
+}
+
+.how-it-works::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    border-top: 1px dashed var(--ledger-line);
 }
 
 .how-it-works .section-title {
+    font-family: var(--font-heading);
     font-size: 2.2rem;
     font-weight: 800;
-    color: #0f2e1d;
+    color: var(--text-dark);
     margin-bottom: 8px;
 }
 
 .how-it-works .section-subtitle {
-    color: #5a6b60;
+    font-family: var(--font-family);
+    color: var(--text-dark);
+    opacity: 0.8;
     font-size: 1rem;
     margin-bottom: 48px;
 }
@@ -24,53 +38,66 @@
 
 .step-card {
     position: relative;
-    background: #ffffff;
-    border: 1px solid #e5efe8;
-    border-radius: 16px;
+    background: white;
+    border: 1px solid var(--ledger-line);
+    border-radius: var(--radius-lg);
     padding: 32px 24px;
     text-align: left;
-    box-shadow: 0 4px 14px rgba(15, 46, 29, 0.05);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 10px 30px -10px rgba(20, 42, 34, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .step-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 10px 24px rgba(15, 46, 29, 0.1);
+    box-shadow: 0 20px 40px -15px rgba(20, 42, 34, 0.15);
+    border-color: var(--gold-soft);
 }
 
 .step-number {
     position: absolute;
     top: -14px;
     left: 24px;
-    background: #10b981;
-    color: #ffffff;
+    background: var(--dark-green);
+    color: var(--gold-soft);
+    font-family: 'IBM Plex Mono', monospace;
     font-weight: 700;
     font-size: 0.85rem;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
+    border: 1px dashed var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 10px rgba(20, 42, 34, 0.2);
 }
 
 .step-icon {
     font-size: 1.8rem;
-    color: #10b981;
-    margin: 12px 0 16px;
+    color: var(--terracotta);
+    margin: 16px 0 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201, 154, 46, 0.08);
+    border: 1.5px solid var(--gold);
 }
 
 .step-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    color: #0f2e1d;
-    margin-bottom: 8px;
+    color: var(--text-dark);
+    margin-bottom: 10px;
 }
 
 .step-card p {
-    font-size: 0.9rem;
-    color: #64756a;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
 }
 
 @media (max-width: 992px) {
