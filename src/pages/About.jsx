@@ -20,6 +20,7 @@ const About = () => {
             <section className="about-content-section container">
                 <div className="about-grid">
                     <div className="about-text">
+                        <span className="eyebrow">{t('about.story_title')}</span>
                         <h2>{t('about.story_title')}</h2>
                         <p>{t('about.story_p1')}</p>
                         <p>{t('about.story_p2')}</p>
@@ -32,12 +33,16 @@ const About = () => {
                             alt="Farming Story"
                             className="about-image"
                         />
+                        <div className="image-tag">
+                            <span>Since</span>
+                            <strong>Day One</strong>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section className="mission-vision">
-                <div className="container">
+                <div className="container mv-inner">
                     <div className="mv-card">
                         <div className="mv-icon"><FaBullseye /></div>
                         <h3>{t('about.mission_title')}</h3>
