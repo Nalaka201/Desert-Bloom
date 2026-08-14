@@ -179,8 +179,8 @@
 }
 
 .history-empty .cta-btn {
-    background: var(--primary-green);
-    color: white;
+    background: var(--gold);
+    color: var(--forest-dark);
     font-family: var(--font-heading);
     font-weight: 700;
     padding: 1rem 2.5rem;
@@ -195,8 +195,8 @@
 }
 
 .history-empty .cta-btn:hover {
-    background: var(--dark-green);
-    color: white;
+    background: var(--gold-soft);
+    color: var(--forest-dark);
     transform: translateY(-2px);
 }
 
