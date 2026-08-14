@@ -320,6 +320,8 @@
         "address_info": "Default Delivery Address",
         "address_line1": "Address Line 1",
         "address_line2": "Address Line 2",
+        "province": "Province",
+        "district": "District",
         "zip": "Postal/Zip Code",
         "save_btn": "Save Changes",
         "success_msg": "Profile updated successfully!",
