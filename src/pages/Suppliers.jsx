@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SupplierSection from '../components/home/SupplierSection';
 import Footer from '../components/common/Footer';
+import '../styles/Suppliers.css';
 
 const Suppliers = () => {
     const { t } = useTranslation();

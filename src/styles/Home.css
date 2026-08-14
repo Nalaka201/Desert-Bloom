@@ -1,7 +1,3 @@
-/* ========================================
-   HIGH-END LUXURY AGRITECH HERO & HOME STYLING
-   ======================================== */
-
 .hero-section {
     position: relative;
     background: linear-gradient(135deg, #02140d 0%, #062c1e 50%, #031c13 100%);
@@ -15,7 +11,7 @@
 .hero-mesh-overlay {
     position: absolute;
     inset: 0;
-    background-image: 
+    background-image:
         radial-gradient(circle at 15% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 85% 70%, rgba(52, 211, 153, 0.12) 0%, transparent 45%);
     pointer-events: none;
@@ -87,10 +83,12 @@
         transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
     }
+
     70% {
         transform: scale(1);
         box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
     }
+
     100% {
         transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
@@ -280,8 +278,13 @@
 }
 
 @keyframes floatBadge {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-8px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-8px);
+    }
 }
 
 .badge-icon-bg {
@@ -306,9 +309,6 @@
     color: #94a3b8;
 }
 
-/* ========================================
-   DARK GLASS FLOATING STATS BAR
-   ======================================== */
 .stats-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -372,9 +372,6 @@
     font-weight: 600;
 }
 
-/* ========================================
-   HIGH-TECH AGRITECH TELEMETRY HUB
-   ======================================== */
 .agri-telemetry-section {
     margin-top: 3.5rem;
     margin-bottom: 4rem;
@@ -444,13 +441,16 @@
         grid-template-columns: 1fr;
         gap: 3rem;
     }
+
     .hero-title {
         font-size: 3.2rem;
     }
+
     .hero-visual-right {
         max-width: 550px;
         margin: 0 auto;
     }
+
     .stats-container {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -461,24 +461,31 @@
         padding-top: 3rem;
         padding-bottom: 5rem;
     }
+
     .hero-title {
         font-size: 2.4rem;
     }
+
     .hero-subtitle {
         font-size: 1.1rem;
     }
-    .primary-cta-btn, .secondary-cta-btn {
+
+    .primary-cta-btn,
+    .secondary-cta-btn {
         width: 100%;
         justify-content: center;
     }
+
     .stats-container {
         grid-template-columns: 1fr;
     }
+
     .telemetry-bar {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
+
     .telemetry-divider {
         display: none;
     }

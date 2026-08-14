@@ -1,0 +1,184 @@
+.success-page {
+    --gold: #c99a2e;
+    --gold-soft: #e4c878;
+    --terracotta: #a8562e;
+    --cream: #faf6ec;
+    --forest-dark: #142a22;
+    --ledger-line: #e6ddc7;
+    background: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.success-content {
+    padding: 3rem 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* ---------- ONE unified card, dark top / light bottom ---------- */
+.success-order-card {
+    position: relative;
+    max-width: 520px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 24px 50px -25px rgba(20, 42, 34, 0.25);
+    border: 1px solid var(--ledger-line);
+    background: white;
+    text-align: center;
+
+    /* dark green upper part via background image trick */
+    background-image:
+        repeating-linear-gradient(135deg,
+            rgba(255, 255, 255, 0.02) 0px,
+            rgba(255, 255, 255, 0.02) 2px,
+            transparent 2px,
+            transparent 14px),
+        linear-gradient(160deg, var(--dark-green) 0%, var(--forest-dark) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 300px;
+    padding: 2.75rem 2.5rem 2.5rem;
+}
+
+.success-icon {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gold);
+    background: rgba(201, 154, 46, 0.12);
+    color: var(--gold-soft);
+    font-size: 2rem;
+    margin: 0 auto 1.25rem;
+}
+
+.success-order-card h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.6rem;
+}
+
+.success-subtitle {
+    font-family: var(--font-family);
+    max-width: 40ch;
+    margin: 0 auto 2rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* ---------- stamp sits on the seam between dark & light ---------- */
+.success-order-stamp {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: var(--dark-green);
+    border: 2px dashed var(--gold);
+    color: var(--gold-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    transform: rotate(-8deg);
+    box-shadow: 0 10px 25px -10px rgba(20, 42, 34, 0.5);
+    margin: 0 auto 1.75rem;
+    transition: transform 0.3s ease;
+}
+
+.success-order-stamp:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.success-order-stamp span {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+}
+
+.success-order-stamp strong {
+    font-size: 0.8rem;
+    margin-top: 3px;
+}
+
+.success-order-id-box {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--cream);
+    border: 1.5px dashed var(--ledger-line);
+    padding: 1rem 1.75rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.success-order-id-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+}
+
+.success-order-id-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.success-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.btn-gold-primary,
+.btn-gold-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0.95rem 1.9rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.btn-gold-primary {
+    background: var(--gold);
+    color: var(--forest-dark);
+    border: none;
+}
+
+.btn-gold-primary:hover {
+    transform: translateY(-3px);
+    background: var(--gold-soft);
+}
+
+.btn-gold-secondary {
+    background: transparent;
+    color: var(--terracotta);
+    border: 2px solid var(--terracotta);
+}
+
+.btn-gold-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(168, 86, 46, 0.08);
+}
+
+@media (max-width: 576px) {
+    .success-order-card {
+        padding: 2.25rem 1.75rem 2rem;
+    }
+}

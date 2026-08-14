@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FaCheckCircle, FaHome, FaHistory } from 'react-icons/fa';
 import Footer from '../components/common/Footer';
-import '../styles/Home.css'; // Reuse some layout styles
+import '../styles/SuccessPage.css';
 
 const SuccessPage = () => {
     const { t } = useTranslation();
@@ -11,36 +12,34 @@ const SuccessPage = () => {
     const orderId = location.state?.orderId || "ORD-" + Math.floor(Math.random() * 1000000);
 
     return (
-        <div className="success-page-container" style={{ paddingTop: '100px', textAlign: 'center', minHeight: '80vh' }}>
-            <div className="container">
-                <div style={{ fontSize: '5rem', marginBottom: '1rem' }}>🎉</div>
-                <h1 style={{ color: '#166534', marginBottom: '1rem' }}>{t('success_page.title')}</h1>
-                <p style={{ fontSize: '1.2rem', color: '#4b5563', marginBottom: '2rem' }}>
-                    {t('success_page.subtitle')}
-                </p>
+        <div className="success-page">
+            <section className="success-content container">
+                <div className="success-order-card">
 
-                <div style={{ background: '#f0fdf4', padding: '1.5rem', borderRadius: '12px', display: 'inline-block', marginBottom: '2rem', border: '1px solid #bbf7d0' }}>
-                    <strong>{t('success_page.order_id')}: </strong>
-                    <span style={{ fontFamily: 'monospace', fontSize: '1.1rem' }}>{orderId}</span>
-                </div>
+                    <h1>{t('success_page.title')}</h1>
+                    <p className="success-subtitle">{t('success_page.subtitle')}</p>
 
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    <button
-                        onClick={() => navigate('/home')}
-                        className="cta-btn"
-                        style={{ background: '#166534' }}
-                    >
-                        {t('success_page.back_home')}
-                    </button>
-                    <button
-                        onClick={() => navigate('/history')}
-                        className="cta-btn"
-                        style={{ background: '#ffffff', color: '#166534', border: '2px solid #166534' }}
-                    >
-                        {t('success_page.view_history')}
-                    </button>
+                    <div className="success-order-stamp">
+                        <span>Order</span>
+                        <strong>Confirmed</strong>
+                    </div>
+
+                    <div className="success-order-id-box">
+                        <span className="success-order-id-label">{t('success_page.order_id')}</span>
+                        <span className="success-order-id-value">{orderId}</span>
+                    </div>
+
+                    <div className="success-actions">
+                        <button onClick={() => navigate('/home')} className="btn-gold-primary">
+                            <FaHome /> {t('success_page.back_home')}
+                        </button>
+                        <button onClick={() => navigate('/history')} className="btn-gold-secondary">
+                            <FaHistory /> {t('success_page.view_history')}
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </section>
+
             <Footer />
         </div>
     );

@@ -317,7 +317,7 @@
         "nic": "NIC Number",
         "phone": "Phone Number",
         "email": "Email Address",
-        "address_info": "Default Delivery Address",
+        "address_info": "Delivery Address",
         "address_line1": "Address Line 1",
         "address_line2": "Address Line 2",
         "province": "Province",
