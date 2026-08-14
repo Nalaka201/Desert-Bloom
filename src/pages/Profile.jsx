@@ -22,7 +22,6 @@ const Profile = () => {
         const userNic = localStorage.getItem('user_nic');
 
         if (userNic && userNic !== 'guest') {
-            // Try to load this specific user's profile from the centralized storage
             const allProfiles = localStorage.getItem('all_farmer_profiles');
             if (allProfiles) {
                 try {
@@ -93,7 +92,6 @@ const Profile = () => {
                     </div>
 
                     <div style={{ display: 'grid', gap: '2rem' }}>
-                        {/* Personal Info Card */}
                         <div style={{ background: 'white', padding: '2rem', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
                             <h2 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid #f3f4f6', paddingBottom: '0.5rem' }}>
                                 {t('profile.personal_info')}

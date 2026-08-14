@@ -9,7 +9,6 @@ const Footer = () => {
 
     return (
         <footer className="footer">
-            {/* Decorative top glow */}
             <div className="footer-top-glow" />
 
             <div className="container">
@@ -134,11 +133,11 @@ const Footer = () => {
                             {/* Hours & services */}
                             <div className="helpline-hours-row">
                                 <div className="helpline-hour-item">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
                                     <span>Mon – Sat &nbsp;7:00 AM – 7:00 PM</span>
                                 </div>
                                 <div className="helpline-hour-item">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13" rx="2" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></svg>
                                     <span>Island-wide Delivery &amp; Seed Advisory</span>
                                 </div>
                             </div>
@@ -159,12 +158,12 @@ const Footer = () => {
 
                 {/* ── Bottom Bar ── */}
                 <div className="bottom-bar">
-                    <span>© 2026 Aswenna<span className="bottom-lk">.lk</span> — {t('footer.rights')} | Desert Bloom Agricultural Network</span>
+                    <span>© 2026 Aswenna.lk — {t('footer.rights')} | Desert Bloom Agricultural Network</span>
                     <div className="bottom-bar-links">
                         <a href="#">Privacy Policy</a>
-                        <span>·</span>
+                        <span></span>
                         <a href="#">Terms of Use</a>
-                        <span>·</span>
+                        <span></span>
                         <a href="#">Sitemap</a>
                     </div>
                 </div>

@@ -1,7 +1,3 @@
-/* ========================================
-   PREMIUM DARK AGRITECH FOOTER
-   ======================================== */
-
 .footer {
     background: linear-gradient(180deg, #011009 0%, #010c08 100%);
     color: #94a3b8;
@@ -102,6 +98,7 @@
     border: 1px solid rgba(24, 119, 242, 0.3);
     color: #5b9cf6;
 }
+
 .social-fb:hover {
     background: #1877F2;
     border-color: #1877F2;
@@ -116,6 +113,7 @@
     border: 1px solid rgba(37, 211, 102, 0.3);
     color: #25d366;
 }
+
 .social-wa:hover {
     background: #25D366;
     border-color: #25D366;
@@ -130,6 +128,7 @@
     border: 1px solid rgba(255, 0, 0, 0.25);
     color: #ff4444;
 }
+
 .social-yt:hover {
     background: #FF0000;
     border-color: #FF0000;
@@ -137,6 +136,7 @@
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
 }
+
 .social-yt svg polygon {
     fill: #fff;
 }
@@ -147,6 +147,7 @@
     border: 1px solid rgba(225, 48, 108, 0.25);
     color: #e1306c;
 }
+
 .social-ig:hover {
     background: linear-gradient(135deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
     border-color: #E1306C;
@@ -213,9 +214,8 @@
 /* ── Farmer Helpline Card ── */
 .helpline-card {
     background: linear-gradient(160deg,
-        rgba(16, 185, 129, 0.09) 0%,
-        rgba(5, 150, 105, 0.04) 100%
-    );
+            rgba(16, 185, 129, 0.09) 0%,
+            rgba(5, 150, 105, 0.04) 100%);
     border: 1px solid rgba(52, 211, 153, 0.22);
     border-radius: 18px;
     padding: 1.2rem;
@@ -354,7 +354,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    border-left: 1px solid rgba(255,255,255,0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
     padding-left: 7px;
     margin-left: 2px;
 }
