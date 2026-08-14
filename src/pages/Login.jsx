@@ -14,6 +14,16 @@ const Login = () => {
     const [nic, setNic] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [showPassword, setShowPassword] = React.useState(false);
+    const [rememberMe, setRememberMe] = React.useState(false);
+
+    // Load remembered NIC on component mount
+    React.useEffect(() => {
+        const rememberedNic = localStorage.getItem('remembered_nic');
+        if (rememberedNic) {
+            setNic(rememberedNic);
+            setRememberMe(true);
+        }
+    }, []);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -21,6 +31,13 @@ const Login = () => {
         // Store the logged-in user's NIC
         localStorage.setItem('user_nic', nic || 'guest');
         localStorage.setItem('access_token', 'dummy-token');
+
+        // Handle Remember Me
+        if (rememberMe) {
+            localStorage.setItem('remembered_nic', nic);
+        } else {
+            localStorage.removeItem('remembered_nic');
+        }
 
         // Try to load existing farmer profile data based on NIC
         // Check if this user has registered before
@@ -37,7 +54,11 @@ const Login = () => {
             }
         }
 
-        navigate('/home');
+        // Give the browser a small moment to detect the form submission 
+        // and trigger the "Save Password" prompt before unmounting the form.
+        setTimeout(() => {
+            navigate('/home');
+        }, 150);
     };
 
     return (
@@ -47,7 +68,6 @@ const Login = () => {
             <LanguageSwitcher className="auth-page-switcher" />
 
             <div className="auth-card auth-card-login">
-                {/* Left Panel: Branding */}
                 <div className="auth-panel-branding">
                     <div className="auth-logo-top">
                         <div className="auth-logo-icon">
@@ -78,7 +98,14 @@ const Login = () => {
                                 <span className="auth-input-icon-colored">
                                     <CardIcon size={20} />
                                 </span>
-                                <input type="text" placeholder={t('auth.nic')} className="auth-input-refined" value={nic} onChange={(e) => setNic(e.target.value)}
+                                <input
+                                    type="text"
+                                    name="username"
+                                    autoComplete="username"
+                                    placeholder={t('auth.nic')}
+                                    className="auth-input-refined"
+                                    value={nic}
+                                    onChange={(e) => setNic(e.target.value)}
                                     required
                                 />
                             </div>
@@ -89,6 +116,8 @@ const Login = () => {
                                 </span>
                                 <input
                                     type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    autoComplete="current-password"
                                     placeholder={t('auth.password')}
                                     className="auth-input-refined"
                                     value={password}
@@ -105,7 +134,12 @@ const Login = () => {
 
                             <div className="auth-extras-refined">
                                 <label className="auth-checkbox-group-refined">
-                                    <input type="checkbox" /> <span>{t('auth.remember')}</span>
+                                    <input 
+                                        type="checkbox" 
+                                        checked={rememberMe} 
+                                        onChange={(e) => setRememberMe(e.target.checked)} 
+                                    /> 
+                                    <span>{t('auth.remember')}</span>
                                 </label>
                                 <Link to="/forgot-password" title={t('auth.forgot')} className="auth-link-forgot">{t('auth.forgot')}</Link>
                             </div>
