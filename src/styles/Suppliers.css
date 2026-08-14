@@ -1,0 +1,61 @@
+.suppliers-page {
+    --gold: #c99a2e;
+    --gold-soft: #e4c878;
+    --terracotta: #a8562e;
+    --cream: #faf6ec;
+    --forest-dark: #142a22;
+    --ledger-line: #e6ddc7;
+    background: var(--cream);
+}
+
+.suppliers-hero {
+    position: relative;
+    text-align: center;
+    padding: 2.5rem 1.5rem 2.5rem;
+    background:
+        repeating-linear-gradient(135deg,
+            rgba(255, 255, 255, 0.02) 0px,
+            rgba(255, 255, 255, 0.02) 2px,
+            transparent 2px,
+            transparent 14px),
+        linear-gradient(160deg, var(--dark-green) 0%, var(--forest-dark) 100%);
+    color: white;
+    border-bottom: 4px solid var(--gold);
+}
+
+.suppliers-hero::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    border: 2px dashed rgba(201, 154, 46, 0.35);
+    pointer-events: none;
+}
+
+.suppliers-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.suppliers-hero-subtitle {
+    font-family: var(--font-family);
+    max-width: 55ch;
+    margin: 0 auto;
+    opacity: 0.85;
+    line-height: 1.6;
+    font-size: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 992px) {
+    .suppliers-hero {
+        padding: 4.5rem 1.5rem 3.5rem;
+    }
+}

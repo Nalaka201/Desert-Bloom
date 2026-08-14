@@ -28,11 +28,11 @@
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     align-items: stretch;
 }
 
-/* ---------- Info Card: seed-packet / ledger feel ---------- */
+/* ---------- Info Card: seed-packet / ledger feel --sss-------- */
 .contact-info-card {
     position: relative;
     background:
@@ -114,6 +114,9 @@
     font-family: var(--font-family);
     opacity: 0.85;
     line-height: 1.4;
+    color: var(--cream);
+    font-weight: 300;
+    font-size: 0.8rem;
 }
 
 /* ---------- Form ---------- */

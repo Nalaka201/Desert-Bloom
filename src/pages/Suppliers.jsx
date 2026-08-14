@@ -9,18 +9,10 @@ const Suppliers = () => {
 
     return (
         <div className="suppliers-page">
-            <div style={{
-                background: '#166534',
-                color: 'white',
-                padding: '4rem 2rem',
-                textAlign: 'center',
-                marginBottom: '2rem'
-            }}>
-                <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{t('suppliers_page.title')}</h1>
-                <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '1.1rem', opacity: '0.9' }}>
-                    {t('suppliers_page.subtitle')}
-                </p>
-            </div>
+            <section className="suppliers-hero">
+                <h1>{t('suppliers_page.title')}</h1>
+                <p className="suppliers-hero-subtitle">{t('suppliers_page.subtitle')}</p>
+            </section>
 
             <div className="container">
                 <SupplierSection />
