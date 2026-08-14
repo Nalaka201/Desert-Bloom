@@ -6,10 +6,10 @@
     --forest-dark: #142a22;
     --ledger-line: #e6ddc7;
 
-    padding-top: 6rem;
+    padding-top: 3rem;
     min-height: 80vh;
     background: var(--cream);
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 }
 
 .profile-container {
