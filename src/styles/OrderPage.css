@@ -29,7 +29,7 @@
 .order-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 -1rem;
+    padding: 0 var(--sp-lg);
     display: flex;
     flex-direction: column;
     gap: var(--sp-xl);
@@ -203,36 +203,85 @@
     margin-bottom: var(--sp-xs);
 }
 
-.select-wrapper {
+/* ---------- Custom dropdown (replaces native <select> so option-list
+   colors are fully theme-controlled instead of OS/browser default blue) ---------- */
+.custom-select-wrapper {
     position: relative;
 }
 
-.order-select {
+.custom-select-trigger {
     width: 100%;
-    padding: 0.85rem 2.5rem 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1rem;
     border-radius: 10px;
     border: 1.5px solid #d1d5db;
     background-color: #f9fafb;
     color: var(--text-dark);
-    outline: none;
     font-size: 0.95rem;
     font-weight: 600;
-    appearance: none;
     cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23065f46' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
     transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), background-color 0.25s var(--ease);
 }
 
-.order-select:hover {
+.custom-select-trigger:hover {
     border-color: var(--accent-green);
 }
 
-.order-select:focus {
+.custom-select-trigger.open {
     border-color: var(--accent-green);
     background-color: white;
     box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+.custom-select-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--primary-green);
+    flex-shrink: 0;
+    transition: transform 0.2s var(--ease);
+}
+
+.custom-select-trigger.open .custom-select-arrow {
+    transform: rotate(180deg);
+}
+
+.custom-select-list {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: white;
+    border-radius: 10px;
+    border: 1.5px solid var(--light-green);
+    box-shadow: 0 12px 28px -8px rgba(6, 95, 70, 0.2);
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.custom-select-option {
+    padding: 0.7rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: background 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.custom-select-option:hover {
+    background: var(--light-green);
+    color: var(--primary-green);
+}
+
+.custom-select-option.selected {
+    background: var(--primary-green);
+    color: white;
 }
 
 .order-input {
@@ -812,7 +861,7 @@
     gap: 10px;
     align-items: center;
     font-weight: 600;
-    color: var(--text_dark);
+    color: var(--text-dark);
 }
 
 /* Footer Buttons */

@@ -10,6 +10,51 @@ import { FaEdit, FaTrashAlt, FaPlus, FaTruck, FaExclamationTriangle, FaRedoAlt, 
 import api from '../services/api';
 import { suppliers as staticSuppliers } from '../data/suppliers';
 
+const CornTypeSelect = ({ value, onChange, options }) => {
+    const [open, setOpen] = useState(false);
+    const wrapperRef = React.useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+                setOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    return (
+        <div className="custom-select-wrapper" ref={wrapperRef}>
+            <button
+                type="button"
+                className={`custom-select-trigger ${open ? 'open' : ''}`}
+                onClick={() => setOpen(!open)}
+            >
+                <span>{value}</span>
+                <span className="custom-select-arrow">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </span>
+            </button>
+            {open && (
+                <ul className="custom-select-list">
+                    {options.map(opt => (
+                        <li
+                            key={opt}
+                            className={`custom-select-option ${opt === value ? 'selected' : ''}`}
+                            onClick={() => { onChange(opt); setOpen(false); }}
+                        >
+                            {opt}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
+
 const OrderPage = () => {
     const { productId } = useParams();
     const navigate = useNavigate();
@@ -240,17 +285,11 @@ const OrderPage = () => {
                         <div className="form-left">
                             <div className="form-group">
                                 <label>{t('order.select_type')}</label>
-                                <div className="select-wrapper">
-                                    <select
-                                        className="order-select"
-                                        value={selectedVariety}
-                                        onChange={(e) => setSelectedVariety(e.target.value)}
-                                    >
-                                        <option value="999 Corn">999 Corn</option>
-                                        <option value="894 Corn">894 Corn</option>
-                                        <option value="822 Corn">822 Corn</option>
-                                    </select>
-                                </div>
+                                <CornTypeSelect
+                                    value={selectedVariety}
+                                    onChange={setSelectedVariety}
+                                    options={['999 Corn', '894 Corn', '822 Corn']}
+                                />
                             </div>
                             <div className="form-group">
                                 <label>{t('order.select_qty')}</label>
@@ -270,6 +309,7 @@ const OrderPage = () => {
                             <div className="price-display-box">
                                 <span className="price-label">{t('order.price_per_kg')}</span>
                                 <span className="price-value">Rs. {pricePerKg.toLocaleString()}</span>
+                                <span className="price-unit">/ kg</span>
                             </div>
                             <button className="btn-add-to-cart-large" onClick={handleAddToCart}>
                                 <FaPlus /> {t('order.add_to_cart')}
