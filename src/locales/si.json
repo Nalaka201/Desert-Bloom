@@ -391,5 +391,28 @@
         "invalid_key": "අසංගත ආරක්ෂක කේතයකි (උත්සාහ කරන්න: ADMIN123)",
         "user_exists": "මෙම පරිශීලක නාමය දැනටමත් පවතී",
         "success_msg": "පරිපාලක ගිණුම සාර්ථකව සාදන ලදී!"
+    },
+    "admin_login": {
+        "access_eyebrow": "පරිපාලක ප්‍රවේශය",
+        "control_center": "පරිපාලක පාලන මධ්‍යස්ථානය",
+        "hero_desc": "සැපයුම්කරුවන් කළමනාකරණය කරන්න, ගොවීන් නිරීක්ෂණය කරන්න, සහ Aswenna.lk බීජ සැපයුම් ජාලය එකම ආරක්ෂිත උපකරණ පුවරුවකින් අධීක්ෂණය කරන්න.",
+        "feature_analytics_title": "සජීවී විශ්ලේෂණ",
+        "feature_analytics_desc": "විකුණුම් සහ කාර්ය සාධනය නිරීක්ෂණය කරන්න",
+        "feature_access_title": "භූමිකා-පාදක ප්‍රවේශය",
+        "feature_access_desc": "ආරක්ෂිත පරිපාලක අවසර",
+        "feature_orders_title": "ඇණවුම් කළමනාකරණය",
+        "feature_orders_desc": "සියලුම ගනුදෙනු නිරීක්ෂණය කරන්න",
+        "welcome_back": "නැවත සාදරයෙන් පිළිගනිමු",
+        "sign_in": "පිවිසෙන්න",
+        "sign_in_subtitle": "ඔබගේ පරිපාලක ගිණුමට ප්‍රවේශ වන්න",
+        "username_label": "පරිශීලක නාමය",
+        "username_placeholder": "ඔබගේ පරිශීලක නාමය ඇතුළත් කරන්න",
+        "password_label": "මුරපදය",
+        "password_placeholder": "ඔබගේ මුරපදය ඇතුළත් කරන්න",
+        "show_password": "මුරපදය පෙන්වන්න",
+        "hide_password": "මුරපදය සඟවන්න",
+        "no_account": "පරිපාලක ගිණුමක් නැද්ද?",
+        "create_account": "ගිණුමක් සාදන්න",
+        "error_invalid": "වලංගු නොවන අක්තපත්‍ර. කරුණාකර ඔබගේ පරිශීලක නාමය සහ මුරපදය පරීක්ෂා කරන්න."
     }
 }

@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import '../styles/AdminLogin.css';
-import plant from '../assets/plant.png';
+import logo from '../assets/logo.png';
 
 const AdminRegister = () => {
     const { t } = useTranslation();
@@ -69,18 +69,12 @@ const AdminRegister = () => {
                     <div className="admin-login-brand-content">
                         <div className="admin-login-logo">
                             <div className="admin-login-logo-icon">
-                                <img src={plant} alt="Desert Bloom" />
+                                <img src={logo} alt="Aswenna.lk" />
                             </div>
-                            <span className="admin-login-logo-text">Desert Bloom</span>
+                            <span className="admin-login-logo-text">Aswenna.lk</span>
                         </div>
 
                         <div className="admin-login-brand-hero">
-                            <div className="admin-login-shield">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                                    <path d="M12 8v4M12 16h.01" />
-                                </svg>
-                            </div>
                             <h1 className="admin-login-brand-title">Admin Portal</h1>
                             <p className="admin-login-brand-desc">
                                 Create an authorized administrator account to oversee products, manage seed suppliers, and control site parameters.

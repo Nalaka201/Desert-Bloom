@@ -5,7 +5,6 @@ import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { CardIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
 import '../styles/Auth.css';
 import farmer from '../assets/farmer.png';
-import plant from '../assets/plant.png';
 import logo from '../assets/logo.png';
 
 const Login = () => {
@@ -134,11 +133,11 @@ const Login = () => {
 
                             <div className="auth-extras-refined">
                                 <label className="auth-checkbox-group-refined">
-                                    <input 
-                                        type="checkbox" 
-                                        checked={rememberMe} 
-                                        onChange={(e) => setRememberMe(e.target.checked)} 
-                                    /> 
+                                    <input
+                                        type="checkbox"
+                                        checked={rememberMe}
+                                        onChange={(e) => setRememberMe(e.target.checked)}
+                                    />
                                     <span>{t('auth.remember')}</span>
                                 </label>
                                 <Link to="/forgot-password" title={t('auth.forgot')} className="auth-link-forgot">{t('auth.forgot')}</Link>

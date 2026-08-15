@@ -392,5 +392,28 @@
         "invalid_key": "Invalid Admin Security Key (Try: ADMIN123)",
         "user_exists": "Username already exists",
         "success_msg": "Admin account created successfully!"
+    },
+    "admin_login": {
+        "access_eyebrow": "Admin Access",
+        "control_center": "Admin Control Center",
+        "hero_desc": "Manage suppliers, monitor farmers, and oversee the entire Aswenna.lk seed supply network from one secure dashboard.",
+        "feature_analytics_title": "Real-time Analytics",
+        "feature_analytics_desc": "Monitor sales & performance",
+        "feature_access_title": "Role-based Access",
+        "feature_access_desc": "Secure admin permissions",
+        "feature_orders_title": "Order Management",
+        "feature_orders_desc": "Track all transactions",
+        "welcome_back": "Welcome Back",
+        "sign_in": "Sign In",
+        "sign_in_subtitle": "Access your admin account",
+        "username_label": "Username",
+        "username_placeholder": "Enter your username",
+        "password_label": "Password",
+        "password_placeholder": "Enter your password",
+        "show_password": "Show password",
+        "hide_password": "Hide password",
+        "no_account": "Don't have an admin account?",
+        "create_account": "Create Account",
+        "error_invalid": "Invalid credentials. Please check your username and password."
     }
 }
