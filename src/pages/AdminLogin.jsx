@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import '../styles/AdminLogin.css';
@@ -183,13 +183,6 @@ const AdminLogin = () => {
                                 )}
                             </button>
                         </form>
-
-                        <div className="admin-login-footer">
-                            <p>
-                                {t('admin_login.no_account')}{' '}
-                                <Link to="/admin-register">{t('admin_login.create_account')}</Link>
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
