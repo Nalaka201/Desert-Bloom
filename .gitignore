@@ -39,3 +39,8 @@ ENV/
 # Data
 *.db
 farmer.db
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
