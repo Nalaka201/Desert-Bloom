@@ -6,8 +6,8 @@ import OrderPDF from '../components/OrderPDF';
 import '../styles/OrderPage.css';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { FaEdit, FaTrashAlt, FaPlus, FaTruck, FaExclamationTriangle, FaRedoAlt, FaCheckCircle, FaMapMarkerAlt } from 'react-icons/fa';
 import api from '../services/api';
-
 import { suppliers as staticSuppliers } from '../data/suppliers';
 
 const OrderPage = () => {
@@ -197,7 +197,6 @@ const OrderPage = () => {
     return (
         <div className="order-page">
             <div className="order-container">
-                {/* Top Supplier Branding */}
                 {currentSupplier && (
                     <div className="order-top-branding">
                         <img src={currentSupplier.logo} alt={currentSupplier.name} className="top-company-logo" />
@@ -241,33 +240,40 @@ const OrderPage = () => {
                         <div className="form-left">
                             <div className="form-group">
                                 <label>{t('order.select_type')}</label>
-                                <select
-                                    className="order-select"
-                                    value={selectedVariety}
-                                    onChange={(e) => setSelectedVariety(e.target.value)}
-                                >
-                                    <option value="999 Corn">999 Corn</option>
-                                    <option value="894 Corn">894 Corn</option>
-                                    <option value="822 Corn">822 Corn</option>
-                                </select>
+                                <div className="select-wrapper">
+                                    <select
+                                        className="order-select"
+                                        value={selectedVariety}
+                                        onChange={(e) => setSelectedVariety(e.target.value)}
+                                    >
+                                        <option value="999 Corn">999 Corn</option>
+                                        <option value="894 Corn">894 Corn</option>
+                                        <option value="822 Corn">822 Corn</option>
+                                    </select>
+                                </div>
                             </div>
                             <div className="form-group">
                                 <label>{t('order.select_qty')}</label>
-                                <input
-                                    type="text"
-                                    placeholder={t('order.qty_placeholder')}
-                                    className="order-input"
-                                    value={quantity}
-                                    onChange={(e) => setQuantity(e.target.value)}
-                                />
+                                <div className="qty-input-wrapper">
+                                    <input
+                                        type="text"
+                                        placeholder={t('order.qty_placeholder')}
+                                        className="order-input"
+                                        value={quantity}
+                                        onChange={(e) => setQuantity(e.target.value)}
+                                    />
+                                    <span className="qty-unit">kg</span>
+                                </div>
                             </div>
                         </div>
                         <div className="form-right">
                             <div className="price-display-box">
                                 <span className="price-label">{t('order.price_per_kg')}</span>
-                                <span className="price-value">Rs. {pricePerKg}</span>
+                                <span className="price-value">Rs. {pricePerKg.toLocaleString()}</span>
                             </div>
-                            <button className="btn-add-to-cart-large" onClick={handleAddToCart}>{t('order.add_to_cart')}</button>
+                            <button className="btn-add-to-cart-large" onClick={handleAddToCart}>
+                                <FaPlus /> {t('order.add_to_cart')}
+                            </button>
                         </div>
                     </div>
 
@@ -285,24 +291,24 @@ const OrderPage = () => {
                             <tbody>
                                 {cartItems.map(item => (
                                     <tr key={item.id}>
-                                        <td>{item.type}</td>
+                                        <td className="cell-strong">{item.type}</td>
                                         <td>{item.quantity}</td>
                                         <td>Rs. {item.price.toLocaleString()}</td>
-                                        <td>Rs. {item.total.toLocaleString()}</td>
+                                        <td className="cell-strong">Rs. {item.total.toLocaleString()}</td>
                                         <td>
                                             <div className="action-btns">
-                                                <button className="icon-btn-small">✏️</button>
+                                                <button className="icon-btn-small"><FaEdit /></button>
                                                 <button
                                                     className="icon-btn-small delete"
                                                     onClick={() => handleDeleteItem(item.id)}
-                                                >🗑️</button>
+                                                ><FaTrashAlt /></button>
                                             </div>
                                         </td>
                                     </tr>
                                 ))}
                                 {cartItems.length === 0 && (
                                     <tr>
-                                        <td colSpan="5" style={{ textAlign: 'center', padding: '1rem' }}>{t('order.empty_cart')}</td>
+                                        <td colSpan="5" className="empty-cart-row">{t('order.empty_cart')}</td>
                                     </tr>
                                 )}
                             </tbody>
@@ -314,33 +320,67 @@ const OrderPage = () => {
                 <div className="order-card">
                     <h2 className="card-title-line">{t('order.payment_summary')}</h2>
                     <div className="payment-summary">
-                        <div className="payment-row total">
-                            <span>{t('order.total_amount')} :</span>
-                            <span className="total-val">Rs. {totalAmount.toLocaleString()}</span>
+                        <div className="payment-total-hero">
+                            <span className="payment-total-label">{t('order.total_amount')}</span>
+                            <span className="payment-total-value">Rs. {totalAmount.toLocaleString()}</span>
                         </div>
+
                         <div className="down-payment-box">
                             <p>{t('order.downpayment_question')}</p>
-                            <div className="down-payment-input-row">
+
+                            <div className="quick-amount-row">
+                                {[25, 50, 100].map(pct => {
+                                    const amt = Math.round(totalAmount * pct / 100);
+                                    return (
+                                        <button
+                                            key={pct}
+                                            type="button"
+                                            className={`quick-amount-chip ${downPayment === amt && totalAmount > 0 ? 'active' : ''}`}
+                                            onClick={() => setDownPayment(amt)}
+                                        >
+                                            <span className="chip-pct">{pct === 100 ? t('order.pay_full', 'Full') : `${pct}%`}</span>
+                                            <span className="chip-amt">Rs. {amt.toLocaleString()}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
+                            <p className="or-divider">{t('order.or_enter_custom', 'Or enter a custom amount')}</p>
+
+                            <div className="amount-input-wrapper">
+                                <span className="input-currency-prefix">Rs.</span>
                                 <input
                                     type="text"
                                     value={downPayment}
                                     onChange={(e) => setDownPayment(Number(e.target.value) || 0)}
                                     className="down-payment-input"
                                 />
-                                <button className="btn-plus">➕</button>
                             </div>
+
+                            {totalAmount > 0 && (
+                                <div className="payment-progress-track">
+                                    <div
+                                        className="payment-progress-fill"
+                                        style={{ width: `${Math.min((downPayment / totalAmount) * 100, 100)}%` }}
+                                    ></div>
+                                </div>
+                            )}
                         </div>
+
                         <div className="payment-details-mini">
                             <div className="pay-mini-row">
-                                <span>{t('order.total_amount')} :</span>
+                                <span>{t('order.down_payment_paid', 'Paying Now')}</span>
                                 <span>Rs. {lastPayment.toLocaleString()}</span>
                             </div>
                             <div className="pay-mini-row balance-highlight">
-                                <span>{t('order.remaining')} :</span>
+                                <span>{t('order.remaining')}</span>
                                 <span>Rs. {remainingBalance.toLocaleString()}</span>
                             </div>
                         </div>
-                        <button className="btn-cod-entry">🚛 {t('order.cod_btn')}</button>
+
+                        <button className="btn-cod-entry">
+                            <FaTruck /> {t('order.cod_btn')}
+                        </button>
                     </div>
                 </div>
 
@@ -349,48 +389,64 @@ const OrderPage = () => {
                     <h2 className="card-title-line">{t('order.delivery_title')}</h2>
                     <div className="address-box">
                         {isEditingAddress ? (
-                            <div className="address-edit-form" style={{ width: '100%' }}>
-                                <input
-                                    type="text"
-                                    className="order-input"
-                                    style={{ marginBottom: '0.5rem' }}
-                                    value={address.line1}
-                                    onChange={(e) => setAddress({ ...address, line1: e.target.value })}
-                                    placeholder={t('order.address_line1')}
-                                />
-                                <input
-                                    type="text"
-                                    className="order-input"
-                                    style={{ marginBottom: '0.5rem' }}
-                                    value={address.line2}
-                                    onChange={(e) => setAddress({ ...address, line2: e.target.value })}
-                                    placeholder={t('order.address_line2')}
-                                />
-                                <input
-                                    type="text"
-                                    className="order-input"
-                                    style={{ marginBottom: '0.5rem' }}
-                                    value={address.zip}
-                                    onChange={(e) => setAddress({ ...address, zip: e.target.value })}
-                                    placeholder={t('order.zip_placeholder')}
-                                />
+                            <div className="address-edit-form">
+                                <div className="address-edit-grid">
+                                    <input
+                                        type="text"
+                                        className="order-input"
+                                        value={address.line1}
+                                        onChange={(e) => setAddress({ ...address, line1: e.target.value })}
+                                        placeholder={t('order.address_line1')}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="order-input"
+                                        value={address.line2}
+                                        onChange={(e) => setAddress({ ...address, line2: e.target.value })}
+                                        placeholder={t('order.address_line2')}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="order-input"
+                                        value={address.zip}
+                                        onChange={(e) => setAddress({ ...address, zip: e.target.value })}
+                                        placeholder={t('order.zip_placeholder')}
+                                    />
+                                </div>
                                 <button
-                                    className="btn-add-to-cart-large"
-                                    style={{ marginTop: '0.5rem', width: 'auto', padding: '0.5rem 2rem' }}
+                                    className="btn-save-address"
                                     onClick={() => setIsEditingAddress(false)}
                                 >
-                                    {t('order.save_address')}
+                                    <FaCheckCircle /> {t('order.save_address')}
+                                </button>
+                            </div>
+                        ) : address.line1 || address.line2 || address.zip ? (
+                            <div className="address-display">
+                                <div className="address-icon-badge">
+                                    <FaMapMarkerAlt />
+                                </div>
+                                <div className="address-content">
+                                    {address.line1 && <p className="address-line-main">{address.line1}</p>}
+                                    {address.line2 && <p>{address.line2}</p>}
+                                    {address.zip && <p className="address-zip">{address.zip}</p>}
+                                </div>
+                                <button className="btn-edit-address" onClick={() => setIsEditingAddress(true)}>
+                                    <FaEdit /> {t('order.edit_address', 'Edit')}
                                 </button>
                             </div>
                         ) : (
-                            <>
-                                <div className="address-content">
-                                    <p>{address.line1}</p>
-                                    <p>{address.line2}</p>
-                                    <p>{address.zip}</p>
+                            <div className="address-empty-state" onClick={() => setIsEditingAddress(true)}>
+                                <div className="address-icon-badge">
+                                    <FaMapMarkerAlt />
                                 </div>
-                                <button className="btn-edit-address" onClick={() => setIsEditingAddress(true)}>✏️</button>
-                            </>
+                                <div className="address-empty-text">
+                                    <p className="address-empty-title">{t('order.no_address', 'No delivery address added yet')}</p>
+                                    <p className="address-empty-sub">{t('order.add_address_prompt', 'Click to add your address')}</p>
+                                </div>
+                                <button className="btn-edit-address">
+                                    <FaEdit /> {t('order.add_address', 'Add')}
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -410,7 +466,7 @@ const OrderPage = () => {
                             <li>{t('order.term7')}</li>
                         </ol>
                         <div className="warning-note">
-                            ⚠️ <strong>Important:</strong> {t('order.legal_warning')}
+                            <FaExclamationTriangle /> <strong>Important:</strong> {t('order.legal_warning')}
                         </div>
                         <label className="agreement-checkbox">
                             <input type="checkbox" /> {t('order.checkbox_label')}
@@ -420,8 +476,12 @@ const OrderPage = () => {
 
                 {/* Footer Buttons */}
                 <div className="order-footer-btns">
-                    <button className="btn-reset-order" onClick={handleResetOrder}>{t('order.footer_reset')}</button>
-                    <button className="btn-submit-order" onClick={handleGeneratePDF}>{t('order.footer_submit')}</button>
+                    <button className="btn-reset-order" onClick={handleResetOrder}>
+                        <FaRedoAlt /> {t('order.footer_reset')}
+                    </button>
+                    <button className="btn-submit-order" onClick={handleGeneratePDF}>
+                        <FaCheckCircle /> {t('order.footer_submit')}
+                    </button>
                 </div>
 
                 {/* Hidden PDF content */}

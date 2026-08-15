@@ -6,6 +6,7 @@ import {
     FaPhoneAlt,
     FaSearch,
     FaCalendarAlt,
+    FaCommentAlt,
     FaHourglassHalf,
     FaHeart,
     FaRegHeart,
@@ -17,7 +18,6 @@ import {
     FaChartLine,
     FaStar
 } from 'react-icons/fa';
-import { suppliers } from '../data/suppliers';
 import Footer from '../components/common/Footer';
 import api from '../services/api';
 import '../styles/CeylonSeeds.css';
@@ -60,14 +60,14 @@ const SupplierDetails = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();
 
-    const [supplier, setSupplier] = React.useState(null);
-    const [loading, setLoading] = React.useState(true);
+    const [supplier, setSupplier] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
     const [wishlist, setWishlist] = useState(new Set());
     const [expandedCert, setExpandedCert] = useState(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchSupplier = async () => {
             try {
                 const res = await api.get('/suppliers');
@@ -78,6 +78,56 @@ const SupplierDetails = () => {
         };
         fetchSupplier();
     }, [id]);
+
+    const displayStats = supplier?.stats || [
+        { label: 'Years Experience', value: '15+' },
+        { label: 'Happy Farmers', value: '2000+' },
+        { label: 'Seeds Varieties', value: '50+' },
+        { label: 'Satisfaction', value: '95%' }
+    ];
+    const displayAbout = supplier?.about || supplier?.description || "Leading agricultural provider.";
+    const displaySeeds = supplier?.seeds || [];
+    const isVerified = supplier?.verified !== false;
+
+    const certDetails = {
+        iso: { title: t('supplier_details.iso'), detail: 'ISO 22000:2018 — Food Safety Management. Cert. No. LK-FS-4471. Valid till Dec 2027.' },
+        gov: { title: t('supplier_details.gov'), detail: 'Dept. of Agriculture Approved Supplier. Reg. No. DOA/2019/0342.' }
+    };
+
+    const categories = ['All', 'Fruits', 'Vegetables', 'Grains'];
+    const categoryCounts = useMemo(() => {
+        const counts = { All: displaySeeds.length };
+        categories.slice(1).forEach(cat => {
+            counts[cat] = displaySeeds.filter(s => s.category === cat).length;
+        });
+        return counts;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [displaySeeds]);
+
+    const filteredSeeds = displaySeeds.filter(seed => {
+        const matchesFilter = filter === 'All' || seed.category === filter;
+        const matchesSearch = (seed.name || '').toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+    });
+
+    const getStockStatus = (seed) => {
+        const qty = typeof seed.stockCount === 'number' ? seed.stockCount : null;
+        if (qty === null) return { label: t('supplier_details.in_stock'), cls: 'stock-in' };
+        if (qty === 0) return { label: 'Out of Stock', cls: 'stock-out' };
+        if (qty <= 10) return { label: 'Low Stock', cls: 'stock-low' };
+        return { label: t('supplier_details.in_stock'), cls: 'stock-in' };
+    };
+
+    const toggleWishlist = (seedId) => {
+        setWishlist(prev => {
+            const next = new Set(prev);
+            if (next.has(seedId)) next.delete(seedId);
+            else next.add(seedId);
+            return next;
+        });
+    };
+
+    useRevealOnScroll([filteredSeeds.length, filter, searchQuery, loading, supplier]);
 
     if (loading) {
         return (
@@ -122,55 +172,6 @@ const SupplierDetails = () => {
         );
     }
 
-    const displayStats = supplier.stats || [
-        { label: 'Years Experience', value: '15+' },
-        { label: 'Happy Farmers', value: '2000+' },
-        { label: 'Seeds Varieties', value: '50+' },
-        { label: 'Satisfaction', value: '95%' }
-    ];
-    const displayAbout = supplier.about || supplier.description || "Leading agricultural provider.";
-    const displaySeeds = supplier.seeds || [];
-    const isVerified = supplier.verified !== false;
-
-    const certDetails = {
-        iso: { title: t('supplier_details.iso'), detail: 'ISO 22000:2018 — Food Safety Management. Cert. No. LK-FS-4471. Valid till Dec 2027.' },
-        gov: { title: t('supplier_details.gov'), detail: 'Dept. of Agriculture Approved Supplier. Reg. No. DOA/2019/0342.' }
-    };
-
-    const categories = ['All', 'Fruits', 'Vegetables', 'Grains'];
-    const categoryCounts = useMemo(() => {
-        const counts = { All: displaySeeds.length };
-        categories.slice(1).forEach(cat => {
-            counts[cat] = displaySeeds.filter(s => s.category === cat).length;
-        });
-        return counts;
-    }, [displaySeeds]);
-
-    const filteredSeeds = displaySeeds.filter(seed => {
-        const matchesFilter = filter === 'All' || seed.category === filter;
-        const matchesSearch = (seed.name || '').toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesFilter && matchesSearch;
-    });
-
-    const getStockStatus = (seed) => {
-        const qty = typeof seed.stockCount === 'number' ? seed.stockCount : null;
-        if (qty === null) return { label: t('supplier_details.in_stock'), cls: 'stock-in' };
-        if (qty === 0) return { label: 'Out of Stock', cls: 'stock-out' };
-        if (qty <= 10) return { label: 'Low Stock', cls: 'stock-low' };
-        return { label: t('supplier_details.in_stock'), cls: 'stock-in' };
-    };
-
-    const toggleWishlist = (seedId) => {
-        setWishlist(prev => {
-            const next = new Set(prev);
-            if (next.has(seedId)) next.delete(seedId);
-            else next.add(seedId);
-            return next;
-        });
-    };
-
-    useRevealOnScroll([filteredSeeds.length, filter, searchQuery]);
-
     return (
         <div className="supplier-details-page">
             <div className="ceylon-container">
@@ -210,7 +211,9 @@ const SupplierDetails = () => {
                             </p>
                         </div>
                         <div className="profile-actions">
-                            <button className="btn-contact-primary">{t('supplier_details.contact_btn')}</button>
+                            <button className="btn-contact-primary">
+                                <FaCommentAlt /> {t('supplier_details.contact_btn')}
+                            </button>
                             <button className="btn-call-secondary">
                                 <FaPhoneAlt /> {t('supplier_details.call_btn')}
                             </button>
@@ -362,7 +365,9 @@ const SupplierDetails = () => {
             </div>
 
             <div className="mobile-sticky-actions">
-                <button className="btn-contact-primary">{t('supplier_details.contact_btn')}</button>
+                <button className="btn-contact-primary">
+                    <FaCommentAlt /> {t('supplier_details.contact_btn')}
+                </button>
                 <button className="btn-call-secondary">
                     <FaPhoneAlt /> {t('supplier_details.call_btn')}
                 </button>
