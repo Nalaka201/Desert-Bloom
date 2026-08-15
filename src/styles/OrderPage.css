@@ -64,15 +64,42 @@
 .summary-layout {
     display: flex;
     gap: var(--sp-xl);
-    align-items: center;
+    align-items: flex-start;
+}
+
+.product-img-wrapper {
+    position: relative;
+    flex-shrink: 0;
 }
 
 .order-product-img {
-    width: 170px;
-    height: 140px;
+    width: 200px;
+    height: 190px;
     object-fit: cover;
     border-radius: 14px;
     box-shadow: 0 10px 25px -12px rgba(6, 95, 70, 0.3);
+    border: 3px solid white;
+    outline: 1px solid var(--light-green);
+    display: block;
+}
+
+.verified-seed-badge {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--primary-green);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px -2px rgba(6, 95, 70, 0.4);
 }
 
 .order-product-info {
@@ -84,24 +111,35 @@
     font-weight: 800;
     letter-spacing: -0.02em;
     color: var(--forest-dark);
-    margin-bottom: var(--sp-xs);
+    margin-bottom: var(--sp-sm);
 }
 
 .order-product-meta {
     display: flex;
     align-items: center;
-    margin-bottom: var(--sp-sm);
+    gap: 10px;
+    margin-bottom: var(--sp-md);
 }
 
-.order-stars {
+.rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.rating-star {
     color: #f59e0b;
-    font-size: 1.15rem;
-    letter-spacing: 2px;
+    font-size: 0.9rem;
 }
 
 .order-reviews {
     color: var(--text-gray);
-    margin-left: 10px;
     font-size: 0.85rem;
     font-weight: 500;
 }
@@ -109,8 +147,9 @@
 .order-product-desc {
     font-size: 0.92rem;
     color: var(--text-gray);
-    margin: 0 0 var(--sp-md);
-    line-height: 1.7;
+    margin: 0 0 var(--sp-lg);
+    line-height: 1.75;
+    max-width: 60ch;
 }
 
 .order-tags {
@@ -120,12 +159,15 @@
 }
 
 .tag-green {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     background: var(--light-green);
     color: var(--primary-green);
     border: 1px solid var(--accent-green);
-    padding: 4px 14px;
+    padding: 5px 14px;
     border-radius: 50px;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 700;
 }
 
@@ -140,9 +182,24 @@
     border-radius: 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    min-width: 160px;
+    min-width: 170px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.stock-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--light-green);
+    color: var(--primary-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: var(--sp-xs);
+    border: 1px solid var(--accent-green);
 }
 
 .stock-label {
@@ -165,6 +222,13 @@
     font-size: 0.68rem;
     color: var(--secondary-green);
     font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .verified-seed-badge {
+        white-space: normal;
+        text-align: center;
+    }
 }
 
 /* Card titles */

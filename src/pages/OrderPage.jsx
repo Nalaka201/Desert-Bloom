@@ -86,7 +86,6 @@ const OrderPage = () => {
         }
     }, []);
 
-    // Clear cart and state when productId changes to ensure a fresh start for each product
     useEffect(() => {
         setCartItems([]);
         setDownPayment(0);
@@ -97,7 +96,6 @@ const OrderPage = () => {
     let currentSupplier = null;
     let currentProduct = null;
 
-    // Find the supplier and the specific seed product
     for (const sup of dbSuppliers) {
         const found = sup.seeds?.find(s => String(s.id) === String(productId));
         if (found) {
@@ -107,7 +105,6 @@ const OrderPage = () => {
         }
     }
 
-    // Fallback product if not found
     const product = currentProduct || {
         name: 'Sweet Corn',
         rating: 4.5,
@@ -115,7 +112,7 @@ const OrderPage = () => {
         available: '700kg',
         deliveryTime: '3-5 Business Days',
         image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?q=80&w=400&auto=format&fit=crop',
-        desc: 'Premium quality sweet corn seeds perfect for small-scale and large-scale farming. High yield variety with excellent disease resistance.'
+        desc: t('order.fallback_product_desc', 'Premium quality sweet corn seeds perfect for small-scale and large-scale farming. High yield variety with excellent disease resistance.')
     };
 
     const [cartItems, setCartItems] = useState([]);
@@ -132,7 +129,7 @@ const OrderPage = () => {
 
     const handleAddToCart = () => {
         if (!quantity || isNaN(quantity)) {
-            alert("Please enter a valid quantity");
+            alert(t('order.invalid_qty_alert', 'Please enter a valid quantity'));
             return;
         }
 
@@ -172,23 +169,20 @@ const OrderPage = () => {
             logging: false
         });
 
-        const imgWidth = 210; // A4 width in mm
-        const pageHeight = 297; // A4 height in mm
+        const imgWidth = 210;
+        const pageHeight = 297;
         const canvasHeight = (canvas.height * imgWidth) / canvas.width;
 
         const pdf = new jsPDF('p', 'mm', 'a4');
 
-        // Page 1
         pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, imgWidth, pageHeight, undefined, 'FAST', 0);
 
-        // Page 2
         pdf.addPage();
         pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, -pageHeight, imgWidth, pageHeight, undefined, 'FAST', 0);
 
         const orderId = `ORD-${Date.now()}`;
         pdf.save(`${orderId}.pdf`);
 
-        // Prepare order data for local storage (Admin Panel sync)
         const newOrder = {
             orderId: orderId,
             farmerName: farmer.name,
@@ -204,29 +198,26 @@ const OrderPage = () => {
             date: new Date().toISOString()
         };
 
-        // Save order to history via API
         try {
             await api.post('/orders', {
                 farmer_id: farmer.id,
                 supplier_name: newOrder.supplier,
                 total_amount: totalAmount,
                 remaining_balance: remainingBalance,
-                items: newOrder.items // Assuming API supports items
+                items: newOrder.items
             });
         } catch (err) {
             console.error("Failed to save order to DB, using local storage fallback", err);
         }
 
-        // Always save to localStorage for Admin Panel fallback
         const existingOrders = JSON.parse(localStorage.getItem('farmer_orders') || '[]');
         localStorage.setItem('farmer_orders', JSON.stringify([newOrder, ...existingOrders]));
 
-        // Redirect to success page
         navigate('/order-success', { state: { orderId } });
     };
 
     const handleResetOrder = () => {
-        if (window.confirm("Are you sure you want to clear all items?")) {
+        if (window.confirm(t('order.reset_confirm', 'Are you sure you want to clear all items?'))) {
             setCartItems([]);
             setDownPayment(0);
             setQuantity('');
@@ -247,29 +238,36 @@ const OrderPage = () => {
                         <img src={currentSupplier.logo} alt={currentSupplier.name} className="top-company-logo" />
                         <div className="top-company-info">
                             <h2 className="top-company-name">{currentSupplier.name}</h2>
-                            <p className="top-company-tag">Verified Seed Supplier</p>
+                            <p className="top-company-tag">{t('order.verified_seed_supplier', 'Verified Seed Supplier')}</p>
                         </div>
                     </div>
                 )}
 
-                {/* Product Summary Card */}
                 <div className="order-card product-summary">
                     <div className="summary-layout">
-                        <img src={product.image} alt={product.name} className="order-product-img" />
+                        <div className="product-img-wrapper">
+                            <img src={product.image} alt={product.name} className="order-product-img" />
+                            <span className="verified-seed-badge">
+                                <FaCheckCircle /> {t('order.verified_seed', 'Verified Seed')}
+                            </span>
+                        </div>
                         <div className="order-product-info">
                             <h1 className="order-product-name">{product.name}</h1>
                             <div className="order-product-meta">
-                                <span className="order-stars">★★★★★</span>
-                                <span className="order-reviews">({product.reviews} Reviews)</span>
+                                <span className="rating-pill">
+                                    <span className="rating-star">★</span> {product.rating || '4.5'}
+                                </span>
+                                <span className="order-reviews">({product.reviews} {t('order.reviews', 'Reviews')})</span>
                             </div>
                             <p className="order-product-desc">{product.desc}</p>
                             <div className="order-tags">
-                                <span className="tag-green">High Yield</span>
-                                <span className="tag-green">Disease Resistance</span>
+                                <span className="tag-green"><FaCheckCircle /> {t('order.tag_high_yield', 'High Yield')}</span>
+                                <span className="tag-green"><FaCheckCircle /> {t('order.tag_disease_resistance', 'Disease Resistance')}</span>
                             </div>
                         </div>
                         <div className="order-stock-info">
                             <div className="stock-box">
+                                <div className="stock-icon"><FaTruck /></div>
                                 <span className="stock-label">{t('order.available_stock')}</span>
                                 <span className="stock-value">{product.available}</span>
                                 <span className="stock-delivery">{t('order.estimated_delivery')}: {product.deliveryTime}</span>
@@ -278,7 +276,6 @@ const OrderPage = () => {
                     </div>
                 </div>
 
-                {/* Place the Order Card */}
                 <div className="order-card">
                     <h2 className="card-title-line">{t('order.place_title')}</h2>
                     <div className="order-form-grid">
@@ -301,7 +298,7 @@ const OrderPage = () => {
                                         value={quantity}
                                         onChange={(e) => setQuantity(e.target.value)}
                                     />
-                                    <span className="qty-unit">kg</span>
+                                    <span className="qty-unit">{t('order.kg_unit', 'kg')}</span>
                                 </div>
                             </div>
                         </div>
@@ -309,7 +306,6 @@ const OrderPage = () => {
                             <div className="price-display-box">
                                 <span className="price-label">{t('order.price_per_kg')}</span>
                                 <span className="price-value">Rs. {pricePerKg.toLocaleString()}</span>
-                                <span className="price-unit">/ kg</span>
                             </div>
                             <button className="btn-add-to-cart-large" onClick={handleAddToCart}>
                                 <FaPlus /> {t('order.add_to_cart')}
@@ -356,7 +352,6 @@ const OrderPage = () => {
                     </div>
                 </div>
 
-                {/* Payment Card */}
                 <div className="order-card">
                     <h2 className="card-title-line">{t('order.payment_summary')}</h2>
                     <div className="payment-summary">
@@ -424,7 +419,6 @@ const OrderPage = () => {
                     </div>
                 </div>
 
-                {/* Delivery Address Card */}
                 <div className="order-card">
                     <h2 className="card-title-line">{t('order.delivery_title')}</h2>
                     <div className="address-box">
@@ -491,7 +485,6 @@ const OrderPage = () => {
                     </div>
                 </div>
 
-                {/* Terms and Conditions Card */}
                 <div className="order-card">
                     <h2 className="card-title-line">{t('order.terms_title')}</h2>
                     <div className="terms-content">
@@ -506,7 +499,7 @@ const OrderPage = () => {
                             <li>{t('order.term7')}</li>
                         </ol>
                         <div className="warning-note">
-                            <FaExclamationTriangle /> <strong>Important:</strong> {t('order.legal_warning')}
+                            <FaExclamationTriangle /> <strong>{t('order.important_label', 'Important')}:</strong> {t('order.legal_warning')}
                         </div>
                         <label className="agreement-checkbox">
                             <input type="checkbox" /> {t('order.checkbox_label')}
@@ -514,7 +507,6 @@ const OrderPage = () => {
                     </div>
                 </div>
 
-                {/* Footer Buttons */}
                 <div className="order-footer-btns">
                     <button className="btn-reset-order" onClick={handleResetOrder}>
                         <FaRedoAlt /> {t('order.footer_reset')}
@@ -524,7 +516,6 @@ const OrderPage = () => {
                     </button>
                 </div>
 
-                {/* Hidden PDF content */}
                 <OrderPDF
                     ref={pdfRef}
                     farmer={farmer}
