@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { suppliers as initialSuppliers } from '../data/suppliers';
+import api from '../services/api';
+import logo from '../assets/logo.png';
 import {
     MdDashboard,
     MdInventory2,
@@ -11,8 +13,6 @@ import {
     MdEdit,
     MdLogout
 } from 'react-icons/md';
-import api from '../services/api';
-import logo from '../assets/logo.png';
 import '../styles/Admin.css';
 
 const AdminPanel = () => {
@@ -126,7 +126,7 @@ const AdminPanel = () => {
     };
 
     const deleteOrder = async (id) => {
-        if (window.confirm('Delete this order?')) {
+        if (window.confirm(t('admin_panel.confirm_delete_order'))) {
             try {
                 await api.delete(`/orders/${id}`);
                 loadData();
@@ -170,7 +170,7 @@ const AdminPanel = () => {
     };
 
     const addSupplier = async () => {
-        if (!newItemForm.name) return alert("Name is required");
+        if (!newItemForm.name) return alert(t('admin_panel.name_required'));
 
         const newId = 'sup-' + Date.now();
         const newSupplier = {
@@ -205,7 +205,7 @@ const AdminPanel = () => {
     };
 
     const deleteSupplier = async (id) => {
-        if (window.confirm('Are you sure you want to remove this supplier? This action cannot be undone.')) {
+        if (window.confirm(t('admin_panel.confirm_delete_supplier'))) {
             try {
                 await api.delete(`/suppliers/${id}`);
                 loadData();
@@ -237,7 +237,7 @@ const AdminPanel = () => {
     };
 
     const deleteFarmer = async (id) => {
-        if (window.confirm('Delete this farmer account?')) {
+        if (window.confirm(t('admin_panel.confirm_delete_farmer'))) {
             try {
                 await api.delete(`/farmers/${id}`);
                 loadData();
@@ -270,7 +270,7 @@ const AdminPanel = () => {
     };
 
     const deleteSeed = (supplierId, seedId) => {
-        if (window.confirm('Delete this seed?')) {
+        if (window.confirm(t('admin_panel.confirm_delete_seed'))) {
             const updatedSuppliers = suppliers.map(s => {
                 if (s.id === supplierId) {
                     const updatedSeeds = s.seeds.filter(seed => seed.id !== seedId);
@@ -284,8 +284,8 @@ const AdminPanel = () => {
     };
 
     const addSeed = (supplierId) => {
-        const name = prompt('Enter seed name:');
-        const price = prompt('Enter price:');
+        const name = prompt(t('admin_panel.enter_seed_name'));
+        const price = prompt(t('admin_panel.enter_price'));
         if (!name || !price) return;
 
         const updatedSuppliers = suppliers.map(s => {
@@ -314,11 +314,11 @@ const AdminPanel = () => {
 
     const saveSiteContent = () => {
         localStorage.setItem('farmer_site_content', JSON.stringify(siteContent));
-        alert('Site content updated successfully!');
+        alert(t('admin_panel.content_saved'));
     };
 
     const handleAdminLogout = () => {
-        if (window.confirm('Log out from Admin Panel?')) {
+        if (window.confirm(t('admin_panel.confirm_logout'))) {
             localStorage.removeItem('admin_auth');
             navigate('/admin-login');
         }
@@ -326,28 +326,44 @@ const AdminPanel = () => {
 
     const totalRevenue = orders.reduce((sum, o) => sum + o.total, 0);
 
+    // Tab -> translated section title
+    const tabTitles = {
+        dashboard: t('admin_panel.tab_dashboard'),
+        orders: t('admin_panel.tab_orders'),
+        suppliers: t('admin_panel.tab_suppliers'),
+        farmers: t('admin_panel.tab_farmers'),
+        content: t('admin_panel.tab_content')
+    };
+
+    // Tab -> "Add New X" label
+    const addNewLabels = {
+        orders: t('admin_panel.add_new_order'),
+        suppliers: t('admin_panel.add_new_supplier'),
+        farmers: t('admin_panel.add_new_farmer')
+    };
+
     return (
         <div className="admin-layout">
             <aside className="admin-sidebar">
                 <div className="admin-logo"><img src={logo} alt="Aswenna.lk Logo" className="logo-img" /><span>Aswenna.lk</span></div>
                 <nav className="admin-nav">
                     <div className={`admin-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
-                        <MdDashboard className="admin-nav-icon" /> Dashboard
+                        <MdDashboard className="admin-nav-icon" /> {t('admin_panel.nav_dashboard')}
                     </div>
                     <div className={`admin-nav-item ${activeTab === 'orders' ? 'active' : ''}`} onClick={() => setActiveTab('orders')}>
-                        <MdInventory2 className="admin-nav-icon" /> Orders
+                        <MdInventory2 className="admin-nav-icon" /> {t('admin_panel.nav_orders')}
                     </div>
                     <div className={`admin-nav-item ${activeTab === 'suppliers' ? 'active' : ''}`} onClick={() => setActiveTab('suppliers')}>
-                        <MdStorefront className="admin-nav-icon" /> Suppliers
+                        <MdStorefront className="admin-nav-icon" /> {t('admin_panel.nav_suppliers')}
                     </div>
                     <div className={`admin-nav-item ${activeTab === 'farmers' ? 'active' : ''}`} onClick={() => setActiveTab('farmers')}>
-                        <MdPeople className="admin-nav-icon" /> Farmers
+                        <MdPeople className="admin-nav-icon" /> {t('admin_panel.nav_farmers')}
                     </div>
                     <div className={`admin-nav-item ${activeTab === 'content' ? 'active' : ''}`} onClick={() => setActiveTab('content')}>
-                        <MdEdit className="admin-nav-icon" /> Site Content
+                        <MdEdit className="admin-nav-icon" /> {t('admin_panel.nav_content')}
                     </div>
                     <div className="admin-nav-item admin-nav-logout" onClick={handleAdminLogout}>
-                        <MdLogout className="admin-nav-icon" /> Logout
+                        <MdLogout className="admin-nav-icon" /> {t('admin_panel.nav_logout')}
                     </div>
                 </nav>
             </aside>
@@ -356,8 +372,8 @@ const AdminPanel = () => {
                 <header className="admin-header">
                     <h1>
                         {managingSeedsFor ?
-                            `Managing Seeds: ${suppliers.find(s => s.id === managingSeedsFor)?.name}` :
-                            `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Management`
+                            t('admin_panel.managing_seeds', { name: suppliers.find(s => s.id === managingSeedsFor)?.name }) :
+                            tabTitles[activeTab]
                         }
                     </h1>
                     <div className="admin-header-actions">
@@ -367,16 +383,16 @@ const AdminPanel = () => {
                         {managingSeedsFor ? (
                             <div className="admin-header-actions">
                                 <button onClick={() => addSeed(managingSeedsFor)} className="admin-btn admin-btn-primary">
-                                    + Add New Seed
+                                    + {t('admin_panel.add_new_seed')}
                                 </button>
                                 <button onClick={() => setManagingSeedsFor(null)} className="admin-btn admin-btn-secondary">
-                                    Back to Suppliers
+                                    {t('admin_panel.back_to_suppliers')}
                                 </button>
                             </div>
                         ) : (
                             activeTab !== 'dashboard' && activeTab !== 'content' && (
                                 <button onClick={() => setShowAddModal(true)} className="admin-btn admin-btn-primary">
-                                    + Add New {activeTab.slice(0, -1)}
+                                    + {addNewLabels[activeTab]}
                                 </button>
                             )
                         )}
@@ -386,15 +402,15 @@ const AdminPanel = () => {
                 {activeTab === 'dashboard' && (
                     <div className="stats-grid">
                         <div className="stat-card">
-                            <div className="stat-label">Total Revenue</div>
+                            <div className="stat-label">{t('admin_panel.total_revenue')}</div>
                             <div className="stat-value">Rs. {totalRevenue.toLocaleString()}</div>
                         </div>
                         <div className="stat-card">
-                            <div className="stat-label">Total Suppliers</div>
+                            <div className="stat-label">{t('admin_panel.total_suppliers')}</div>
                             <div className="stat-value">{suppliers.length}</div>
                         </div>
                         <div className="stat-card">
-                            <div className="stat-label">Active Farmers</div>
+                            <div className="stat-label">{t('admin_panel.active_farmers')}</div>
                             <div className="stat-value">{farmers.length}</div>
                         </div>
                     </div>
@@ -404,7 +420,15 @@ const AdminPanel = () => {
                     {activeTab === 'orders' && (
                         <table className="admin-table">
                             <thead>
-                                <tr><th>ID</th><th>Farmer</th><th>Supplier</th><th>Items Ordered</th><th>Amount</th><th>Status</th><th>Actions</th></tr>
+                                <tr>
+                                    <th>{t('admin_panel.col_id')}</th>
+                                    <th>{t('admin_panel.col_farmer')}</th>
+                                    <th>{t('admin_panel.col_supplier')}</th>
+                                    <th>{t('admin_panel.col_items')}</th>
+                                    <th>{t('admin_panel.col_amount')}</th>
+                                    <th>{t('admin_panel.col_status')}</th>
+                                    <th>{t('admin_panel.col_actions')}</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {orders.map(o => (
@@ -420,11 +444,11 @@ const AdminPanel = () => {
                                                     ))}
                                                 </ul>
                                             ) : (
-                                                <span className="admin-muted">No details</span>
+                                                <span className="admin-muted">{t('admin_panel.no_details')}</span>
                                             )}
                                         </td>
                                         <td>{editingId === o.orderId ? <input className="admin-inline-input" type="number" value={editForm.total} onChange={e => setEditForm({ ...editForm, total: e.target.value })} /> : 'Rs. ' + o.total.toLocaleString()}</td>
-                                        <td><span className={`status-chip ${o.remainingBalance === 0 ? 'status-paid' : 'status-pending'}`}>{o.remainingBalance === 0 ? 'Paid' : 'Partial'}</span></td>
+                                        <td><span className={`status-chip ${o.remainingBalance === 0 ? 'status-paid' : 'status-pending'}`}>{o.remainingBalance === 0 ? t('admin_panel.status_paid') : t('admin_panel.status_partial')}</span></td>
                                         <td className="admin-actions">
                                             {editingId === o.orderId ?
                                                 <><button onClick={() => saveOrderEdit(o.orderId)}>✅</button><button onClick={() => setEditingId(null)}>❌</button></> :
@@ -440,7 +464,13 @@ const AdminPanel = () => {
                     {activeTab === 'suppliers' && !managingSeedsFor && (
                         <table className="admin-table">
                             <thead>
-                                <tr><th>Name</th><th>Location</th><th>Rating</th><th>Products</th><th>Actions</th></tr>
+                                <tr>
+                                    <th>{t('admin_panel.col_name')}</th>
+                                    <th>{t('admin_panel.col_location')}</th>
+                                    <th>{t('admin_panel.col_rating')}</th>
+                                    <th>{t('admin_panel.col_products')}</th>
+                                    <th>{t('admin_panel.col_actions')}</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {suppliers.map(s => (
@@ -453,9 +483,9 @@ const AdminPanel = () => {
                                             {editingId === s.id ?
                                                 <div className="admin-actions"><button onClick={() => saveSupplierEdit(s.id)}>✅</button><button onClick={() => setEditingId(null)}>❌</button></div> :
                                                 <div className="admin-actions">
-                                                    <button onClick={() => handleSupplierEdit(s)} title="Edit Details">✏️</button>
-                                                    <button onClick={() => setManagingSeedsFor(s.id)} className="admin-btn admin-btn-small">Manage Seeds</button>
-                                                    <button onClick={() => deleteSupplier(s.id)} title="Delete Supplier">🗑️</button>
+                                                    <button onClick={() => handleSupplierEdit(s)} title={t('admin_panel.edit_details')}>✏️</button>
+                                                    <button onClick={() => setManagingSeedsFor(s.id)} className="admin-btn admin-btn-small">{t('admin_panel.manage_seeds')}</button>
+                                                    <button onClick={() => deleteSupplier(s.id)} title={t('admin_panel.delete_supplier')}>🗑️</button>
                                                 </div>
                                             }
                                         </td>
@@ -468,7 +498,12 @@ const AdminPanel = () => {
                     {managingSeedsFor && (
                         <table className="admin-table">
                             <thead>
-                                <tr><th>Seed Name</th><th>Code</th><th>Price (Rs.)</th><th>Actions</th></tr>
+                                <tr>
+                                    <th>{t('admin_panel.col_seed_name')}</th>
+                                    <th>{t('admin_panel.col_code')}</th>
+                                    <th>{t('admin_panel.col_price')}</th>
+                                    <th>{t('admin_panel.col_actions')}</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {suppliers.find(s => s.id === managingSeedsFor)?.seeds?.map(seed => (
@@ -491,7 +526,13 @@ const AdminPanel = () => {
                     {activeTab === 'farmers' && (
                         <table className="admin-table">
                             <thead>
-                                <tr><th>Name</th><th>Phone</th><th>Email</th><th>Location</th><th>Actions</th></tr>
+                                <tr>
+                                    <th>{t('admin_panel.col_name')}</th>
+                                    <th>{t('admin_panel.col_phone')}</th>
+                                    <th>{t('admin_panel.col_email')}</th>
+                                    <th>{t('admin_panel.col_location')}</th>
+                                    <th>{t('admin_panel.col_actions')}</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {farmers.map(f => (
@@ -515,19 +556,19 @@ const AdminPanel = () => {
                     {activeTab === 'content' && (
                         <div className="admin-content-form">
                             <div className="form-group">
-                                <label>Hero Title Part 1</label>
+                                <label>{t('admin_panel.hero_title_1')}</label>
                                 <input name="heroTitle1" value={siteContent.heroTitle1} onChange={handleContentChange} />
                             </div>
                             <div className="form-group">
-                                <label>Hero Title Part 2</label>
+                                <label>{t('admin_panel.hero_title_2')}</label>
                                 <input name="heroTitle2" value={siteContent.heroTitle2} onChange={handleContentChange} />
                             </div>
                             <div className="form-group">
-                                <label>Hero Subtitle</label>
+                                <label>{t('admin_panel.hero_subtitle')}</label>
                                 <textarea name="heroSubtitle" value={siteContent.heroSubtitle} onChange={handleContentChange} rows="4"></textarea>
                             </div>
                             <button onClick={saveSiteContent} className="admin-btn admin-btn-primary admin-btn-full">
-                                Save Website Changes
+                                {t('admin_panel.save_website_changes')}
                             </button>
                         </div>
                     )}
@@ -536,16 +577,16 @@ const AdminPanel = () => {
                 {showAddModal && (
                     <div className="admin-modal-overlay">
                         <div className="admin-modal">
-                            <h2>Add New {activeTab.slice(0, -1)}</h2>
+                            <h2>+ {addNewLabels[activeTab]}</h2>
                             <div className="admin-modal-body">
-                                <input placeholder="Name" onChange={e => setNewItemForm({ ...newItemForm, name: e.target.value })} />
-                                <input placeholder="Location" onChange={e => setNewItemForm({ ...newItemForm, location: e.target.value })} />
-                                <input type="number" step="0.1" placeholder="Rating (e.g. 4.5)" onChange={e => setNewItemForm({ ...newItemForm, rating: e.target.value })} />
-                                <textarea placeholder="Company Description" onChange={e => setNewItemForm({ ...newItemForm, desc: e.target.value })}></textarea>
+                                <input placeholder={t('admin_panel.ph_name')} onChange={e => setNewItemForm({ ...newItemForm, name: e.target.value })} />
+                                <input placeholder={t('admin_panel.ph_location')} onChange={e => setNewItemForm({ ...newItemForm, location: e.target.value })} />
+                                <input type="number" step="0.1" placeholder={t('admin_panel.ph_rating')} onChange={e => setNewItemForm({ ...newItemForm, rating: e.target.value })} />
+                                <textarea placeholder={t('admin_panel.ph_description')} onChange={e => setNewItemForm({ ...newItemForm, desc: e.target.value })}></textarea>
                             </div>
                             <div className="admin-modal-footer">
-                                <button onClick={addSupplier} className="admin-btn admin-btn-primary admin-btn-full">Save Supplier</button>
-                                <button onClick={() => setShowAddModal(false)} className="admin-btn admin-btn-secondary">Cancel</button>
+                                <button onClick={addSupplier} className="admin-btn admin-btn-primary admin-btn-full">{t('admin_panel.save_supplier')}</button>
+                                <button onClick={() => setShowAddModal(false)} className="admin-btn admin-btn-secondary">{t('admin_panel.cancel')}</button>
                             </div>
                         </div>
                     </div>
