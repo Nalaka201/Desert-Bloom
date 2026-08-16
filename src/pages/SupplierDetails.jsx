@@ -19,6 +19,7 @@ import {
     FaStar
 } from 'react-icons/fa';
 import Footer from '../components/common/Footer';
+import toast from 'react-hot-toast';
 import api from '../services/api';
 import '../styles/CeylonSeeds.css';
 
@@ -38,7 +39,6 @@ const useRevealOnScroll = (deps = []) => {
         );
         els.forEach((el) => observer.observe(el));
         return () => observer.disconnect();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, deps);
 };
 
@@ -73,8 +73,11 @@ const SupplierDetails = () => {
                 const res = await api.get('/suppliers');
                 const found = res.data.find(s => s.id === id);
                 setSupplier(found);
-            } catch (err) { console.error(err); }
-            setLoading(false);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
         };
         fetchSupplier();
     }, [id]);
@@ -86,7 +89,7 @@ const SupplierDetails = () => {
         { label: 'Satisfaction', value: '95%' }
     ];
     const displayAbout = supplier?.about || supplier?.description || "Leading agricultural provider.";
-    const displaySeeds = supplier?.seeds || [];
+    const displaySeeds = useMemo(() => supplier?.seeds || [], [supplier]);
     const isVerified = supplier?.verified !== false;
 
     const certDetails = {
@@ -95,20 +98,22 @@ const SupplierDetails = () => {
     };
 
     const categories = ['All', 'Fruits', 'Vegetables', 'Grains'];
+
     const categoryCounts = useMemo(() => {
         const counts = { All: displaySeeds.length };
         categories.slice(1).forEach(cat => {
             counts[cat] = displaySeeds.filter(s => s.category === cat).length;
         });
         return counts;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [displaySeeds]);
 
-    const filteredSeeds = displaySeeds.filter(seed => {
-        const matchesFilter = filter === 'All' || seed.category === filter;
-        const matchesSearch = (seed.name || '').toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesFilter && matchesSearch;
-    });
+    const filteredSeeds = useMemo(() => {
+        return displaySeeds.filter(seed => {
+            const matchesFilter = filter === 'All' || seed.category === filter;
+            const matchesSearch = (seed.name || '').toLowerCase().includes(searchQuery.toLowerCase());
+            return matchesFilter && matchesSearch;
+        });
+    }, [displaySeeds, filter, searchQuery]);
 
     const getStockStatus = (seed) => {
         const qty = typeof seed.stockCount === 'number' ? seed.stockCount : null;
@@ -127,7 +132,7 @@ const SupplierDetails = () => {
         });
     };
 
-    useRevealOnScroll([filteredSeeds.length, filter, searchQuery, loading, supplier]);
+    useRevealOnScroll([filteredSeeds.length, loading]);
 
     if (loading) {
         return (
@@ -346,10 +351,10 @@ const SupplierDetails = () => {
                                                 className="add-to-cart-btn"
                                                 disabled={stock.cls === 'stock-out'}
                                                 onClick={() => {
-                                                    if (seed.name === 'Sweet Corn') {
+                                                    if (seed.isDirectOrder || seed.name === 'Sweet Corn') {
                                                         navigate(`/order/${seed.id}`);
                                                     } else {
-                                                        alert(`${seed.name} ${t('supplier_details.added_to_cart') || 'added to cart!'}`);
+                                                        toast.success(`${seed.name} ${t('supplier_details.added_to_cart') || 'added to cart!'}`);
                                                     }
                                                 }}
                                             >

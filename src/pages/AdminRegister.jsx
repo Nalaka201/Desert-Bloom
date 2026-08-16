@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
+import toast from 'react-hot-toast';
 import '../styles/AdminLogin.css';
 import logo from '../assets/logo.png';
 
@@ -54,7 +55,7 @@ const AdminRegister = () => {
 
         localStorage.setItem('registered_admins', JSON.stringify([...existingAdmins, newAdmin]));
         setIsLoading(false);
-        alert(t('admin_register.success_msg') || 'Admin account created successfully!');
+        toast.success(t('admin_register.success_msg') || 'Admin account created successfully!');
         navigate('/admin-login');
     };
 

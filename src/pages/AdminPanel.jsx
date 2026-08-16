@@ -351,6 +351,31 @@ const AdminPanel = () => {
         farmers: t('admin_panel.add_new_farmer')
     };
 
+    const addFarmer = async () => {
+        if (!newItemForm.name) return alert(t('admin_panel.name_required'));
+
+        const newId = 'farmer-' + Date.now();
+        const newFarmer = {
+            id: newId,
+            name: newItemForm.name,
+            phone: newItemForm.phone || '',
+            email: newItemForm.email || '',
+            location: newItemForm.location || 'Unknown'
+        };
+
+        try {
+            await api.post('/farmers', newFarmer);
+            loadData();
+        } catch (err) {
+            const updated = [...farmers, newFarmer];
+            setFarmers(updated);
+            localStorage.setItem('farmer_users', JSON.stringify(updated));
+        }
+
+        setShowAddModal(false);
+        setNewItemForm({});
+    };
+
     return (
         <div className="admin-layout">
             <aside className="admin-sidebar">

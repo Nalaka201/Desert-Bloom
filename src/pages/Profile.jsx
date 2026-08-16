@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Footer from '../components/common/Footer';
+import toast from 'react-hot-toast';
 import '../styles/Profile.css';
 
 const LogoutIcon = () => (
@@ -50,12 +51,11 @@ const Profile = () => {
                 try {
                     const profilesMap = JSON.parse(allProfiles);
                     if (profilesMap[userNic]) {
-                        // merge with defaults so missing province/district never crash render
                         setProfile(prev => ({ ...prev, ...profilesMap[userNic] }));
                         return;
                     }
                 } catch (error) {
-                    console.error('Error loading profile:', error);
+                    console.error('Error loading profile from all_farmer_profiles:', error);
                 }
             }
 
@@ -80,30 +80,52 @@ const Profile = () => {
         setProfile(prev => ({
             ...prev,
             province: newProvince,
-            district: PROVINCE_DISTRICTS[newProvince][0]
+            district: PROVINCE_DISTRICTS[newProvince] ? PROVINCE_DISTRICTS[newProvince][0] : ''
         }));
     };
 
     const handleSave = () => {
+        const userNic = localStorage.getItem('user_nic') || profile.nic;
+
+        // 1. Current profile update
         localStorage.setItem('farmer_profile', JSON.stringify(profile));
-        alert(t('profile.success_msg'));
+
+        // 2. Main Central Map (all_farmer_profiles) එක Update කිරීම
+        let allProfiles = {};
+        const existingProfiles = localStorage.getItem('all_farmer_profiles');
+        if (existingProfiles) {
+            try {
+                allProfiles = JSON.parse(existingProfiles);
+            } catch (error) {
+                console.error('Error parsing all profiles:', error);
+            }
+        }
+
+        if (userNic) {
+            allProfiles[userNic] = profile;
+            localStorage.setItem('all_farmer_profiles', JSON.stringify(allProfiles));
+        }
+
+        toast.success(t('profile.success_msg') || 'Profile updated successfully!');
     };
 
     const handleLogout = () => {
         if (window.confirm('Are you sure you want to log out?')) {
+            localStorage.removeItem('user_nic');
             navigate('/');
         }
     };
 
-    const initials = profile.name
+    // Safety fallback for initials calculation
+    const initials = (profile.name || '')
+        .trim()
         .split(' ')
         .map((w) => w[0])
         .filter(Boolean)
         .slice(0, 2)
         .join('')
-        .toUpperCase();
+        .toUpperCase() || 'U';
 
-    // safety net - if province is missing/unknown, fall back to full province list for the dropdown
     const districtOptions = PROVINCE_DISTRICTS[profile.province] || PROVINCES.flatMap(p => PROVINCE_DISTRICTS[p]);
 
     return (
@@ -132,7 +154,7 @@ const Profile = () => {
                             </div>
                             <div className="profile-form-group">
                                 <label>{t('profile.nic')}</label>
-                                <input type="text" name="nic" className="profile-input" value={profile.nic} onChange={handleChange} />
+                                <input type="text" name="nic" className="profile-input" value={profile.nic} onChange={handleChange} disabled />
                             </div>
                             <div className="profile-form-group">
                                 <label>{t('profile.phone')}</label>

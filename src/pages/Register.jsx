@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { UserIcon, CardIcon, PhoneIcon, MailIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
 import '../styles/Auth.css';
+import toast from 'react-hot-toast';
 import farmer from '../assets/farmer.png';
 import logo from '../assets/logo.png';
 
@@ -22,8 +23,9 @@ const Register = () => {
     const handleRegister = (e) => {
         e.preventDefault();
 
+        // Password Verification 
         if (password !== confirmPassword) {
-            alert("Passwords do not match");
+            toast.error("Passwords do not match");
             return;
         }
 
@@ -39,7 +41,6 @@ const Register = () => {
         };
 
         // Store this user's profile in a centralized map indexed by NIC
-        // This allows login to retrieve the correct profile later
         let allProfiles = {};
         const existingProfiles = localStorage.getItem('all_farmer_profiles');
         if (existingProfiles) {
@@ -58,10 +59,10 @@ const Register = () => {
         localStorage.setItem('user_nic', nic);
         localStorage.setItem('farmer_profile', JSON.stringify(profileData));
 
-        alert('Registration successful! Please log in to your account.');
+        // 2. Success Toast Notification and Redirect 
+        toast.success('Registration successful! Please log in to your account.');
         navigate('/');
     };
-
     return (
         <div className={`auth-container lang-${i18n.language}`}>
             <div className="auth-blob auth-blob-1"></div>

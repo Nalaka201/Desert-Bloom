@@ -18,6 +18,7 @@ import Suppliers from './pages/Suppliers';
 import AdminPanel from './pages/AdminPanel';
 import AdminLogin from './pages/AdminLogin';
 import AdminRegister from './pages/AdminRegister';
+import { Toaster } from 'react-hot-toast';
 import './index.css';
 
 const AppContent = () => {
@@ -55,6 +56,51 @@ const AppContent = () => {
 function App() {
   return (
     <Router>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{
+
+          duration: 4000,
+          style: {
+            background: '#ffffff',
+            color: '#1f2937',
+            padding: '12px 18px',
+            borderRadius: '12px',
+            boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.1)',
+            border: '1px solid #e5e7eb',
+            fontSize: '14px',
+            fontWeight: '500',
+            maxWidth: '380px',
+          },
+
+          success: {
+            duration: 3500,
+            iconTheme: {
+              primary: '#10b981',
+              secondary: '#ffffff',
+            },
+            style: {
+              borderLeft: '5px solid #10b981',
+              background: '#f0fdf4',
+              color: '#166534',
+            },
+          },
+
+          error: {
+            duration: 4000,
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#ffffff',
+            },
+            style: {
+              borderLeft: '5px solid #ef4444',
+              background: '#fef2f2',
+              color: '#991b1b',
+            },
+          },
+        }}
+      />
       <AppContent />
     </Router>
   )
