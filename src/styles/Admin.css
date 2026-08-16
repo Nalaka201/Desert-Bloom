@@ -231,28 +231,136 @@
     border-bottom: 1px solid var(--ledger-line);
 }
 
+/* Table font consistency - okkoma cells ekама base size/weight ekක් */
 .admin-table td {
     padding: 0.85rem 1.25rem;
     border-bottom: 1px solid var(--ledger-line);
     font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-dark);
     vertical-align: middle;
 }
 
-.admin-table tr:last-child td {
-    border-bottom: none;
+.admin-table td:first-child {
+    font-weight: 500;
+}
+
+.admin-items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--primary-green);
+    font-weight: 400;
+    font-size: 0.85rem;
+}
+
+.admin-payment-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.admin-paid-amount {
+    color: var(--primary-green);
+    font-weight: 500;
+}
+
+.admin-remaining-amount {
+    color: var(--terracotta);
+    font-weight: 500;
 }
 
 .admin-actions {
     display: flex;
     gap: 0.6rem;
     align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.admin-actions>* {
+    flex-shrink: 0;
 }
 
 .admin-actions button {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 0.95rem;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    color: var(--text-gray);
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+
+.admin-actions button.admin-btn-small {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    padding: 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-btn-small {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    background: var(--primary-green);
+    color: white;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.admin-table td:last-child {
+    white-space: nowrap;
+    width: 1%;
+}
+
+.admin-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    color: var(--text-gray);
+    transition: background 0.2s, color 0.2s;
+}
+
+.admin-actions button:hover {
+    background: var(--cream);
+}
+
+.admin-actions .icon-edit:hover {
+    color: var(--primary-green);
+}
+
+.admin-actions .icon-delete:hover {
+    color: var(--terracotta);
+}
+
+.admin-actions svg {
+    width: 16px;
+    height: 16px;
 }
 
 .admin-cell-items {
@@ -378,6 +486,27 @@
 
 .admin-modal-footer .admin-btn {
     flex: 1;
+}
+
+.admin-payment-cell {
+    min-width: 140px;
+}
+
+.admin-payment-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.8rem;
+}
+
+.admin-paid-amount {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.admin-remaining-amount {
+    color: var(--terracotta);
+    font-weight: 600;
 }
 
 @media (max-width: 900px) {

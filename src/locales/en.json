@@ -477,6 +477,9 @@
         "confirm_delete_supplier": "Are you sure you want to remove this supplier? This action cannot be undone.",
         "confirm_delete_farmer": "Delete this farmer account?",
         "confirm_delete_seed": "Delete this seed?",
-        "confirm_logout": "Log out from Admin Panel?"
+        "confirm_logout": "Log out from Admin Panel?",
+        "col_payment": "Payment",
+        "paid_label": "Paid",
+        "remaining_label": "Remaining"
     }
 }

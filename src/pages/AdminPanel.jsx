@@ -11,7 +11,10 @@ import {
     MdStorefront,
     MdPeople,
     MdEdit,
-    MdLogout
+    MdLogout,
+    MdCheck,
+    MdClose,
+    MdDelete
 } from 'react-icons/md';
 import '../styles/Admin.css';
 
@@ -103,17 +106,21 @@ const AdminPanel = () => {
         setSiteContent(JSON.parse(localStorage.getItem('farmer_site_content') || JSON.stringify(defaultContent)));
     };
 
+    // --- ORDER ACTIONS (payment/remainingBalance is view-only, farmer-side controls it) ---
     const handleOrderEdit = (order) => {
         setEditingId(order.orderId);
-        setEditForm({ farmerName: order.farmerName || 'K.H. Somathilaka', supplier: order.supplier, total: order.total });
+        setEditForm({
+            farmerName: order.farmerName || 'K.H. Somathilaka',
+            supplier: order.supplier,
+            total: order.total
+        });
     };
 
     const saveOrderEdit = async (id) => {
         try {
             await api.put(`/orders/${id}`, {
                 supplier_name: editForm.supplier,
-                total_amount: Number(editForm.total),
-                remaining_balance: 0
+                total_amount: Number(editForm.total)
             });
             loadData();
             setEditingId(null);
@@ -138,6 +145,7 @@ const AdminPanel = () => {
         }
     };
 
+    // --- SUPPLIER ACTIONS ---
     const handleSupplierEdit = (sup) => {
         setEditingId(sup.id);
         setEditForm({
@@ -217,6 +225,7 @@ const AdminPanel = () => {
         }
     };
 
+    // --- FARMER ACTIONS ---
     const handleFarmerEdit = (f) => {
         setEditingId(f.id);
         setEditForm({ name: f.name, phone: f.phone, email: f.email, location: f.location });
@@ -249,6 +258,7 @@ const AdminPanel = () => {
         }
     };
 
+    // --- SEED ACTIONS ---
     const handleSeedEdit = (seed) => {
         setEditingSeedId(seed.id);
         setSeedEditForm({ name: seed.name, code: seed.code, price: seed.price });
@@ -307,6 +317,7 @@ const AdminPanel = () => {
         setSuppliers(updatedSuppliers);
     };
 
+    // --- SITE CONTENT ACTIONS ---
     const handleContentChange = (e) => {
         const { name, value } = e.target;
         setSiteContent(prev => ({ ...prev, [name]: value }));
@@ -326,7 +337,6 @@ const AdminPanel = () => {
 
     const totalRevenue = orders.reduce((sum, o) => sum + o.total, 0);
 
-    // Tab -> translated section title
     const tabTitles = {
         dashboard: t('admin_panel.tab_dashboard'),
         orders: t('admin_panel.tab_orders'),
@@ -335,7 +345,6 @@ const AdminPanel = () => {
         content: t('admin_panel.tab_content')
     };
 
-    // Tab -> "Add New X" label
     const addNewLabels = {
         orders: t('admin_panel.add_new_order'),
         suppliers: t('admin_panel.add_new_supplier'),
@@ -345,7 +354,10 @@ const AdminPanel = () => {
     return (
         <div className="admin-layout">
             <aside className="admin-sidebar">
-                <div className="admin-logo"><img src={logo} alt="Aswenna.lk Logo" className="logo-img" /><span>Aswenna.lk</span></div>
+                <div className="admin-logo">
+                    <img src={logo} alt="Aswenna.lk Logo" className="logo-img" />
+                    <span>Aswenna.lk</span>
+                </div>
                 <nav className="admin-nav">
                     <div className={`admin-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
                         <MdDashboard className="admin-nav-icon" /> {t('admin_panel.nav_dashboard')}
@@ -426,6 +438,7 @@ const AdminPanel = () => {
                                     <th>{t('admin_panel.col_supplier')}</th>
                                     <th>{t('admin_panel.col_items')}</th>
                                     <th>{t('admin_panel.col_amount')}</th>
+                                    <th>{t('admin_panel.col_payment')}</th>
                                     <th>{t('admin_panel.col_status')}</th>
                                     <th>{t('admin_panel.col_actions')}</th>
                                 </tr>
@@ -448,11 +461,29 @@ const AdminPanel = () => {
                                             )}
                                         </td>
                                         <td>{editingId === o.orderId ? <input className="admin-inline-input" type="number" value={editForm.total} onChange={e => setEditForm({ ...editForm, total: e.target.value })} /> : 'Rs. ' + o.total.toLocaleString()}</td>
+                                        <td className="admin-payment-cell">
+                                            <div className="admin-payment-breakdown">
+                                                <span className="admin-paid-amount">
+                                                    {t('admin_panel.paid_label')}: Rs. {(o.total - (o.remainingBalance || 0)).toLocaleString()}
+                                                </span>
+                                                {o.remainingBalance > 0 && (
+                                                    <span className="admin-remaining-amount">
+                                                        {t('admin_panel.remaining_label')}: Rs. {o.remainingBalance.toLocaleString()}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </td>
                                         <td><span className={`status-chip ${o.remainingBalance === 0 ? 'status-paid' : 'status-pending'}`}>{o.remainingBalance === 0 ? t('admin_panel.status_paid') : t('admin_panel.status_partial')}</span></td>
                                         <td className="admin-actions">
                                             {editingId === o.orderId ?
-                                                <><button onClick={() => saveOrderEdit(o.orderId)}>✅</button><button onClick={() => setEditingId(null)}>❌</button></> :
-                                                <><button onClick={() => handleOrderEdit(o)}>✏️</button><button onClick={() => deleteOrder(o.orderId)}>🗑️</button></>
+                                                <>
+                                                    <button onClick={() => saveOrderEdit(o.orderId)} className="icon-edit"><MdCheck /></button>
+                                                    <button onClick={() => setEditingId(null)} className="icon-delete"><MdClose /></button>
+                                                </> :
+                                                <>
+                                                    <button onClick={() => handleOrderEdit(o)} className="icon-edit"><MdEdit /></button>
+                                                    <button onClick={() => deleteOrder(o.orderId)} className="icon-delete"><MdDelete /></button>
+                                                </>
                                             }
                                         </td>
                                     </tr>
@@ -481,11 +512,14 @@ const AdminPanel = () => {
                                         <td>{editingId === s.id ? <input className="admin-inline-input" value={editForm.products} onChange={e => setEditForm({ ...editForm, products: e.target.value })} /> : s.products}</td>
                                         <td>
                                             {editingId === s.id ?
-                                                <div className="admin-actions"><button onClick={() => saveSupplierEdit(s.id)}>✅</button><button onClick={() => setEditingId(null)}>❌</button></div> :
                                                 <div className="admin-actions">
-                                                    <button onClick={() => handleSupplierEdit(s)} title={t('admin_panel.edit_details')}>✏️</button>
-                                                    <button onClick={() => setManagingSeedsFor(s.id)} className="admin-btn admin-btn-small">{t('admin_panel.manage_seeds')}</button>
-                                                    <button onClick={() => deleteSupplier(s.id)} title={t('admin_panel.delete_supplier')}>🗑️</button>
+                                                    <button onClick={() => saveSupplierEdit(s.id)} className="icon-edit"><MdCheck /></button>
+                                                    <button onClick={() => setEditingId(null)} className="icon-delete"><MdClose /></button>
+                                                </div> :
+                                                <div className="admin-actions">
+                                                    <button onClick={() => handleSupplierEdit(s)} className="icon-edit" title={t('admin_panel.edit_details')}><MdEdit /></button>
+                                                    <button onClick={() => setManagingSeedsFor(s.id)} className="admin-btn admin-btn-small" title={t('admin_panel.manage_seeds')}><MdInventory2 size={16} /> </button>
+                                                    <button onClick={() => deleteSupplier(s.id)} className="icon-delete" title={t('admin_panel.delete_supplier')}><MdDelete /></button>
                                                 </div>
                                             }
                                         </td>
@@ -513,8 +547,14 @@ const AdminPanel = () => {
                                         <td>{editingSeedId === seed.id ? <input className="admin-inline-input" type="number" value={seedEditForm.price} onChange={e => setSeedEditForm({ ...seedEditForm, price: e.target.value })} /> : seed.price.toLocaleString()}</td>
                                         <td className="admin-actions">
                                             {editingSeedId === seed.id ?
-                                                <><button onClick={() => saveSeedEdit(managingSeedsFor, seed.id)}>✅</button><button onClick={() => setEditingSeedId(null)}>❌</button></> :
-                                                <><button onClick={() => handleSeedEdit(seed)}>✏️</button><button onClick={() => deleteSeed(managingSeedsFor, seed.id)}>🗑️</button></>
+                                                <>
+                                                    <button onClick={() => saveSeedEdit(managingSeedsFor, seed.id)} className="icon-edit"><MdCheck /></button>
+                                                    <button onClick={() => setEditingSeedId(null)} className="icon-delete"><MdClose /></button>
+                                                </> :
+                                                <>
+                                                    <button onClick={() => handleSeedEdit(seed)} className="icon-edit"><MdEdit /></button>
+                                                    <button onClick={() => deleteSeed(managingSeedsFor, seed.id)} className="icon-delete"><MdDelete /></button>
+                                                </>
                                             }
                                         </td>
                                     </tr>
@@ -543,8 +583,14 @@ const AdminPanel = () => {
                                         <td>{editingId === f.id ? <input className="admin-inline-input" value={editForm.location} onChange={e => setEditForm({ ...editForm, location: e.target.value })} /> : f.location}</td>
                                         <td className="admin-actions">
                                             {editingId === f.id ?
-                                                <><button onClick={() => saveFarmerEdit(f.id)}>✅</button><button onClick={() => setEditingId(null)}>❌</button></> :
-                                                <><button onClick={() => handleFarmerEdit(f)}>✏️</button><button onClick={() => deleteFarmer(f.id)}>🗑️</button></>
+                                                <>
+                                                    <button onClick={() => saveFarmerEdit(f.id)} className="icon-edit"><MdCheck /></button>
+                                                    <button onClick={() => setEditingId(null)} className="icon-delete"><MdClose /></button>
+                                                </> :
+                                                <>
+                                                    <button onClick={() => handleFarmerEdit(f)} className="icon-edit"><MdEdit /></button>
+                                                    <button onClick={() => deleteFarmer(f.id)} className="icon-delete"><MdDelete /></button>
+                                                </>
                                             }
                                         </td>
                                     </tr>

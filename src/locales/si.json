@@ -476,6 +476,9 @@
         "confirm_delete_supplier": "ඔබට මෙම සැපයුම්කරු ඉවත් කිරීමට අවශ්‍ය බව විශ්වාසද? මෙම ක්‍රියාව අහෝසි කළ නොහැක.",
         "confirm_delete_farmer": "මෙම ගොවි ගිණුම මකන්නද?",
         "confirm_delete_seed": "මෙම බීජය මකන්නද?",
-        "confirm_logout": "පරිපාලක පුවරුවෙන් ඉවත් වන්නද?"
+        "confirm_logout": "පරිපාලක පුවරුවෙන් ඉවත් වන්නද?",
+        "col_payment": "ගෙවීම",
+        "paid_label": "ගෙවා ඇත",
+        "remaining_label": "ඉතිරි"
     }
 }
