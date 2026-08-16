@@ -487,6 +487,14 @@
         "ph_location_placeholder": "எ.கா. கொழும்பு, இலங்கை",
         "ph_logo": "லோகோ URL",
         "ph_logo_placeholder": "https://...",
-        "ph_description_placeholder": "நிறுவனத்தின் சுருக்கமான விளக்கம்"
+        "ph_description_placeholder": "நிறுவனத்தின் சுருக்கமான விளக்கம்",
+        "search_placeholder": "பெயரால் தேடு...",
+        "filter_all_status": "அனைத்து நிலைகள்",
+        "filter_all_locations": "அனைத்து இடங்கள்",
+        "prev": "முந்தைய",
+        "next": "அடுத்தது",
+        "page_of": "பக்கம் {{current}} / {{total}}",
+        "ph_farmer_name_placeholder": "எ.கா. K.H. சோமதிலக",
+        "search_orders_placeholder": "ஆர்டர் ஐடி, விவசாயி அல்லது விநியோகஸ்தர் மூலம் தேடு..."
     }
 }

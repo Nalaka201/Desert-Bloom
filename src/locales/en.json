@@ -488,6 +488,14 @@
         "ph_location_placeholder": "e.g. Colombo, Sri Lanka",
         "ph_logo": "Logo URL",
         "ph_logo_placeholder": "https://...",
-        "ph_description_placeholder": "Brief description of the company"
+        "ph_description_placeholder": "Brief description of the company",
+        "search_placeholder": "Search by name...",
+        "filter_all_status": "All Statuses",
+        "filter_all_locations": "All Locations",
+        "prev": "Previous",
+        "next": "Next",
+        "page_of": "Page {{current}} of {{total}}",
+        "ph_farmer_name_placeholder": "e.g. K.H. Somathilaka",
+        "search_orders_placeholder": "Search by Order ID, farmer, or supplier..."
     }
 }

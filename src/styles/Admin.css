@@ -329,7 +329,6 @@
 
 .admin-table td:last-child {
     white-space: nowrap;
-    width: 1%;
 }
 
 .admin-actions button {
@@ -570,6 +569,91 @@
 .admin-remaining-amount {
     color: var(--terracotta);
     font-weight: 600;
+}
+
+.admin-table-toolbar {
+    display: flex;
+    gap: 0.85rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--ledger-line);
+    flex-wrap: wrap;
+}
+
+.admin-search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--ledger-line);
+    font-size: 0.88rem;
+    background: var(--cream);
+}
+
+.admin-search-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: white;
+}
+
+.admin-filter-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0.6rem 2.25rem 0.6rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--ledger-line);
+    font-size: 0.85rem;
+    background-color: white;
+    color: var(--text-dark);
+    min-width: 170px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b6b5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.admin-filter-select:hover {
+    border-color: var(--gold-soft);
+}
+
+.admin-filter-select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.admin-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.25rem;
+}
+
+.admin-pagination button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--ledger-line);
+    background: white;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.admin-pagination button:hover:not(:disabled) {
+    background: var(--cream);
+}
+
+.admin-pagination button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.admin-pagination span {
+    font-size: 0.85rem;
+    color: var(--text-gray);
 }
 
 @media (max-width: 900px) {

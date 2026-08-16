@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
@@ -22,6 +22,11 @@ const AdminPanel = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('dashboard');
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filterValue, setFilterValue] = useState('all');
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 10;
 
     const [orders, setOrders] = useState([]);
     const [suppliers, setSuppliers] = useState([]);
@@ -337,6 +342,56 @@ const AdminPanel = () => {
 
     const totalRevenue = orders.reduce((sum, o) => sum + o.total, 0);
 
+    // Reset page/search/filter when switching tabs
+    useEffect(() => {
+        setSearchQuery('');
+        setFilterValue('all');
+        setCurrentPage(1);
+    }, [activeTab, managingSeedsFor]);
+
+    // Orders: search by farmer/supplier name, filter by payment status
+    const filteredOrders = useMemo(() => {
+        return orders.filter(o => {
+            const query = searchQuery.toLowerCase();
+            const matchesSearch = (o.farmerName || '').toLowerCase().includes(query) ||
+                (o.supplier || '').toLowerCase().includes(query) ||
+                String(o.orderId || '').toLowerCase().includes(query);
+            const matchesFilter = filterValue === 'all' ||
+                (filterValue === 'paid' && o.remainingBalance === 0) ||
+                (filterValue === 'partial' && o.remainingBalance > 0);
+            return matchesSearch && matchesFilter;
+        });
+    }, [orders, searchQuery, filterValue]);
+
+    // Suppliers: search by name, filter by location
+    const filteredSuppliers = useMemo(() => {
+        return suppliers.filter(s => {
+            const matchesSearch = (s.name || '').toLowerCase().includes(searchQuery.toLowerCase());
+            const matchesFilter = filterValue === 'all' || s.location === filterValue;
+            return matchesSearch && matchesFilter;
+        });
+    }, [suppliers, searchQuery, filterValue]);
+
+    // Farmers: search by name, filter by location
+    const filteredFarmers = useMemo(() => {
+        return farmers.filter(f => {
+            const matchesSearch = (f.name || '').toLowerCase().includes(searchQuery.toLowerCase());
+            const matchesFilter = filterValue === 'all' || f.location === filterValue;
+            return matchesSearch && matchesFilter;
+        });
+    }, [farmers, searchQuery, filterValue]);
+
+    // Unique location lists for filter dropdowns
+    const supplierLocations = useMemo(() => [...new Set(suppliers.map(s => s.location).filter(Boolean))], [suppliers]);
+    const farmerLocations = useMemo(() => [...new Set(farmers.map(f => f.location).filter(Boolean))], [farmers]);
+
+    // Generic pagination helper
+    const paginate = (list) => {
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        return list.slice(start, start + ITEMS_PER_PAGE);
+    };
+    const totalPages = (list) => Math.max(1, Math.ceil(list.length / ITEMS_PER_PAGE));
+
     const tabTitles = {
         dashboard: t('admin_panel.tab_dashboard'),
         orders: t('admin_panel.tab_orders'),
@@ -453,6 +508,36 @@ const AdminPanel = () => {
                 )}
 
                 <div className="admin-card">
+                    {(activeTab === 'orders' || (activeTab === 'suppliers' && !managingSeedsFor) || activeTab === 'farmers') && (
+                        <div className="admin-table-toolbar">
+                            <input
+                                type="text"
+                                className="admin-search-input"
+                                placeholder={activeTab === 'orders' ? t('admin_panel.search_orders_placeholder') : t('admin_panel.search_placeholder')}
+                                value={searchQuery}
+                                onChange={e => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+                            />
+                            {activeTab === 'orders' && (
+                                <select className="admin-filter-select" value={filterValue} onChange={e => { setFilterValue(e.target.value); setCurrentPage(1); }}>
+                                    <option value="all">{t('admin_panel.filter_all_status')}</option>
+                                    <option value="paid">{t('admin_panel.status_paid')}</option>
+                                    <option value="partial">{t('admin_panel.status_partial')}</option>
+                                </select>
+                            )}
+                            {activeTab === 'suppliers' && !managingSeedsFor && (
+                                <select className="admin-filter-select" value={filterValue} onChange={e => { setFilterValue(e.target.value); setCurrentPage(1); }}>
+                                    <option value="all">{t('admin_panel.filter_all_locations')}</option>
+                                    {supplierLocations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
+                                </select>
+                            )}
+                            {activeTab === 'farmers' && (
+                                <select className="admin-filter-select" value={filterValue} onChange={e => { setFilterValue(e.target.value); setCurrentPage(1); }}>
+                                    <option value="all">{t('admin_panel.filter_all_locations')}</option>
+                                    {farmerLocations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
+                                </select>
+                            )}
+                        </div>
+                    )}
                     {activeTab === 'orders' && (
                         <table className="admin-table">
                             <thead>
@@ -468,7 +553,7 @@ const AdminPanel = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {orders.map(o => (
+                                {paginate(filteredOrders).map(o => (
                                     <tr key={o.orderId}>
                                         <td>#{o.orderId}</td>
                                         <td>{editingId === o.orderId ? <input className="admin-inline-input" value={editForm.farmerName} onChange={e => setEditForm({ ...editForm, farmerName: e.target.value })} /> : o.farmerName || 'Somathilaka'}</td>
@@ -528,7 +613,7 @@ const AdminPanel = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {suppliers.map(s => (
+                                {paginate(filteredSuppliers).map(s => (
                                     <tr key={s.id}>
                                         <td>{editingId === s.id ? <input className="admin-inline-input" value={editForm.name} onChange={e => setEditForm({ ...editForm, name: e.target.value })} /> : s.name}</td>
                                         <td>{editingId === s.id ? <input className="admin-inline-input" value={editForm.location} onChange={e => setEditForm({ ...editForm, location: e.target.value })} /> : s.location}</td>
@@ -599,7 +684,7 @@ const AdminPanel = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {farmers.map(f => (
+                                {paginate(filteredFarmers).map(f => (
                                     <tr key={f.id}>
                                         <td>{editingId === f.id ? <input className="admin-inline-input" value={editForm.name} onChange={e => setEditForm({ ...editForm, name: e.target.value })} /> : f.name}</td>
                                         <td>{editingId === f.id ? <input className="admin-inline-input" value={editForm.phone} onChange={e => setEditForm({ ...editForm, phone: e.target.value })} /> : f.phone}</td>
@@ -656,7 +741,10 @@ const AdminPanel = () => {
                             <div className="admin-modal-body">
                                 <div className="admin-modal-field">
                                     <label>{t('admin_panel.ph_name')}</label>
-                                    <input placeholder={t('admin_panel.ph_name_placeholder')} onChange={e => setNewItemForm({ ...newItemForm, name: e.target.value })} />
+                                    <input
+                                        placeholder={activeTab === 'suppliers' ? t('admin_panel.ph_name_placeholder') : t('admin_panel.ph_farmer_name_placeholder')}
+                                        onChange={e => setNewItemForm({ ...newItemForm, name: e.target.value })}
+                                    />
                                 </div>
 
                                 {activeTab === 'suppliers' && (

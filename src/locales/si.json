@@ -487,6 +487,14 @@
         "ph_location_placeholder": "උදා. කොළඹ, ශ්‍රී ලංකාව",
         "ph_logo": "ලාංඡන URL",
         "ph_logo_placeholder": "https://...",
-        "ph_description_placeholder": "සමාගම පිළිබඳ කෙටි විස්තරයක්"
+        "ph_description_placeholder": "සමාගම පිළිබඳ කෙටි විස්තරයක්",
+        "search_placeholder": "නම අනුව සොයන්න...",
+        "filter_all_status": "සියලුම තත්ත්ව",
+        "filter_all_locations": "සියලුම ස්ථාන",
+        "prev": "පෙර",
+        "next": "ඊළඟ",
+        "page_of": "පිටුව {{current}} / {{total}}",
+        "ph_farmer_name_placeholder": "උදා. K.H. සෝමතිලක",
+        "search_orders_placeholder": "ඇණවුම් අංකය, ගොවියා, හෝ සැපයුම්කරු අනුව සොයන්න..."
     }
 }
