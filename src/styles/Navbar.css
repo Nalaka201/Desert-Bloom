@@ -1,7 +1,3 @@
-/* ========================================
-   HIGH-END GLASS NAVBAR STYLING
-   ======================================== */
-
 .navbar {
     background: rgba(2, 20, 13, 0.94);
     backdrop-filter: blur(20px);
@@ -122,13 +118,13 @@
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    padding: 6px 14px;
+    padding: 10px 14px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
 }
 
@@ -254,4 +250,33 @@
 .profile-avatar:hover {
     transform: scale(1.05);
     border-color: #34d399;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-login-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    padding: 0 1.5rem;
+    border-radius: 20px;
+    background: #c99a2e;
+    color: #142a22;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px -4px rgba(201, 154, 46, 0.4);
+}
+
+.navbar-login-btn:hover {
+    background: #e4c878;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px -4px rgba(201, 154, 46, 0.5);
 }

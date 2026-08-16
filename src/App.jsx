@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
+import ProtectedRoute from './components/common/ProtectedRoute';
+import RootRoute from './components/common/RootRoute';
 import Home from './pages/Home';
 import About from './pages/About';
 import Company from './pages/Company';
@@ -23,27 +25,38 @@ import './index.css';
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavbar = ['/', '/register', '/forgot-password', '/admin', '/admin-login', '/admin-register'].includes(location.pathname);
+  const token = localStorage.getItem('access_token');
+
+  // "/" shows Login (no navbar) when a token exists, Home (with navbar) otherwise
+  const rootShowingLogin = location.pathname === '/' && !!token;
+
+  const hideNavbar = rootShowingLogin || ['/login', '/register', '/forgot-password', '/admin', '/admin-login', '/admin-register'].includes(location.pathname);
 
   return (
     <div className="app">
       {!hideNavbar && <Navbar />}
       <main>
         <Routes>
-          <Route path="/" element={<Login />} />
+          {/* Root: Login if returning (has token), Home if guest */}
+          <Route path="/" element={<RootRoute />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/supplier/:id" element={<SupplierDetails />} />
-          <Route path="/supplier/ceylon-seeds" element={<CeylonSeeds />} />
           <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/products" element={<Company />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/order/:productId" element={<OrderPage />} />
-          <Route path="/order-success" element={<SuccessPage />} />
-          <Route path="/history" element={<OrderHistory />} />
-          <Route path="/profile" element={<Profile />} />
+
+          {/* Protected - login required */}
+          <Route path="/supplier/:id" element={<ProtectedRoute><SupplierDetails /></ProtectedRoute>} />
+          <Route path="/supplier/ceylon-seeds" element={<ProtectedRoute><CeylonSeeds /></ProtectedRoute>} />
+          <Route path="/order/:productId" element={<ProtectedRoute><OrderPage /></ProtectedRoute>} />
+          <Route path="/order-success" element={<ProtectedRoute><SuccessPage /></ProtectedRoute>} />
+          <Route path="/history" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+
+          {/* Admin */}
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-register" element={<AdminRegister />} />
@@ -60,7 +73,6 @@ function App() {
         position="top-right"
         reverseOrder={false}
         toastOptions={{
-
           duration: 4000,
           style: {
             background: '#ffffff',
@@ -73,31 +85,15 @@ function App() {
             fontWeight: '500',
             maxWidth: '380px',
           },
-
           success: {
             duration: 3500,
-            iconTheme: {
-              primary: '#10b981',
-              secondary: '#ffffff',
-            },
-            style: {
-              borderLeft: '5px solid #10b981',
-              background: '#f0fdf4',
-              color: '#166534',
-            },
+            iconTheme: { primary: '#10b981', secondary: '#ffffff' },
+            style: { borderLeft: '5px solid #10b981', background: '#f0fdf4', color: '#166534' },
           },
-
           error: {
             duration: 4000,
-            iconTheme: {
-              primary: '#ef4444',
-              secondary: '#ffffff',
-            },
-            style: {
-              borderLeft: '5px solid #ef4444',
-              background: '#fef2f2',
-              color: '#991b1b',
-            },
+            iconTheme: { primary: '#ef4444', secondary: '#ffffff' },
+            style: { borderLeft: '5px solid #ef4444', background: '#fef2f2', color: '#991b1b' },
           },
         }}
       />

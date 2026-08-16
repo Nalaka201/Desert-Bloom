@@ -8,8 +8,10 @@ import '../../styles/Navbar.css';
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [userInitial, setUserInitial] = React.useState('U');
+  const isLoggedIn = !!localStorage.getItem('access_token');
 
   React.useEffect(() => {
+    if (!isLoggedIn) return;
     const savedProfile = localStorage.getItem('farmer_profile');
     if (savedProfile) {
       try {
@@ -21,7 +23,7 @@ const Navbar = () => {
         console.error("Error parsing profile", e);
       }
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -42,20 +44,28 @@ const Navbar = () => {
           <li><Link to="/about" className="nav-link">{t('nav.about')}</Link></li>
           <li><Link to="/suppliers" className="nav-link">{t('nav.suppliers')}</Link></li>
           <li><Link to="/contact" className="nav-link">{t('nav.contact')}</Link></li>
-          <li><Link to="/history" className="nav-link">{t('nav.history')}</Link></li>
+          {isLoggedIn && (
+            <li><Link to="/history" className="nav-link">{t('nav.history')}</Link></li>
+          )}
         </ul>
 
         <div className="nav-actions">
           <LanguageSwitcher />
-          <NotificationDropdown />
-          <button className="icon-btn">
-            <svg className="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-            </svg>
-            <span className="notification-badge-number">0</span>
-          </button>
-          <Link to="/profile" className="profile-avatar">{userInitial}</Link>
+          {isLoggedIn ? (
+            <>
+              <NotificationDropdown />
+              <button className="icon-btn">
+                <svg className="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg>
+                <span className="notification-badge-number">0</span>
+              </button>
+              <Link to="/profile" className="profile-avatar">{userInitial}</Link>
+            </>
+          ) : (
+            <Link to="/login" className="navbar-login-btn">{t('auth.login_btn')}</Link>
+          )}
         </div>
       </div>
     </nav>
