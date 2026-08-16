@@ -346,7 +346,6 @@ const AdminPanel = () => {
     };
 
     const addNewLabels = {
-        orders: t('admin_panel.add_new_order'),
         suppliers: t('admin_panel.add_new_supplier'),
         farmers: t('admin_panel.add_new_farmer')
     };
@@ -427,7 +426,7 @@ const AdminPanel = () => {
                                 </button>
                             </div>
                         ) : (
-                            activeTab !== 'dashboard' && activeTab !== 'content' && (
+                            (activeTab === 'suppliers' || activeTab === 'farmers') && (
                                 <button onClick={() => setShowAddModal(true)} className="admin-btn admin-btn-primary">
                                     + {addNewLabels[activeTab]}
                                 </button>
@@ -648,16 +647,65 @@ const AdminPanel = () => {
                 {showAddModal && (
                     <div className="admin-modal-overlay">
                         <div className="admin-modal">
-                            <h2>+ {addNewLabels[activeTab]}</h2>
+                            <div className="admin-modal-header">
+                                <h2>{addNewLabels[activeTab]}</h2>
+                                <button className="admin-modal-close" onClick={() => setShowAddModal(false)}>
+                                    <MdClose />
+                                </button>
+                            </div>
                             <div className="admin-modal-body">
-                                <input placeholder={t('admin_panel.ph_name')} onChange={e => setNewItemForm({ ...newItemForm, name: e.target.value })} />
-                                <input placeholder={t('admin_panel.ph_location')} onChange={e => setNewItemForm({ ...newItemForm, location: e.target.value })} />
-                                <input type="number" step="0.1" placeholder={t('admin_panel.ph_rating')} onChange={e => setNewItemForm({ ...newItemForm, rating: e.target.value })} />
-                                <textarea placeholder={t('admin_panel.ph_description')} onChange={e => setNewItemForm({ ...newItemForm, desc: e.target.value })}></textarea>
+                                <div className="admin-modal-field">
+                                    <label>{t('admin_panel.ph_name')}</label>
+                                    <input placeholder={t('admin_panel.ph_name_placeholder')} onChange={e => setNewItemForm({ ...newItemForm, name: e.target.value })} />
+                                </div>
+
+                                {activeTab === 'suppliers' && (
+                                    <>
+                                        <div className="admin-modal-field">
+                                            <label>{t('admin_panel.ph_location')}</label>
+                                            <input placeholder={t('admin_panel.ph_location_placeholder')} onChange={e => setNewItemForm({ ...newItemForm, location: e.target.value })} />
+                                        </div>
+                                        <div className="admin-modal-row">
+                                            <div className="admin-modal-field">
+                                                <label>{t('admin_panel.ph_rating')}</label>
+                                                <input type="number" step="0.1" placeholder="4.5" onChange={e => setNewItemForm({ ...newItemForm, rating: e.target.value })} />
+                                            </div>
+                                            <div className="admin-modal-field">
+                                                <label>{t('admin_panel.ph_logo')}</label>
+                                                <input placeholder={t('admin_panel.ph_logo_placeholder')} onChange={e => setNewItemForm({ ...newItemForm, logo: e.target.value })} />
+                                            </div>
+                                        </div>
+                                        <div className="admin-modal-field">
+                                            <label>{t('admin_panel.ph_description')}</label>
+                                            <textarea placeholder={t('admin_panel.ph_description_placeholder')} onChange={e => setNewItemForm({ ...newItemForm, desc: e.target.value })}></textarea>
+                                        </div>
+                                    </>
+                                )}
+
+                                {activeTab === 'farmers' && (
+                                    <>
+                                        <div className="admin-modal-row">
+                                            <div className="admin-modal-field">
+                                                <label>{t('admin_panel.ph_phone')}</label>
+                                                <input type="tel" placeholder="071 234 5678" onChange={e => setNewItemForm({ ...newItemForm, phone: e.target.value })} />
+                                            </div>
+                                            <div className="admin-modal-field">
+                                                <label>{t('admin_panel.ph_email')}</label>
+                                                <input type="email" placeholder="name@email.com" onChange={e => setNewItemForm({ ...newItemForm, email: e.target.value })} />
+                                            </div>
+                                        </div>
+                                        <div className="admin-modal-field">
+                                            <label>{t('admin_panel.ph_location')}</label>
+                                            <input placeholder={t('admin_panel.ph_location_placeholder')} onChange={e => setNewItemForm({ ...newItemForm, location: e.target.value })} />
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             <div className="admin-modal-footer">
-                                <button onClick={addSupplier} className="admin-btn admin-btn-primary admin-btn-full">{t('admin_panel.save_supplier')}</button>
                                 <button onClick={() => setShowAddModal(false)} className="admin-btn admin-btn-secondary">{t('admin_panel.cancel')}</button>
+                                <button onClick={activeTab === 'suppliers' ? addSupplier : addFarmer} className="admin-btn admin-btn-primary">
+                                    {activeTab === 'suppliers' ? t('admin_panel.save_supplier') : t('admin_panel.save_farmer')}
+                                </button>
                             </div>
                         </div>
                     </div>

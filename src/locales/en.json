@@ -480,6 +480,14 @@
         "confirm_logout": "Log out from Admin Panel?",
         "col_payment": "Payment",
         "paid_label": "Paid",
-        "remaining_label": "Remaining"
+        "remaining_label": "Remaining",
+        "ph_phone": "Phone Number",
+        "ph_email": "Email Address",
+        "save_farmer": "Save Farmer",
+        "ph_name_placeholder": "e.g. Ceylon Seeds Ltd.",
+        "ph_location_placeholder": "e.g. Colombo, Sri Lanka",
+        "ph_logo": "Logo URL",
+        "ph_logo_placeholder": "https://...",
+        "ph_description_placeholder": "Brief description of the company"
     }
 }

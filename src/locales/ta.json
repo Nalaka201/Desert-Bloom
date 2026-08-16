@@ -479,6 +479,14 @@
         "confirm_logout": "நிர்வாக பலகத்திலிருந்து வெளியேறவா?",
         "col_payment": "பணம் செலுத்துதல்",
         "paid_label": "செலுத்தப்பட்டது",
-        "remaining_label": "மீதம்"
+        "remaining_label": "மீதம்",
+        "ph_phone": "தொலைபேசி எண்",
+        "ph_email": "மின்னஞ்சல் முகவரி",
+        "save_farmer": "விவசாயியைச் சேமிக்கவும்",
+        "ph_name_placeholder": "எ.கா. Ceylon Seeds Ltd.",
+        "ph_location_placeholder": "எ.கா. கொழும்பு, இலங்கை",
+        "ph_logo": "லோகோ URL",
+        "ph_logo_placeholder": "https://...",
+        "ph_description_placeholder": "நிறுவனத்தின் சுருக்கமான விளக்கம்"
     }
 }

@@ -479,6 +479,14 @@
         "confirm_logout": "පරිපාලක පුවරුවෙන් ඉවත් වන්නද?",
         "col_payment": "ගෙවීම",
         "paid_label": "ගෙවා ඇත",
-        "remaining_label": "ඉතිරි"
+        "remaining_label": "ඉතිරි",
+        "ph_phone": "දුරකථන අංකය",
+        "ph_email": "විද්‍යුත් තැපැල් ලිපිනය",
+        "save_farmer": "ගොවියා සුරකින්න",
+        "ph_name_placeholder": "උදා. Ceylon Seeds Ltd.",
+        "ph_location_placeholder": "උදා. කොළඹ, ශ්‍රී ලංකාව",
+        "ph_logo": "ලාංඡන URL",
+        "ph_logo_placeholder": "https://...",
+        "ph_description_placeholder": "සමාගම පිළිබඳ කෙටි විස්තරයක්"
     }
 }

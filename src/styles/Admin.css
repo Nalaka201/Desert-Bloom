@@ -438,7 +438,8 @@
 .admin-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(20, 42, 34, 0.45);
+    background: rgba(20, 42, 34, 0.5);
+    backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -447,45 +448,107 @@
 
 .admin-modal {
     background: white;
-    padding: 1.75rem;
-    border-radius: 12px;
-    min-width: 320px;
+    padding: 1.75rem 1.75rem 1.5rem;
+    border-radius: 14px;
+    width: 420px;
     max-width: 90vw;
+    box-shadow: 0 20px 50px -15px rgba(20, 42, 34, 0.35);
+    border-top: 3px solid var(--gold);
 }
 
-.admin-modal h2 {
-    font-size: 1.15rem;
+.admin-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.admin-modal-header h2 {
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.admin-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    color: var(--text-gray);
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+
+.admin-modal-close:hover {
+    background: var(--cream);
+    color: var(--terracotta);
 }
 
 .admin-modal-body {
-    display: grid;
-    gap: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.admin-modal-body input,
-.admin-modal-body textarea {
-    padding: 0.6rem 0.75rem;
-    border-radius: 6px;
+.admin-modal-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+}
+
+.admin-modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.admin-modal-field label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--text-gray);
+    text-transform: uppercase;
+}
+
+.admin-modal-field input,
+.admin-modal-field textarea {
+    padding: 0.65rem 0.8rem;
+    border-radius: 8px;
     border: 1px solid var(--ledger-line);
     font-size: 0.88rem;
     font-family: inherit;
+    color: var(--text-dark);
+    background: var(--cream);
+    transition: border-color 0.2s, background 0.2s;
 }
 
-.admin-modal-body textarea {
-    min-height: 80px;
+.admin-modal-field input:focus,
+.admin-modal-field textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: white;
+}
+
+.admin-modal-field textarea {
+    min-height: 70px;
     resize: vertical;
 }
 
 .admin-modal-footer {
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
     display: flex;
+    justify-content: flex-end;
     gap: 0.6rem;
 }
 
 .admin-modal-footer .admin-btn {
-    flex: 1;
+    padding: 0.6rem 1.4rem;
 }
 
 .admin-payment-cell {
