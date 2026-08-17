@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
 import NotificationDropdown from './NotificationDropdown';
 import '../../styles/Navbar.css';
+import logoImg from '../../assets/Logo.png';
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
@@ -34,7 +35,7 @@ const Navbar = () => {
       <div className="navbar-content">
         <Link to="/home" className="brand" style={{ textDecoration: 'none', color: 'inherit' }}>
           <div className="brand-logo-container">
-            <img src="/src/assets/logo.png" alt="Desert Bloom" className="brand-logo-img" />
+            <img src={logoImg} alt="Desert Bloom" className="brand-logo-img" />
           </div>
           <span>Aswenna.lk</span>
         </Link>

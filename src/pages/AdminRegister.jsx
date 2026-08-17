@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import toast from 'react-hot-toast';
 import '../styles/AdminLogin.css';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 
 const AdminRegister = () => {
     const { t } = useTranslation();

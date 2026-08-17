@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { suppliers as initialSuppliers } from '../data/suppliers';
 import api from '../services/api';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 import {
     MdDashboard,
     MdInventory2,

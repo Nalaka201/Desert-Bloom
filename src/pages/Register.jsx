@@ -6,7 +6,7 @@ import { UserIcon, CardIcon, PhoneIcon, MailIcon, LockIcon, EyeIcon, EyeOffIcon 
 import '../styles/Auth.css';
 import toast from 'react-hot-toast';
 import farmer from '../assets/farmer.png';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 
 const Register = () => {
     const { t, i18n } = useTranslation();

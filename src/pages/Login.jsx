@@ -6,7 +6,7 @@ import { CardIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Ic
 import toast from 'react-hot-toast';
 import '../styles/Auth.css';
 import farmer from '../assets/farmer.png';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 
 const Login = () => {
     const { t, i18n } = useTranslation();

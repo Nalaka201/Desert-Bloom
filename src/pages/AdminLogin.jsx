@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import '../styles/AdminLogin.css';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 
 const AdminLogin = () => {
     const { t } = useTranslation();
