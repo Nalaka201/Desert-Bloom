@@ -29,16 +29,11 @@ const Register = () => {
             return;
         }
 
-        // Simulating registration success
-        const profileData = {
-            name: fullName,
-            nic: nic,
-            phone: phone,
-            email: email,
-            addressLine1: '',
-            addressLine2: '',
-            zip: ''
-        };
+        const trimmedNic = nic.trim();
+        if (!trimmedNic) {
+            toast.error("Please enter a valid NIC number");
+            return;
+        }
 
         // Store this user's profile in a centralized map indexed by NIC
         let allProfiles = {};
@@ -51,15 +46,50 @@ const Register = () => {
             }
         }
 
-        // Add/update this farmer's profile
-        allProfiles[nic] = profileData;
+        // Check for existing NIC registration
+        if (allProfiles[trimmedNic]) {
+            toast.error("An account with this NIC already exists! Please log in.");
+            return;
+        }
+
+        const profileData = {
+            name: fullName,
+            nic: trimmedNic,
+            phone: phone,
+            email: email,
+            password: password,
+            addressLine1: '',
+            addressLine2: '',
+            zip: ''
+        };
+
+        // Add this farmer's profile
+        allProfiles[trimmedNic] = profileData;
         localStorage.setItem('all_farmer_profiles', JSON.stringify(allProfiles));
 
-        // Also set as current profile for immediate use
-        localStorage.setItem('user_nic', nic);
+        // Sync with farmer_users array for Admin Panel visibility
+        let farmerUsers = [];
+        const storedUsers = localStorage.getItem('farmer_users');
+        if (storedUsers) {
+            try { farmerUsers = JSON.parse(storedUsers); } catch (e) {}
+        }
+        if (!farmerUsers.some(u => u.nic === trimmedNic)) {
+            farmerUsers.push({
+                id: Date.now(),
+                name: fullName,
+                nic: trimmedNic,
+                phone: phone,
+                location: 'Sri Lanka',
+                status: 'Active'
+            });
+            localStorage.setItem('farmer_users', JSON.stringify(farmerUsers));
+        }
+
+        // Set current user session
+        localStorage.setItem('user_nic', trimmedNic);
         localStorage.setItem('farmer_profile', JSON.stringify(profileData));
 
-        // 2. Success Toast Notification and Redirect 
+        // Success Toast Notification and Redirect
         toast.success('Registration successful! Please log in to your account.');
         navigate('/');
     };

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { CardIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
+import toast from 'react-hot-toast';
 import '../styles/Auth.css';
 import farmer from '../assets/farmer.png';
 import logo from '../assets/logo.png';
@@ -10,13 +11,15 @@ import logo from '../assets/logo.png';
 const Login = () => {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
-    const [nic, setNic] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [showPassword, setShowPassword] = React.useState(false);
-    const [rememberMe, setRememberMe] = React.useState(false);
+    const [nic, setNic] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     // Load remembered NIC on component mount
-    React.useEffect(() => {
+    useEffect(() => {
         const rememberedNic = localStorage.getItem('remembered_nic');
         if (rememberedNic) {
             setNic(rememberedNic);
@@ -26,38 +29,93 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        setError('');
+        setIsLoading(true);
 
-        // Store the logged-in user's NIC
-        localStorage.setItem('user_nic', nic || 'guest');
-        localStorage.setItem('access_token', 'dummy-token');
+        const trimmedNic = nic.trim();
 
-        // Handle Remember Me
+        if (!trimmedNic) {
+            setError('Please enter your NIC number.');
+            setIsLoading(false);
+            return;
+        }
+
+        // 1. Fetch registered farmer profiles
+        let profilesMap = {};
+        const allProfiles = localStorage.getItem('all_farmer_profiles');
+        if (allProfiles) {
+            try {
+                profilesMap = JSON.parse(allProfiles);
+            } catch (err) {
+                console.error('Error loading farmer profiles:', err);
+            }
+        }
+
+        // 2. Demo Farmer Accounts
+        const demoAccounts = {
+            '198512345678': {
+                name: 'K.H. Somathilaka',
+                nic: '198512345678',
+                phone: '071 3244 232',
+                email: 'somathilaka@gmail.com',
+                password: 'farmer123',
+                addressLine1: 'No. 45, Main Street',
+                addressLine2: 'Anuradhapura',
+                zip: '50000'
+            },
+            '200012345678': {
+                name: 'Sunil Perera',
+                nic: '200012345678',
+                phone: '077 1234 567',
+                email: 'sunil@gmail.com',
+                password: 'farmer123',
+                addressLine1: 'Paddy Farm Rd',
+                addressLine2: 'Polonnaruwa',
+                zip: '51000'
+            }
+        };
+
+        const user = profilesMap[trimmedNic] || demoAccounts[trimmedNic];
+
+        if (!user) {
+            setError('Farmer NIC not found. Please register an account first.');
+            toast.error('NIC not registered. Please register first.');
+            setIsLoading(false);
+            return;
+        }
+
+        // 3. Password Verification
+        if (user.password && user.password !== password) {
+            setError('Incorrect password. Please try again.');
+            toast.error('Incorrect password!');
+            setIsLoading(false);
+            return;
+        }
+
+        // Handle profile if created without stored password
+        if (!user.password) {
+            user.password = password;
+            profilesMap[trimmedNic] = user;
+            localStorage.setItem('all_farmer_profiles', JSON.stringify(profilesMap));
+        }
+
+        // 4. Save Auth Session
+        localStorage.setItem('user_nic', trimmedNic);
+        localStorage.setItem('access_token', 'farmer-token-' + Date.now());
+        localStorage.setItem('farmer_profile', JSON.stringify(user));
+
         if (rememberMe) {
-            localStorage.setItem('remembered_nic', nic);
+            localStorage.setItem('remembered_nic', trimmedNic);
         } else {
             localStorage.removeItem('remembered_nic');
         }
 
-        // Try to load existing farmer profile data based on NIC
-        // Check if this user has registered before
-        const allProfiles = localStorage.getItem('all_farmer_profiles');
-        if (allProfiles) {
-            try {
-                const profilesMap = JSON.parse(allProfiles);
-                if (profilesMap[nic]) {
-                    // User has a registered profile, load it
-                    localStorage.setItem('farmer_profile', JSON.stringify(profilesMap[nic]));
-                }
-            } catch (error) {
-                console.error('Error loading farmer profile:', error);
-            }
-        }
+        toast.success(`Welcome back, ${user.name || 'Farmer'}!`);
+        setIsLoading(false);
 
-        // Give the browser a small moment to detect the form submission 
-        // and trigger the "Save Password" prompt before unmounting the form.
         setTimeout(() => {
             navigate('/home');
-        }, 150);
+        }, 200);
     };
 
     return (
@@ -91,6 +149,15 @@ const Login = () => {
                         <p className="auth-subtitle-refined">
                             {t('auth.no_account')} <Link to="/register" className="auth-link-register">{t('auth.register_now')}</Link>
                         </p>
+
+                        {error && (
+                            <div className="auth-error-banner">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" />
+                                </svg>
+                                <span>{error}</span>
+                            </div>
+                        )}
 
                         <form className="auth-form-refined" onSubmit={handleLogin}>
                             <div className="auth-input-group-premium">
@@ -143,8 +210,8 @@ const Login = () => {
                                 <Link to="/forgot-password" title={t('auth.forgot')} className="auth-link-forgot">{t('auth.forgot')}</Link>
                             </div>
 
-                            <button type="submit" className="auth-btn-premium" id="login-submit-btn">
-                                <span>{t('auth.login_btn')}</span>
+                            <button type="submit" className="auth-btn-premium" id="login-submit-btn" disabled={isLoading}>
+                                <span>{isLoading ? 'Signing in...' : t('auth.login_btn')}</span>
                                 <span className="btn-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M5 12h14M12 5l7 7-7 7" />

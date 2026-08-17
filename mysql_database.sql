@@ -83,9 +83,10 @@ CREATE TABLE IF NOT EXISTS site_content (
 -- Initial Data (Sample)
 -- ==========================================================
 
--- Default Admin (Already in mysql_database.sql)
-INSERT INTO admins (username, password, full_name) VALUES 
-('admin', 'admin123', 'System Administrator');
+-- Default Admin Credentials
+INSERT INTO admins (username, password, full_name, email) VALUES 
+('Nalaka', 'Nalaka201@', 'Nalaka Admin', 'nalaka@aswenna.lk'),
+('admin', 'admin123', 'System Administrator', 'admin@aswenna.lk');
 
 -- Sample Site Content
 INSERT INTO site_content (content_key, content_value) VALUES 

@@ -23,16 +23,23 @@ const AdminLogin = () => {
 
         const registeredAdmins = JSON.parse(localStorage.getItem('registered_admins') || '[]');
 
-        if (registeredAdmins.length === 0 && username === 'admin' && password === 'admin123') {
+        // Primary default admin check for Nalaka and admin
+        const isDefaultAdmin =
+            (username === 'Nalaka' && password === 'Nalaka201@') ||
+            (username === 'admin' && password === 'admin123');
+
+        if (isDefaultAdmin) {
             localStorage.setItem('admin_auth', 'true');
+            localStorage.setItem('admin_user', username);
             navigate('/admin');
             return;
         }
 
-        const user = registeredAdmins.find(a => a.username === username && a.password === password);
+        const user = registeredAdmins.find(a => a.username.toLowerCase() === username.toLowerCase() && a.password === password);
 
         if (user) {
             localStorage.setItem('admin_auth', 'true');
+            localStorage.setItem('admin_user', user.username);
             navigate('/admin');
         } else {
             setError(t('admin_login.error_invalid'));
