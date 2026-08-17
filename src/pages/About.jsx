@@ -6,6 +6,7 @@ import ImpactStats from '../components/about/ImpactStats';
 import FarmerGallery from '../components/about/FarmerGallery';
 import Footer from '../components/common/Footer';
 import '../styles/About.css';
+import about from '../assets/about.png';
 
 const About = () => {
     const { t } = useTranslation();
@@ -20,7 +21,6 @@ const About = () => {
             <section className="about-content-section container">
                 <div className="about-grid">
                     <div className="about-text">
-                        <span className="eyebrow">{t('about.story_title')}</span>
                         <h2>{t('about.story_title')}</h2>
                         <p>{t('about.story_p1')}</p>
                         <p>{t('about.story_p2')}</p>
@@ -29,9 +29,9 @@ const About = () => {
                     </div>
                     <div className="about-image-wrapper">
                         <img
-                            src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=1200&auto=format&fit=crop"
+                            src={about}
                             alt="Farming Story"
-                            className="about-image"
+                            className="about-image" loading="lazy"
                         />
                         <div className="image-tag">
                             <span>Since</span>

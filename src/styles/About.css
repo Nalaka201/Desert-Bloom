@@ -62,7 +62,7 @@
 
 .about-hero-subtitle {
     font-family: var(--font-family);
-    max-width: 55ch;
+    max-width: 50ch;
     margin: 0 auto;
     opacity: 0.85;
     line-height: 1.6;
@@ -111,8 +111,9 @@
 
 .about-image {
     width: 100%;
-    height: 420px;
+    height: 400px;
     object-fit: cover;
+    object-position: 80% center;
     border-radius: var(--radius-lg);
     box-shadow: 0 24px 50px -25px rgba(20, 42, 34, 0.35);
 }
