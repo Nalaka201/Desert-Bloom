@@ -15,7 +15,6 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
-    const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     // Load remembered NIC on component mount
@@ -29,13 +28,12 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        setError('');
         setIsLoading(true);
 
         const trimmedNic = nic.trim();
 
         if (!trimmedNic) {
-            setError('Please enter your NIC number.');
+            toast.error('Please enter your NIC number.');
             setIsLoading(false);
             return;
         }
@@ -78,7 +76,6 @@ const Login = () => {
         const user = profilesMap[trimmedNic] || demoAccounts[trimmedNic];
 
         if (!user) {
-            setError('Farmer NIC not found. Please register an account first.');
             toast.error('NIC not registered. Please register first.');
             setIsLoading(false);
             return;
@@ -86,7 +83,6 @@ const Login = () => {
 
         // 3. Password Verification
         if (user.password && user.password !== password) {
-            setError('Incorrect password. Please try again.');
             toast.error('Incorrect password!');
             setIsLoading(false);
             return;
@@ -149,15 +145,6 @@ const Login = () => {
                         <p className="auth-subtitle-refined">
                             {t('auth.no_account')} <Link to="/register" className="auth-link-register">{t('auth.register_now')}</Link>
                         </p>
-
-                        {error && (
-                            <div className="auth-error-banner">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" />
-                                </svg>
-                                <span>{error}</span>
-                            </div>
-                        )}
 
                         <form className="auth-form-refined" onSubmit={handleLogin}>
                             <div className="auth-input-group-premium">
