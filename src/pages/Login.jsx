@@ -33,7 +33,15 @@ const Login = () => {
         const trimmedNic = nic.trim();
 
         if (!trimmedNic) {
-            toast.error('Please enter your NIC number.');
+            toast.error(t('auth.nic_required'));
+            setIsLoading(false);
+            return;
+        }
+
+        // NIC format check: old format (9 digits + V/X) or new format (12 digits)
+        const nicPattern = /^([0-9]{9}[vVxX]|[0-9]{12})$/;
+        if (!nicPattern.test(trimmedNic)) {
+            toast.error(t('auth.nic_invalid'));
             setIsLoading(false);
             return;
         }
@@ -76,14 +84,14 @@ const Login = () => {
         const user = profilesMap[trimmedNic] || demoAccounts[trimmedNic];
 
         if (!user) {
-            toast.error('NIC not registered. Please register first.');
+            toast.error(t('auth.nic_not_registered'));
             setIsLoading(false);
             return;
         }
 
         // 3. Password Verification
         if (user.password && user.password !== password) {
-            toast.error('Incorrect password!');
+            toast.error(t('auth.password_incorrect'));
             setIsLoading(false);
             return;
         }
@@ -106,7 +114,7 @@ const Login = () => {
             localStorage.removeItem('remembered_nic');
         }
 
-        toast.success(`Welcome back, ${user.name || 'Farmer'}!`);
+        toast.success(t('auth.login_success', { name: user.name || 'Farmer' }));
         setIsLoading(false);
 
         setTimeout(() => {
@@ -198,7 +206,7 @@ const Login = () => {
                             </div>
 
                             <button type="submit" className="auth-btn-premium" id="login-submit-btn" disabled={isLoading}>
-                                <span>{isLoading ? 'Signing in...' : t('auth.login_btn')}</span>
+                                <span>{isLoading ? t('auth.signing_in') : t('auth.login_btn')}</span>
                                 <span className="btn-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M5 12h14M12 5l7 7-7 7" />

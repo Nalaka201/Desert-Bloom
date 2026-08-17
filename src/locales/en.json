@@ -46,7 +46,13 @@
         "phone": "Phone Number *",
         "email": "E-mail Address *",
         "confirm_pass": "Confirm Password *",
-        "terms": "I Agree to the Terms & Conditions"
+        "terms": "I Agree to the Terms & Conditions",
+        "nic_required": "Please enter your NIC number.",
+        "nic_invalid": "Please enter a valid NIC number.",
+        "nic_not_registered": "NIC not registered. Please register first.",
+        "password_incorrect": "Incorrect password!",
+        "login_success": "Welcome back, {{name}}!",
+        "signing_in": "Signing in..."
     },
     "forgot_password": {
         "back_to_login": "Back to Login",
