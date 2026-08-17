@@ -8,12 +8,17 @@ export default defineConfig({
     {
       name: 'show-admin-link',
       configureServer(server) {
-        server.httpServer.once('listening', () => {
-          setTimeout(() => {
-            console.log('\n  \x1b[32m➜\x1b[0m  \x1b[1mAdmin Portal\x1b[0m: \x1b[36mhttp://localhost:5173/admin-login\x1b[0m\n');
-          }, 100);
-        });
+        if (server.httpServer) {
+          server.httpServer.once('listening', () => {
+            setTimeout(() => {
+              console.log('\n  \x1b[32m➜\x1b[0m  \x1b[1mAdmin Portal\x1b[0m: \x1b[36mhttp://localhost:5173/admin-login\x1b[0m\n');
+            }, 100);
+          });
+        }
       }
     }
   ],
+  build: {
+    chunkSizeWarningLimit: 3000
+  }
 })
