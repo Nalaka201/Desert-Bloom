@@ -4,41 +4,36 @@
     --terracotta: #a8562e;
     --cream: #faf6ec;
     --forest-dark: #142a22;
+    --dark-green: #1f4033;
     --ledger-line: #e6ddc7;
+    --text-dark: #2b2b23;
     background: var(--cream);
 }
 
 .about-hero {
     position: relative;
     text-align: center;
-    padding: 1.5rem 1.5rem 1.5rem;
-    background: linear-gradient(160deg, var(--dark-green) 0%, var(--forest-dark) 100%);
+    padding: 2rem 1.4rem 2rem;
+    background: linear-gradient(180deg, #0a2e22 0%, #083c2c 50%, #08432f 100%);
     color: white;
-    border-bottom: 4px solid var(--gold);
-}
-
-.about-hero::before {
-    content: '';
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    pointer-events: none;
 }
 
 .about-hero .eyebrow {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--gold-soft);
-    position: relative;
-    z-index: 2;
+    margin-bottom: 0.50rem;
+    font-weight: 600;
 }
 
 .about-hero h1 {
     font-family: var(--font-heading);
-    font-size: clamp(1.5rem, 3.0vw, 2.5rem);
-    font-weight: 800;
-    position: relative;
-    z-index: 2;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
 .about-hero-subtitle {
@@ -46,11 +41,8 @@
     color: lightgray;
     max-width: 50ch;
     margin: 0 auto;
-    opacity: 0.9;
     line-height: 1.6;
     font-size: 0.85rem;
-    position: relative;
-    z-index: 2;
 }
 
 /* ---------- Story ---------- */
@@ -66,15 +58,10 @@
 }
 
 .about-text h2 {
-    display: none;
-}
-
-.about-text h2 {
-    display: block;
     font-family: var(--font-heading);
+    color: var(--forest-dark);
     font-size: 1.9rem;
     font-weight: 700;
-    color: var(--text-dark);
     margin-bottom: 1.25rem;
 }
 
@@ -82,7 +69,7 @@
     font-family: var(--font-family);
     line-height: 1.75;
     color: var(--text-dark);
-    opacity: 0.82;
+    opacity: 0.78;
     margin-bottom: 1.1rem;
 }
 
@@ -95,19 +82,19 @@
     height: 400px;
     object-fit: cover;
     object-position: 80% center;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 24px 50px -25px rgba(20, 42, 34, 0.35);
+    border-radius: 12px;
+    border: 1px solid var(--ledger-line);
 }
 
 .image-tag {
     position: absolute;
-    bottom: -18px;
-    left: -18px;
-    width: 84px;
-    height: 84px;
+    bottom: -20px;
+    left: 24px;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
-    background: var(--dark-green);
-    border: 1.5px dashed var(--gold);
+    background: var(--forest-dark);
+    border: 1px solid var(--gold);
     color: var(--gold-soft);
     display: flex;
     flex-direction: column;
@@ -115,24 +102,32 @@
     justify-content: center;
     text-align: center;
     font-family: 'IBM Plex Mono', monospace;
-    transform: rotate(-10deg);
-    box-shadow: 0 10px 25px -10px rgba(20, 42, 34, 0.5);
-    transition: transform 0.3s ease;
+    box-shadow: 0 12px 24px -8px rgba(20, 42, 34, 0.4);
+    transform: rotate(-6deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .image-tag:hover {
-    transform: rotate(0deg) scale(1.05);
+    transform: rotate(0deg) scale(1.06);
+    box-shadow: 0 18px 32px -8px rgba(20, 42, 34, 0.5);
+}
+
+.image-tag:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 18px 32px -8px rgba(20, 42, 34, 0.5);
 }
 
 .image-tag span {
-    font-size: 0.6rem;
+    font-size: 0.62rem;
     letter-spacing: 0.08em;
-    opacity: 0.8;
+    text-transform: uppercase;
+    opacity: 0.85;
 }
 
 .image-tag strong {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     margin-top: 2px;
+    letter-spacing: 0.02em;
 }
 
 /* ---------- Mission / Vision ---------- */
@@ -146,53 +141,54 @@
 .mv-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 .mv-card {
     background: var(--cream);
     border: 1px solid var(--ledger-line);
-    border-radius: var(--radius-lg);
-    padding: 2.75rem 2.25rem;
-    position: relative;
-}
-
-.mv-card::before {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
-    border-top: 2px dashed rgba(168, 86, 46, 0.25);
+    border-radius: 12px;
+    padding: 2.25rem 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.9rem;
+    row-gap: 0.5rem;
 }
 
 .mv-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
+    grid-row: 1;
+    grid-column: 1;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1.5px solid var(--gold);
-    background: rgba(201, 154, 46, 0.08);
+    background: rgba(201, 154, 46, 0.1);
+    border: 1px solid var(--gold-soft);
     color: var(--terracotta);
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .mv-card h3 {
+    grid-row: 1;
+    grid-column: 2;
+    align-self: center;
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-dark);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .mv-card p {
+    grid-row: 2;
+    grid-column: 1 / 3;
     font-family: var(--font-family);
     line-height: 1.7;
     color: var(--text-dark);
-    opacity: 0.8;
+    opacity: 0.75;
 }
 
 @media (max-width: 992px) {
@@ -209,7 +205,7 @@
     }
 
     .about-hero {
-        padding: 4.5rem 1.5rem 3.5rem;
+        padding: 3.5rem 1.5rem 3rem;
     }
 }
 
@@ -217,7 +213,6 @@
 .about-page .testimonial-section-wrap {
     background: var(--cream);
     padding: 6rem 0 2rem;
-    /* Reduced bottom padding here */
 }
 
 .about-page .testimonial-header-block .section-title-center {
@@ -233,13 +228,11 @@
 
 .about-page .quote-card {
     background: white;
-    border: 1px dashed var(--ledger-line);
-    box-shadow: 0 10px 25px -10px rgba(20, 42, 34, 0.08);
+    border: 1px solid var(--ledger-line);
 }
 
 .about-page .quote-card:hover {
     border-color: var(--gold);
-    box-shadow: 0 20px 40px -15px rgba(20, 42, 34, 0.15);
 }
 
 .about-page .verified-farmer-tag {
@@ -263,7 +256,7 @@
 
 .about-page .author-avatar-circle {
     background: var(--dark-green);
-    border: 1px dashed var(--gold);
+    border: 1px solid var(--gold);
     color: var(--gold-soft);
 }
 

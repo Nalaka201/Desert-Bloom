@@ -35,62 +35,6 @@
     padding: 1rem;
 }
 
-/* Animated blob glow */
-.auth-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.18;
-    animation: blobFloat 12s ease-in-out infinite alternate;
-    pointer-events: none;
-}
-
-.auth-blob-1 {
-    width: 420px;
-    height: 420px;
-    background: radial-gradient(circle, #16a34a, #064e3b);
-    top: -120px;
-    left: -80px;
-    animation-delay: 0s;
-}
-
-.auth-blob-2 {
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, #1e3a8a, #166534);
-    bottom: -100px;
-    right: -60px;
-    animation-delay: 4s;
-}
-
-@keyframes blobFloat {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(40px, 20px) scale(1.07);
-    }
-
-    100% {
-        transform: translate(80px, 40px) scale(1.12);
-    }
-}
-
-@keyframes floating {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
 .auth-card {
     display: flex;
     width: 100%;
