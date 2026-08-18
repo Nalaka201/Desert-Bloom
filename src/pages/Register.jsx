@@ -71,7 +71,7 @@ const Register = () => {
         let farmerUsers = [];
         const storedUsers = localStorage.getItem('farmer_users');
         if (storedUsers) {
-            try { farmerUsers = JSON.parse(storedUsers); } catch (e) {}
+            try { farmerUsers = JSON.parse(storedUsers); } catch (e) { }
         }
         if (!farmerUsers.some(u => u.nic === trimmedNic)) {
             farmerUsers.push({
@@ -85,13 +85,14 @@ const Register = () => {
             localStorage.setItem('farmer_users', JSON.stringify(farmerUsers));
         }
 
-        // Set current user session
+        // Set current user session (same keys/shape as Login.jsx uses)
         localStorage.setItem('user_nic', trimmedNic);
+        localStorage.setItem('access_token', 'farmer-token-' + Date.now());
         localStorage.setItem('farmer_profile', JSON.stringify(profileData));
 
-        // Success Toast Notification and Redirect
-        toast.success('Registration successful! Please log in to your account.');
-        navigate('/');
+        // Success Toast Notification and Redirect straight into the full-access home page
+        toast.success(`Welcome, ${fullName || 'Farmer'}! Your account is ready.`);
+        navigate('/home');
     };
     return (
         <div className={`auth-container lang-${i18n.language}`}>
