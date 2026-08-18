@@ -28,19 +28,14 @@
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 4rem;
-    margin-bottom: 3rem;
+    margin-bottom: 30px;
     align-items: stretch;
+    margin-top: -30px;
 }
 
 .contact-info-card {
     position: relative;
-    background:
-        repeating-linear-gradient(135deg,
-            rgba(255, 255, 255, 0.02) 0px,
-            rgba(255, 255, 255, 0.02) 2px,
-            transparent 2px,
-            transparent 14px),
-        linear-gradient(160deg, var(--dark-green) 0%, var(--forest-dark) 100%);
+    background: linear-gradient(160deg, var(--dark-green) 0%, var(--forest-dark) 100%);
     color: white;
     padding: 2.25rem 2.5rem 2rem;
     border-radius: var(--radius-lg);
@@ -54,7 +49,6 @@
     left: 10px;
     right: 10px;
     height: 0;
-    border-top: 2px dashed rgba(201, 154, 46, 0.45);
 }
 
 .contact-info-card h2 {
@@ -123,7 +117,6 @@
     background: white;
     border-radius: var(--radius-lg);
     padding: 2.25rem 2.5rem 2rem;
-    border-top: 4px solid var(--gold);
     box-shadow: 0 20px 50px -25px rgba(20, 42, 34, 0.25);
 }
 
@@ -137,7 +130,7 @@
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: 1.3rem;
 }
 
 .form-group {
@@ -162,7 +155,7 @@
     border-bottom: 2px dashed var(--ledger-line);
     background: transparent;
     border-radius: 0;
-    font-size: 1rem;
+    font-size: 0.85rem;
     transition: border-color 0.25s ease;
 }
 
@@ -182,10 +175,10 @@
             transparent 31px,
             var(--ledger-line) 32px),
         white;
-    height: 160px;
+    height: 90px;
     resize: none;
     line-height: 32px;
-    font-size: 1rem;
+    font-size: 0.85rem;
     transition: border-color 0.25s ease;
 }
 
