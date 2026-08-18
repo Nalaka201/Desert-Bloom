@@ -8,28 +8,11 @@
     background: var(--cream);
 }
 
-.eyebrow {
-    display: inline-block;
-    font-family: 'IBM Plex Mono', 'Courier New', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 0.6rem;
-    font-weight: 600;
-}
-
 .about-hero {
     position: relative;
     text-align: center;
-    padding: 2.5rem 1.5rem 2.5rem;
-    background:
-        repeating-linear-gradient(135deg,
-            rgba(255, 255, 255, 0.02) 0px,
-            rgba(255, 255, 255, 0.02) 2px,
-            transparent 2px,
-            transparent 14px),
-        linear-gradient(160deg, var(--dark-green) 0%, var(--forest-dark) 100%);
+    padding: 1.5rem 1.5rem 1.5rem;
+    background: linear-gradient(160deg, var(--dark-green) 0%, var(--forest-dark) 100%);
     color: white;
     border-bottom: 4px solid var(--gold);
 }
@@ -41,7 +24,6 @@
     left: 14px;
     right: 14px;
     bottom: 14px;
-    border: 2px dashed rgba(201, 154, 46, 0.35);
     pointer-events: none;
 }
 
@@ -53,20 +35,20 @@
 
 .about-hero h1 {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-size: clamp(1.5rem, 3.0vw, 2.5rem);
     font-weight: 800;
-    margin-bottom: 0.5rem;
     position: relative;
     z-index: 2;
 }
 
 .about-hero-subtitle {
     font-family: var(--font-family);
+    color: lightgray;
     max-width: 50ch;
     margin: 0 auto;
-    opacity: 0.85;
+    opacity: 0.9;
     line-height: 1.6;
-    font-size: 1rem;
+    font-size: 0.85rem;
     position: relative;
     z-index: 2;
 }
@@ -83,7 +65,6 @@
     align-items: center;
 }
 
-.about-text .eyebrow~h2,
 .about-text h2 {
     display: none;
 }

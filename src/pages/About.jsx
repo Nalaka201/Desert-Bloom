@@ -6,7 +6,7 @@ import ImpactStats from '../components/about/ImpactStats';
 import FarmerGallery from '../components/about/FarmerGallery';
 import Footer from '../components/common/Footer';
 import '../styles/About.css';
-import about from '../assets/about.png';
+import about from '../assets/about.jfif';
 
 const About = () => {
     const { t } = useTranslation();
