@@ -19,6 +19,12 @@ const Home = () => {
     const imagesRef = useRef([]);
 
     useEffect(() => {
+        // Clear leftover session token on landing page so user always sees guest view with Login button
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('farmer_profile');
+    }, []);
+
+    useEffect(() => {
         const preloadImages = async () => {
             const loadedImages = await Promise.all(
                 sortedFrameUrls.map(url => {

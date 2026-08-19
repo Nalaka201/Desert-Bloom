@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 import { CardIcon, LockIcon, EyeIcon, EyeOffIcon } from '../components/common/Icons';
@@ -11,6 +11,7 @@ import logo from '../assets/Logo.png';
 const Login = () => {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    const location = useLocation();
     const [nic, setNic] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -118,7 +119,8 @@ const Login = () => {
         setIsLoading(false);
 
         setTimeout(() => {
-            navigate('/home');
+            const redirectUrl = location.state?.from || '/suppliers';
+            navigate(redirectUrl);
         }, 200);
     };
 
