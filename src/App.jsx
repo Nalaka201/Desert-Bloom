@@ -25,30 +25,26 @@ import './index.css';
 
 const AppContent = () => {
   const location = useLocation();
-  const token = localStorage.getItem('access_token');
 
-  // "/" shows Login (no navbar) when a token exists, Home (with navbar) otherwise
-  const rootShowingLogin = location.pathname === '/' && !!token;
-
-  const hideNavbar = rootShowingLogin || ['/login', '/register', '/forgot-password', '/admin', '/admin-login', '/admin-register'].includes(location.pathname);
+  const hideNavbar = ['/login', '/register', '/forgot-password', '/admin', '/admin-login', '/admin-register'].includes(location.pathname);
 
   return (
     <div className="app">
       {!hideNavbar && <Navbar />}
       <main>
         <Routes>
-          {/* Root: Login if returning (has token), Home if guest */}
-          <Route path="/" element={<RootRoute />} />
+          {/* Root always shows Home page first */}
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/suppliers" element={<Suppliers />} />
-          <Route path="/products" element={<Company />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
-          {/* Protected - login required */}
+          {/* Protected - requires farmer login */}
+          <Route path="/suppliers" element={<ProtectedRoute><Suppliers /></ProtectedRoute>} />
+          <Route path="/products" element={<ProtectedRoute><Company /></ProtectedRoute>} />
           <Route path="/supplier/:id" element={<ProtectedRoute><SupplierDetails /></ProtectedRoute>} />
           <Route path="/supplier/ceylon-seeds" element={<ProtectedRoute><CeylonSeeds /></ProtectedRoute>} />
           <Route path="/order/:productId" element={<ProtectedRoute><OrderPage /></ProtectedRoute>} />
