@@ -1230,3 +1230,35 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 480px) {
+    .section-padding {
+        padding: 3.5rem 0;
+    }
+
+    .section-title-center {
+        font-size: 1.6rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .product-card-modern {
+        border-radius: 12px;
+    }
+
+    .farmer-trust-banner {
+        padding: 2rem 1.25rem;
+        border-radius: 14px;
+    }
+
+    .trust-banner-heading {
+        font-size: 1.4rem;
+    }
+
+    .newsletter-strip {
+        padding: 1.75rem 1.25rem;
+        border-radius: 14px;
+    }
+}

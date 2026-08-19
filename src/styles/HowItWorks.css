@@ -111,3 +111,17 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 480px) {
+    .how-it-works {
+        padding: 4rem 0;
+    }
+
+    .how-it-works .section-title {
+        font-size: 1.7rem;
+    }
+
+    .step-card {
+        padding: 28px 18px;
+    }
+}

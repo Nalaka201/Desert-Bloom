@@ -209,3 +209,26 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 480px) {
+    .farmer-gallery-section {
+        padding: 3.5rem 1rem;
+    }
+
+    .gallery-title {
+        font-size: 1.8rem;
+    }
+
+    .cta-box {
+        padding: 2rem 1.25rem;
+    }
+
+    .cta-box h3 {
+        font-size: 1.25rem;
+    }
+
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -883,3 +883,62 @@
     font-size: 2.5rem;
     margin-bottom: var(--sp-md);
 }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .ceylon-container {
+        padding: 0 1rem var(--sp-xl);
+    }
+
+    .supplier-hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--sp-lg);
+    }
+
+    .seeds-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .seed-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-meta-row {
+        flex-wrap: wrap;
+        gap: var(--sp-sm);
+    }
+
+    .supplier-profile-card,
+    .seeds-section {
+        padding: var(--sp-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .ceylon-container {
+        padding: 0 0.75rem var(--sp-xl);
+    }
+
+    .seeds-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .supplier-profile-card,
+    .seeds-section {
+        padding: var(--sp-md);
+        border-radius: 14px;
+    }
+
+    .p-name {
+        font-size: 1.5rem;
+    }
+
+    .seed-card {
+        border-radius: 12px;
+    }
+
+    .btn-add-to-cart-large {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}

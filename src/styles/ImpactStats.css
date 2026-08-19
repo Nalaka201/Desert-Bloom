@@ -115,3 +115,17 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 480px) {
+    .impact-stats {
+        padding: 4rem 0;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    .impact-stats .section-title {
+        font-size: 1.7rem;
+    }
+}

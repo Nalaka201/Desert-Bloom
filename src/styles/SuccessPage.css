@@ -178,7 +178,18 @@
 }
 
 @media (max-width: 576px) {
-    .success-order-card {
-        padding: 2.25rem 1.75rem 2rem;
+    .success-content {
+        padding: 1.5rem 1rem;
     }
-}
+
+    .success-order-card {
+        padding: 2rem 1.25rem 1.75rem;
+    }
+
+    .btn-gold-primary,
+    .btn-gold-secondary {
+        width: 100%;
+        padding: 0.9rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
