@@ -46,7 +46,7 @@ const AppContent = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* Protected - requires farmer login */}
-          <Route path="/suppliers" element={<ProtectedRoute><Suppliers /></ProtectedRoute>} />
+          <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/products" element={<ProtectedRoute><Company /></ProtectedRoute>} />
           <Route path="/supplier/:id" element={<ProtectedRoute><SupplierDetails /></ProtectedRoute>} />
           <Route path="/supplier/ceylon-seeds" element={<ProtectedRoute><CeylonSeeds /></ProtectedRoute>} />

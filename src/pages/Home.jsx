@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SupplierSection from '../components/home/SupplierSection';
 import FeatureSection from '../components/home/FeatureSection';
@@ -135,13 +136,13 @@ const Home = () => {
                         </p>
 
                         <div className="hero-actions-group">
-                            <a href="#suppliers" className="primary-cta-btn">
+                            <Link to="/suppliers" className="primary-cta-btn">
                                 <span>{t('hero.cta')}</span>
                                 <svg className="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
-                            </a>
+                            </Link>
                             <a href="#features" className="secondary-cta-btn">
                                 <svg className="shield-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
