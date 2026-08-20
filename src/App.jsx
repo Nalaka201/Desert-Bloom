@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'r
 import Navbar from './components/common/Navbar';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import RootRoute from './components/common/RootRoute';
+import WelcomeScreen from './pages/WelcomeScreen';
 import Home from './pages/Home';
 import About from './pages/About';
 import Company from './pages/Company';
@@ -26,8 +27,28 @@ import AdminDashboard from './pages/AdminDashboard';
 import { Toaster } from 'react-hot-toast';
 import './index.css';
 
+const WELCOME_SHOWN_KEY = 'aswenna_welcome_shown';
+const MOBILE_BREAKPOINT = 768;
+
 const AppContent = () => {
   const location = useLocation();
+
+  const [showSplash, setShowSplash] = React.useState(() => {
+    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+    const alreadyShown = sessionStorage.getItem(WELCOME_SHOWN_KEY);
+    return isMobile && !alreadyShown;
+  });
+
+  if (showSplash) {
+    return (
+      <WelcomeScreen
+        onFinish={() => {
+          sessionStorage.setItem(WELCOME_SHOWN_KEY, '1');
+          setShowSplash(false);
+        }}
+      />
+    );
+  }
 
   const hideNavbar = ['/login', '/register', '/forgot-password', '/admin', '/admin-login', '/admin-register'].includes(location.pathname);
 
